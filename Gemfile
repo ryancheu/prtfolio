@@ -49,3 +49,6 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 
 gem "hirb", "~> 0.7.1"
+
+# gems for using amazon s3
+gem "paperclip", "~> 3.0"
