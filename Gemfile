@@ -1,10 +1,8 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -32,14 +30,22 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+group :development, :test do
+    gem 'sqlite3'
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :production do
+    gem 'pg'
+end
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
+# add extra gems at end of file
+gem 'bcrypt-ruby', '3.0.1'
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'font-awesome-rails'
+
+gem 'simple_form'
+
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.9'
+
+gem "hirb", "~> 0.7.1"
