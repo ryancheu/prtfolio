@@ -11,11 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131115171951) do
+ActiveRecord::Schema.define(version: 20131116221118) do
 
   create_table "blocks", force: true do |t|
     t.integer  "page_index"
     t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "firstres_id"
+    t.integer  "secondres_id"
+    t.string   "firstres_type"
+    t.string   "secondres_type"
+  end
+
+  create_table "codes", force: true do |t|
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "descriptions", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "images", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,6 +82,11 @@ ActiveRecord::Schema.define(version: 20131115171951) do
     t.string   "uid"
     t.string   "auth_token"
     t.string   "image_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "videos", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

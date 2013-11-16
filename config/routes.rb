@@ -1,5 +1,13 @@
 SaylorpAnuhyagIsabellatrombaRyancheuFinal::Application.routes.draw do
   
+  resources :codes
+
+  resources :descriptions
+
+  resources :videos
+
+  resources :images
+
   resources :portfolios
   resources :templates
   resources :themes
