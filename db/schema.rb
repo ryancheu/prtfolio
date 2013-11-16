@@ -11,59 +11,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131116012748) do
+ActiveRecord::Schema.define(version: 20131115171951) do
 
   create_table "blocks", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "page_index"
     t.integer  "project_id"
+<<<<<<< HEAD
   end
 
   create_table "portfolios", force: true do |t|
+=======
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "portfolios", force: true do |t|
+    t.integer  "user_id"
+>>>>>>> gist
     t.string   "font"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "projects", force: true do |t|
+    t.integer  "portfolio_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "language"
-    t.integer  "portfolio_id"
   end
 
   create_table "resources", force: true do |t|
+    t.integer  "block_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "block_id"
   end
 
   create_table "templates", force: true do |t|
+    t.integer  "block_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "block_id"
   end
 
   create_table "themes", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "portfolio_id"
     t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
     t.string   "fullname"
     t.string   "username"
     t.string   "email"
+    t.string   "remember_token"
+    t.string   "uid"
+    t.string   "auth_token"
+    t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
-    t.string   "remember_token"
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end

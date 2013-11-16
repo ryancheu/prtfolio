@@ -13,9 +13,12 @@ SaylorpAnuhyagIsabellatrombaRyancheuFinal::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  root 'users#new'
-  match '/signup',  to: 'users#new',            via: 'get'
-  match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
+  root 'pages#home'
+  match '/signout', to: 'sessions#destroy',    via: 'delete'
 
+  # redirect signin to venmo auth
+  get '/signin', to: redirect('/auth/github')
+  # capture the venmo callback path
+  get '/auth/github/callback', to: 'sessions#create'
+  
 end
