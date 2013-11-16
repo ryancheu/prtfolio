@@ -2,6 +2,7 @@
 class SessionsController < ApplicationController
 
 	def create
+		puts "Creating new session with new_user_params"
 		new_user_params = {
 			fullname: auth_hash.info.name,
 			username: auth_hash.info.nickname,
@@ -9,21 +10,23 @@ class SessionsController < ApplicationController
 			auth_token: auth_hash.credentials.token,
 			image_url: auth_hash.extra.raw_info.avatar_url
 		}
+		puts new_user_params.to_yaml
 	    user = User.find_by_uid_or_create(auth_hash.uid, new_user_params)
 	    sign_in user
-	    render_auth_hash
-	    # redirect_back_or user
+	    redirect_back_or user
 	end
 
 	def destroy
+		puts "Destroying session"
 		sign_out
     	redirect_to root_url
 	end
 
 	def oauth_failure
+		puts "OATH FAILURE"
 	    sign_out
 	    flash[:error] = "You must log into GitHub to continue"
-	    redirect_to root_url
+	    redirect_to users_path
 	end
 
 	private
