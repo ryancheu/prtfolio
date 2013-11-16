@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<img src= <%= @user.image_url %> />
 <p>
   <strong>Fullname:</strong>
   <%= @user.fullname %>
@@ -14,6 +15,12 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
+
+<p>
+  <strong>GitHub auth Token:</strong>
+  <%= @user.auth_token %>
+</p>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

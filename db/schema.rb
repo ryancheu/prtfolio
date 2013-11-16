@@ -16,18 +16,12 @@ ActiveRecord::Schema.define(version: 20131115171951) do
   create_table "blocks", force: true do |t|
     t.integer  "page_index"
     t.integer  "project_id"
-<<<<<<< HEAD
-  end
-
-  create_table "portfolios", force: true do |t|
-=======
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "portfolios", force: true do |t|
     t.integer  "user_id"
->>>>>>> gist
     t.string   "font"
     t.datetime "created_at"
     t.datetime "updated_at"
