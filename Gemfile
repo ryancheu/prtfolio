@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 1.2'
 # Format the website with the bootstrap gem
 gem 'bootstrap-sass'
 
+# Using GitHub
+gem "omniauth-github", "~> 1.1.1"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
