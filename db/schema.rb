@@ -20,13 +20,8 @@ ActiveRecord::Schema.define(version: 20131116012748) do
     t.integer  "project_id"
   end
 
-  create_table "porfolios", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "font"
-  end
-
   create_table "portfolios", force: true do |t|
+    t.string   "font"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
