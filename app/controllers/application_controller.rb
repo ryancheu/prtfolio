@@ -5,4 +5,14 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include ApplicationHelper
 
+  private
+    # redirect to signin if the user is not signed in
+    def require_login
+      unless signed_in?
+        store_location
+        flash[:error] = "You must be logged in to access this page"
+        redirect_to root_url
+      end
+    end
+
 end
