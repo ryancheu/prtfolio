@@ -6,6 +6,7 @@ class PortfoliosController < ApplicationController
   end
 
   def show
+    @portfolio = Portfolio.find(params[:id])
   end
 
   def new
@@ -16,15 +17,12 @@ class PortfoliosController < ApplicationController
   end
 
   def create
-    @portfolio = Portfolio.new(portfolio_params)
-
+    @portfolio = Portfolio.find(params[:id]).first
     respond_to do |format|
       if @portfolio.save
-        format.html { redirect_to @portfolio, notice: 'Portfolio was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @portfolio }
+        redirect_to @portfolio
       else
-        format.html { render action: 'new' }
-        format.json { render json: @portfolio.errors, status: :unprocessable_entity }
+        render 'new'
       end
     end
   end

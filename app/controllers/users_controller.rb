@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
-     @user = User.find(params[:id])
+    @user = User.find(params[:id])
+    @portfolio = Portfolio.where(user_id: @user.id)
   end
 
   def new
@@ -23,10 +24,16 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the Portfl.io!"
-      redirect_to @user
+      build_portfolio
+      @portfolio = Portfolio.where(user_id: @user.id)
+      redirect_to @user.portfolio
     else
       render 'new'
     end
+  end
+
+  def build_portfolio
+    Portfolio.create(user: current_user)
   end
 
   def update
