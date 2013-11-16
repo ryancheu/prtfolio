@@ -4,6 +4,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :fullname
       t.string :username
       t.string :email
+      t.string :remember_token, index: true
+      t.string :uid, index: true
 
       t.timestamps
     end
