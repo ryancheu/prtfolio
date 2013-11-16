@@ -1,4 +1,22 @@
 <p id="notice"><%= notice %></p>
-<h1> I AM IN THE PORTFOLIO. </h1>
+<div class="hero-unit" style="background-color:#CCFF66">
+	<div class="row-fluid">
+		<div class="span3">
+			<div class="thumbnail span12" style="border: 5px solid black;">
+				<img src="/test.jpg" alt="Sample Image">
+			</div>
+		</div>
+		<div class="span9">
+			<div class="portfolio_name">
+				<h1><%= current_user.fullname%></h1>
+				<h4>I am a computer science major at MIT. And I love programming. See what I have done below!</h4>
+				<!-- NEED TO CHANGE THIS to == DON'T KNOW WHY IT'S DOING THIS -->
+				<% if @user != current_user %>
+					<%= button_to 'Create New Project', new_project_path,:method => "get", :class => "btn btn-medium button-primary" %> 
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
 <%= link_to 'Edit', edit_portfolio_path(@portfolio) %> |
 <%= link_to 'Back', portfolios_path %>
