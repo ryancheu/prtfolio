@@ -3,9 +3,19 @@
     <div class="navbar-inner">
         <div class="navbar-header">
             <a class="navbar-brand" id="logo" href=<%= users_path %> > Portfl.io</a>
+
             <% if signed_in? %>
-  				<%= link_to "Sign Out", signout_path, method: "delete" %>
+				<%= link_to "FriendSplit", @current_user, id: "logo" %>
+				<li><%= link_to "Features", users_path %></li>
+				<li><%= link_to "About Us", users_path %></li>
+				<li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+			<% else %>
+				<%= link_to "FriendSplit", @current_user, id: "logo" %>
+				<li><%= link_to "Features", users_path %></li>
+				<li><%= link_to "About Us", users_path %></li>
+				<li><%= link_to "Sign In", signout_path, method: "delete" %></li>
 			<% end %>
+
         </div>
     </div>
 </nav>
