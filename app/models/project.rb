@@ -4,8 +4,6 @@ class Project < ActiveRecord::Base
 	has_many :blocks
 	has_one :theme
 
-
-
     # Returns the user who owns this block
     def get_owner
         return self.user

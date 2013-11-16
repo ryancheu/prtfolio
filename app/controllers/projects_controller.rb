@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :require_login, except: [:index, :show]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  include GistHelper
 
   def index
     @projects = Project.all
@@ -10,8 +11,8 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new
-    # @gists =
+    @project = current_user.new_project()
+    @gist_ids = get_gist_ids(current_user)
   end
 
   def edit
