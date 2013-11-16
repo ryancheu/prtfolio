@@ -14,12 +14,11 @@ SaylorpAnuhyagIsabellatrombaRyancheuFinal::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root 'pages#home'
-  match '/signout', to: 'sessions#destroy',     via: :delete
+  match '/signout', to: 'sessions#destroy',    via: 'delete'
 
   # redirect signin to venmo auth
   get '/signin', to: redirect('/auth/github')
   # capture the venmo callback path
   get '/auth/github/callback', to: 'sessions#create'
-
   
 end
