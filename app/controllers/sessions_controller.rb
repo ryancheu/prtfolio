@@ -1,3 +1,4 @@
+# primary author: anuhyag
 class SessionsController < ApplicationController
 	def new
 	end

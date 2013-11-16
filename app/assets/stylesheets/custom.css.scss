@@ -19,11 +19,16 @@
   min-height: 50%;
 }
 
-.blah{
-	padding-top: 200px;
+#sign_up_form .field input{
+	width: 200px;
+	height: 200px;
 }
 
-.test {
+.form_field{
+	padding-top: 300px;
+}
+
+.home_page_div {
 	background-image: url("/home_page.jpg");
 	height: 100%;
 	width: 100%;
