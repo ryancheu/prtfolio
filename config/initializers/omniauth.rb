@@ -13,7 +13,7 @@ if Rails.env.development?
 
 elsif Rails.env.production?
   Rails.application.config.middleware.use OmniAuth::Builder do
-    provider :github, '3291457d6309f173a8a8', '5990abbf79d10d09547fd66476569b63a68fa84f', scope: "user,repo,gist"
+    provider :github, 'ba9fe5792ad46a560226', '76764b91975d322dd6e190ae34eb6a48065bd464', scope: "user,repo,gist"
   end
 
   OmniAuth.config.on_failure = SessionsController.action(:oauth_failure)
