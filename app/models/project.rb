@@ -4,11 +4,6 @@ class Project < ActiveRecord::Base
 	has_many :blocks
 	has_one :theme
 
-    def new_project_for_user user
-        project = user.portfolio.projects.new
-        return project
-    end
-
     # Returns the user who owns this block
     def get_owner
         return self.user
