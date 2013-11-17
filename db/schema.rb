@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131116223550) do
+ActiveRecord::Schema.define(version: 20131117035818) do
 
   create_table "blocks", force: true do |t|
     t.integer  "page_index"
@@ -57,12 +57,9 @@ ActiveRecord::Schema.define(version: 20131116223550) do
     t.integer  "portfolio_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "resources", force: true do |t|
-    t.integer  "block_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "image_id"
   end
 
   create_table "templates", force: true do |t|

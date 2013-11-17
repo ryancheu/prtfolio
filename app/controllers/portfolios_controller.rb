@@ -1,4 +1,6 @@
 class PortfoliosController < ApplicationController
+  before_action :require_login, except: [:index, :show]
+  before_action :require_no_portfolio, only: [:new, :create]
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -6,18 +8,17 @@ class PortfoliosController < ApplicationController
   end
 
   def show
-    @portfolio = Portfolio.find(params[:id])
   end
 
   def new
-    @portfolio = Portfolio.new
+    @portfolio = current_user.new_portfolio()
   end
 
   def edit
   end
 
   def create
-    @portfolio = Portfolio.create()
+    @portfolio = current_user.new_portfolio()
     if @portfolio.save
       redirect_to @portfolio
     else
@@ -50,10 +51,19 @@ class PortfoliosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_portfolio
       @portfolio = Portfolio.find(params[:id])
+      @projects = @portfolio.projects
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def portfolio_params
       params[:portfolio]
+    end
+
+    # Redirects to the current user's portfolio if she already has one
+    def require_no_portfolio
+      if current_user.has_portfolio?
+        flash[:warning] = "You already have a portfolio"
+        redirect_to current_user.portfolio
+      end
     end
 end

@@ -11,24 +11,8 @@
   <% end %>
 
   <div id ="sign_up_form" class="field">
-    <%= f.text_field :fullname, :value => "Full Name" %>
+    <%= f.text_field :fullname, :placeholder => "Full Name" %>
   </div>
-
-  <div id ="sign_up_form" class="field">
-    <%= f.text_field :username, :value => "Username" %>
-  </div>
-
-  <div id ="sign_up_form" class="field">
-    <%= f.text_field :email, :value => "Email" %>
-  </div> 
-
-  <div id ="sign_up_form" class="field">
-    <%= f.password_field :password, :value => "Password" %>
-  </div> 
-
-  <div id ="sign_up_form" class="field">
-    <%= f.password_field :password_confirmation, :value => "Password Confirmation" %>
-  </div> 
 
   <div class="actions">
     <%= f.submit %>

@@ -17,3 +17,5 @@
 
 #so server can be run through nohup
 nohup.out
+
+.DS_Store

@@ -1,8 +1,13 @@
-<h1>New project</h1>
+<div class="page-header">
+    <h1>Create a new project</h1>
+</div>
+<ul>
+<% @gist_ids.each do |gid| %>
+    <li><%= gid %></li>
+<% end %>
+</ul>
 
 <%= render 'form' %>
 
-<pre><%= render_as_yaml @gist_ids %></pre>
-<br/>
 
 <%= link_to 'Back', projects_path %>

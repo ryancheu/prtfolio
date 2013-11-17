@@ -27,11 +27,26 @@ class User < ActiveRecord::Base
 		return user
 	end
 
-	# Returns a new Project object for the user
-	def new_project
-		project = self.portfolio.projects.new
-		return project
-	end
+	# Returns a new Project object for the user, with associations set up between the project, the portfolio it's in, and the user
+    def new_project params
+        project = self.portfolio.projects.new(params)
+        return project
+    end
+
+    # Returns a new Portfolio object for the user
+    def new_portfolio
+        portfolio = Portfolio.new(user: self)
+        return portfolio
+    end
+
+    # Creates a new portfolio for the user and returns it
+    def create_portfolio
+    	return Portfolio.create(user: self)
+    end
+
+    def has_portfolio?
+        return portfolio != nil
+    end
 
 	private
 
