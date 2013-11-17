@@ -1,6 +1,6 @@
 <h1>Editing block</h1>
 
-<div class="well well-lg">
+<div class="well well-sm">
     <h2> <%= @block.id %> </h2>
     <h4>First Resource:</h4>
     <%= @block.firstres %>
@@ -9,5 +9,70 @@
 
 </div>
 
+<div class="well well-lg">
+    <table>
+        <tbody>
+            <tr>
+                <td colspan="2" id="resource-top" class="resource-position">Hey there</td>
+            </tr>
+            <tr>
+                <td id="resource-left" class="resource-position">Hi</td>
+                <td id="resource-left" class="resource-position">Hello</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <div id="resource-1" class="pull-left resource-position">
+        Div 1
+    </div>
+
+    <div id="resource-2" class="pull-right resource-position">
+        Div 2
+    </div>
+
+    <div class="clearfix"></div>
+
+</div>
+
+<%# Draggable Resource options %>
+<div class="btn-group">
+    <div id="image-tag" class="btn disabled resource-tag">
+        <%= fa_icon "picture-o 4x" %>
+    </div>
+
+    <div id="code-tag" class="btn disabled resource-tag">
+        <%= fa_icon "code 4x" %>
+    </div>
+
+    <div id="text-tag" class="btn disabled resource-tag">
+        <%= fa_icon "align-left 4x" %>
+    </div>
+</div>
+
+<br/>
 <%= link_to 'Show', project_block_path(@project, @block) %> |
 <%= link_to 'Back', project_blocks_path %>
+
+<script type="text/javascript">
+    $(function() {
+        console.log("Making resources draggable");
+        var resource1 = $("#resource-1");
+        var resource2 = $("#resource-2");
+
+        $( ".resource-tag").draggable({
+            revert: "invalid", // when not dropped, the item will revert back to intial position
+            containment: "document",
+            helper: "clone",
+            cursor: "move",
+        });
+
+        $(".resource-position").droppable({
+            hoverClass: "ui-state-hover",
+            drop: function(event, ui) {
+                $(this).append(ui.draggable)
+            }
+        });
+    });
+
+</script>

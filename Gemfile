@@ -61,3 +61,6 @@ gem "hirb", "~> 0.7.1"
 # gems for using amazon s3
 gem "paperclip", "~> 3.0"
 gem 'aws-sdk'
+
+# docs here https://github.com/joliss/jquery-ui-rails
+gem 'jquery-ui-rails'
