@@ -26,7 +26,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 # Format the website with the bootstrap gem
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.0.2.0'
 gem 'bootstrap_form', "~> 1.0.0"
 
 # Using GitHub

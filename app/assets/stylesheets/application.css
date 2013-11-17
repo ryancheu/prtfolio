@@ -11,9 +11,5 @@
  *= require_self
  *= require_tree .
  *= require font-awesome
- *= require bootstrap_form
+ *= require onepage-scroll
  */
-
- body {
-    padding-top: 47px;
- }
