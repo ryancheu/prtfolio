@@ -1,4 +1,4 @@
-<%#  primary author: anuhyag %>
+<%#  primary author: psaylor %>
 <% (1..2).each do |n| %>
 
   <% 
@@ -19,7 +19,9 @@
 
   <div class = "row-fluid add-space">
     <h1> Template <%= n %> </h1>
+    <div class="span12">
       <%= render partial: template_partial, locals: code_resources %>
+    </div>
   </div>
   
 
