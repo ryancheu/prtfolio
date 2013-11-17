@@ -8,10 +8,5 @@ class Block < ActiveRecord::Base
   def get_owner
     return self.project.get_owner
   end
-
-  # Returns the blocks resources in a hash that can be passed into its template 
-  def get_resources_for_template
-
-  end
-
+  
 end
