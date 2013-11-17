@@ -1,4 +1,24 @@
-<p id="notice"><%= notice %></p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+<% @project.blocks.each do |block| %>
+      <tr>
+        <td><%= block.id %></td>
+        <td><%= link_to 'Show', [@project, block] %></td>
+        <td><%= link_to 'Edit', edit_project_block_path(@project, block) %></td>
+        <td><%= link_to 'Destroy', [@project, block], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+</tbody>
+</table>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
