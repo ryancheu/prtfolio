@@ -1,12 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-
-First Res: <br>
-<%= @block.firstres %>
-<br>
-<br>
-Second Res: <br>
-<%= @block.secondres %>
+<%= render @block %>
 
 <%= link_to 'Edit', edit_project_block_path(@project, @block) %> |
 <%= link_to 'Back', project_blocks_path %>

@@ -1,0 +1,14 @@
+<!-- primary author: anuhyag -->
+<%
+	resource1 = resource1 || Description.create(title: "No Title", content: "No resource provided")
+%>
+
+<div class = "template1" id = "template1">
+	<div class = "span3"></div>
+
+	<div class = "span6 resource resource1">
+		<%= render resource1 %>
+	</div>
+
+	<div class = "span3"></div>
+</div>
