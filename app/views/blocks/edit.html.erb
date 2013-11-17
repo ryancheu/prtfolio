@@ -9,26 +9,18 @@
 
 </div>
 
-<div class="well well-lg">
-    <table>
-        <tbody>
-            <tr>
-                <td colspan="2" id="resource-top" class="resource-position">Hey there</td>
-            </tr>
-            <tr>
-                <td id="resource-left" class="resource-position">Hi</td>
-                <td id="resource-left" class="resource-position">Hello</td>
-            </tr>
+<div class="well well-lg no-padding">
 
-        </tbody>
-    </table>
-
-    <div id="resource-1" class="pull-left resource-position">
-        Div 1
+    <div class="quarter-width pull-left"> 
+        <div id="resource-position-left" class="well well-sm no-outer-fluff resource-position"> </div>
     </div>
 
-    <div id="resource-2" class="pull-right resource-position">
-        Div 2
+    <div class="half-width pull-left"> 
+        <div id="resource-position-center" class="well well-sm no-outer-fluff resource-position"> </div>
+    </div>
+
+    <div class="quarter-width pull-right"> 
+        <div id="resource-position-right" class="well well-sm no-outer-fluff resource-position"> </div>
     </div>
 
     <div class="clearfix"></div>
@@ -68,10 +60,14 @@
         });
 
         $(".resource-position").droppable({
-            hoverClass: "ui-state-hover",
+            hoverClass: "ui-state-active",
             drop: function(event, ui) {
-                $(this).append(ui.draggable)
+                $(this).append(ui.draggable);
             }
+        });
+
+        $(".btn-group").droppable({
+            hoverClass: "ui-state-active",
         });
     });
 

@@ -12,8 +12,32 @@
  *= require_tree .
  *= require font-awesome
  *= require bootstrap_form
+ *= require jquery.ui.core
+ *= require jquery.ui.theme
  */
 
  body {
     padding-top: 47px;
  }
+
+ .half-width {
+    width: 50%;
+ }
+
+.full-width {
+    width: 100%;
+}
+
+.quarter-width {
+    width: 25%;
+}
+
+
+.no-padding {
+    padding: 0px !important;
+}
+
+.no-outer-fluff {
+    margin: 0px !important;
+    border: 0px !important;
+}
