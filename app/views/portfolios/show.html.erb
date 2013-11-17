@@ -1,11 +1,9 @@
 <div class="jumbotron" style="background-color:#CCFF66">
-  <div class="row-fluid">
-    <div class="span3">
-      <div class="span12">
+  <div class="row">
+    <div class="col-md-3 portfolio_user_image_container centering">
 	<img src=<%= @portfolio.user.image_url %> alt="Sample Image" class="portfolio_user_image">
-      </div>
     </div>
-    <div class="span9">
+    <div class="col-md-9">
       <div class="portfolio_name">
 	<h1><%= current_user.fullname%></h1>
 	<% if @user == current_user %>
@@ -19,11 +17,10 @@
 <%# List all the projects in image-text templates %>
 <% @projects.each do |project| %>
   <div class = "row-fluid add-space">
-    <div class="span12">
+    <div class="col-md-12">
       <%= render partial: "projectOverview", locals: {project: project} %>
     </div>
   </div>
 <% end %>
 
 <br/>
-<%= link_to 'Edit', edit_portfolio_path(@portfolio) %> |
