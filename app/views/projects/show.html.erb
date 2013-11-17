@@ -1,28 +1,26 @@
 <%#  primary author: psaylor %>
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-<% @project.blocks.each do |block| %>
-      <tr>
-        <td><%= block.id %></td>
-        <td><%= link_to 'Show', [@project, block] %></td>
-        <td><%= link_to 'Edit', edit_project_block_path(@project, block) %></td>
-        <td><%= link_to 'Destroy', [@project, block], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-</tbody>
-</table>
+<div class="hero-unit">
+  <div class="row-fluid">
+    <div class="span3">
+      <div class="thumbnail span12">
+        <img src=<%= @project.get_owner.image_url %> alt="Sample Image">
+      </div>
+    </div>
+    <div class="span9">
+      <div class="project_name">
+        <h1><%= @project.title %></h1>
+        <h4><%= @project.description %></h4>        
+      </div>
+    </div>
+  </div>
+</div>
 
 <% @project.blocks.each do |block| %>
+  <h4> <%= block.id %> </h4>
   <%= render block %>
+  <%= link_to 'Show', [@project, block] %>
+  <%= link_to 'Edit', edit_project_block_path(@project, block) %>
+  <%= link_to 'Destroy', [@project, block], method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 
 

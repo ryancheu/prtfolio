@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @gist_ids = get_gist_ids(current_user)
   end
 
   def create

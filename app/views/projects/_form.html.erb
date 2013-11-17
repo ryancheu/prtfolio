@@ -1,7 +1,18 @@
-<%= bootstrap_form_for(@project) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+<div class="container">
+    <div class="span6">
+    <%= bootstrap_form_for(@project) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+      <%= f.text_field :title, label: :none, placeholder: 'Project Title', class: 'span6' %>
+
+      <%= f.text_area :description, label: :none, placeholder: "Project Description", class: 'span6' %>
+
+      
+      <%= f.actions do %>
+        <%= f.primary 'Create Project', disable_with: 'Saving...' %>
+        <%= f.secondary 'Cancel' %>
+      <% end %>
+      
+    <% end %>
+    </div>
+</div>

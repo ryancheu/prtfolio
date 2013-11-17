@@ -3,6 +3,7 @@ class BlocksController < ApplicationController
   before_action :set_block, only: [:show, :edit, :update, :destroy]
 
   include BlocksHelper
+  include GistHelper
 
   def index
     @blocks = @project.blocks
@@ -14,9 +15,11 @@ class BlocksController < ApplicationController
 
   def new
     @block = @project.blocks.build
+    @gist_ids = get_gist_ids(current_user)
   end
 
   def edit
+    @gist_ids = get_gist_ids(current_user)
   end
 
   def create

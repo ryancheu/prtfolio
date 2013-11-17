@@ -3,3 +3,14 @@
 <%= render 'form' %>
 
 <%= link_to 'Back', project_blocks_path %>
+
+   
+    </div>
+
+    <ul>
+    <% @gist_ids.each do |gid| %>
+        <li><%= gid %></li>
+    <% end %>
+    </ul>
+
+    </div>
