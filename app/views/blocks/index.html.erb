@@ -12,7 +12,7 @@
   <tbody>
     <% @blocks.each do |block| %>
       <tr>
-        <td><%= link_to 'Show', block %></td>
+        <td><%= link_to 'Show', project_block_path(@project, block) %></td>
         <td><%= link_to 'Edit', edit_block_path(block) %></td>
         <td><%= link_to 'Destroy', block, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Block', new_block_path %>
+<%= link_to 'New Block', new_project_block_path %>
