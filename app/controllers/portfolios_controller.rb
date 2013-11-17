@@ -1,4 +1,5 @@
 class PortfoliosController < ApplicationController
+  before_action :require_login, except: [:index, :show]
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -6,18 +7,17 @@ class PortfoliosController < ApplicationController
   end
 
   def show
-    @portfolio = Portfolio.find(params[:id])
   end
 
   def new
-    @portfolio = Portfolio.new
+    @portfolio = current_user.new_portfolio()
   end
 
   def edit
   end
 
   def create
-    @portfolio = Portfolio.create()
+    @portfolio = current_user.new_portfolio()
     if @portfolio.save
       redirect_to @portfolio
     else

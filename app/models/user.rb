@@ -33,6 +33,12 @@ class User < ActiveRecord::Base
 		return project
 	end
 
+	# Returns a new Portfolio object for the user
+	def new_portfolio
+		portfolio = Portfolio.new(user: self)
+		return portfolio
+	end
+
 	private
 
 		def create_remember_token
