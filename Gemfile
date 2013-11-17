@@ -28,6 +28,10 @@ gem 'jbuilder', '~> 1.2'
 # Format the website with the bootstrap gem
 gem 'bootstrap-sass'
 
+# Using GitHub
+gem "omniauth-github", "~> 1.1.1"
+gem "octokit", "~> 2.0"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -55,3 +59,4 @@ gem "hirb", "~> 0.7.1"
 
 # gems for using amazon s3
 gem "paperclip", "~> 3.0"
+gem 'aws-sdk'

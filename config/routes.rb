@@ -1,5 +1,13 @@
 SaylorpAnuhyagIsabellatrombaRyancheuFinal::Application.routes.draw do
   
+  resources :codes
+
+  resources :descriptions
+
+  resources :videos
+
+  resources :images
+
   resources :portfolios
   resources :templates
   resources :themes
@@ -7,15 +15,18 @@ SaylorpAnuhyagIsabellatrombaRyancheuFinal::Application.routes.draw do
   resources :blocks
   resources :projects
   resources :users
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions
 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  root 'users#new'
-  match '/signup',  to: 'users#new',            via: 'get'
-  match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
+  root 'pages#home'
+  match '/signout', to: 'sessions#destroy',    via: 'delete'
 
+  # redirect signin to github auth
+  get '/signin', to: redirect('/auth/github')
+  # capture the github callback path
+  get '/auth/github/callback', to: 'sessions#create'
+  
 end
