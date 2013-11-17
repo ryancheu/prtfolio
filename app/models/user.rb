@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 		return user
 	end
 
-	# Returns a new Project object for the user
+	# Returns a new Project object for the user, with associations set up between the project, the portfolio it's in, and the user
 	def new_project
 		project = self.portfolio.projects.new
 		return project
@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
 	def new_portfolio
 		portfolio = Portfolio.new(user: self)
 		return portfolio
+	end
+
+	def has_portfolio?
+		return portfolio.not_nil?
 	end
 
 	private

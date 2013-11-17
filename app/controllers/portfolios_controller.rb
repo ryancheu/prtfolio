@@ -1,5 +1,6 @@
 class PortfoliosController < ApplicationController
   before_action :require_login, except: [:index, :show]
+  before_action :require_no_portfolio, only: [:new, :create]
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -55,5 +56,12 @@ class PortfoliosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def portfolio_params
       params[:portfolio]
+    end
+
+    # Redirects to the current user's portfolio if she already has one
+    def require_no_portfolio
+      if current_user.has_portfolio?
+        redirect_to current_user.portfolio
+      end
     end
 end
