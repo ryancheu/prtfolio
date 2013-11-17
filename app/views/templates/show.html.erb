@@ -1,20 +1,11 @@
 <%#  primary author: saylorp %>
 <%
-    template_file = "template1_image_text"
-    if @id == 2
-        template_file = "template2_text_image"
-    elsif @id == 3
-        template_file = "template3_image_image"
-    elsif @id == 4
-        template_file = "template4_single_image"
-    elsif @id == 5
-        template_file = "template5_single_text"
-    end
+    template_partial = get_template_partial_name(@id)
 %>
 
 <div class = "row-fluid add-space">
   <h1> Template <%= @id %> </h1>
   <div class="span12">
-        <%= render partial: "templates/#{template_file}" %>
+        <%= render partial: template_partial %>
   </div>
 </div>

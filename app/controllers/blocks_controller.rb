@@ -2,6 +2,8 @@ class BlocksController < ApplicationController
   before_action :set_project
   before_action :set_block, only: [:show, :edit, :update, :destroy]
 
+  include BlocksHelper
+
   def index
     @blocks = @project.blocks
   end

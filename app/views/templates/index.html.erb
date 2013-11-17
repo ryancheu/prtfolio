@@ -1,35 +1,26 @@
 <%#  primary author: anuhyag %>
+<% (1..2).each do |n| %>
 
-<div class = "row-fluid add-space">
-  <h1> Template 1 </h1>
-  <div class="span12">
-        <%= render partial: "templates/template1_image_text" %>
-</div>
+  <% 
+    template_partial = get_template_partial_name(n)
+    code_resources = {resource1: Code.new(gist_id: "42bcd5115522be84ff3d")}
 
-<div class = "row-fluid add-space">
-  <h1> Template 2 </h1>
-  <div class="span12">
-        <%= render partial: "templates/template2_text_image" %>
+  %>
+
+  <div class = "row-fluid add-space">
+    <h1> Template <%= n %> </h1>
+    <div class="span12">
+      <%= render partial: template_partial %>
+    </div>
   </div>
-</div>
 
-<div class = "row-fluid add-space">
-  <h1> Template 3 </h1>
-  <div class="span12">
-        <%= render partial: "templates/template3_image_image" %>
+  <div class = "row-fluid add-space">
+    <h1> Template <%= n %> With Code </h1>
+    <div class="span12">
+      <%= render partial: template_partial, code_resources %>
+    </div>
   </div>
-</div>
 
-<div class = "row-fluid add-space">
-  <h1> Template 4 </h1>
-  <div class="span12">
-        <%= render partial: "templates/template4_single_image" %>
-  </div>
-</div>
 
-<div class = "row-fluid add-space">
-  <h1> Template 5 </h1>
-  <div class="span12">
-        <%= render partial: "templates/template5_single_text" %>
-  </div>
-</div>
+<% end %>
+
