@@ -1,4 +1,26 @@
 @import "bootstrap";
+body{
+  padding-top: 70px; 
+  color:#2c3e50;
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+}
+.navbar{
+  z-index:1000;
+  border-radius: 0;
+  position: fixed;
+  width:100%;
+}
+.navbar-accent{
+  margin-bottom:-1px;
+  height:10px;
+  background:#1abc9c;
+  
+}
+.section{
+  padding-top: 20px;
+}
+.text-centered{text-align: center;}
+.no-margin{margin: 0;}
 
 #sessions_new_image {
   position: fixed; 
@@ -42,7 +64,7 @@ html, body {
   height: 100%;
 }
 
-.hero_unit {
+.jumbotron {
  background-color:#FF0000
  }
 

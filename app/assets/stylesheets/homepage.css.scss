@@ -1,0 +1,70 @@
+@import "bootstrap"; 
+.feature-desc{
+	text-align:center;
+}
+.welcome{
+	font-size:55px;
+	font-weight:bold; 
+	color:#1abc9c;
+}
+.intro-box{
+	position:absolute;
+	margin-top:10%;
+}
+.logo{
+	width:100%;
+	position:absolute;
+	margin-top:11%;
+}
+.main-intro{
+	font-weight:bold; 
+	font-size:35px;
+	color:#f39c12
+}
+.subtitle{
+	font-size:25px;
+	color:#f39c12;
+}
+.github-signin{
+	margin-top:50px;
+}
+.showcase-item{
+}
+	.showcase-item .showcase-item-box{
+		position:absolute;
+		margin-top:15%;
+	}
+
+.icon{
+	width:100%;
+	padding: 0 70px;
+}
+.person-icon{
+	width:100%;
+	padding: 0 30px;
+}
+.section-title{
+	color:#1abc9c;
+	font-weight:bold;
+	font-size:35px;
+}
+.feature-desc{
+	font-size:20px; 
+	padding: 20px 80px; 
+	margin-top:350px; 
+	text-align:center;
+	font-weight:bold;
+}
+.feature-desc-orange{
+	color:#f39c12;
+}
+.person-desc{
+	font-size:20px; 
+	padding: 20px 80px; 
+	margin-top:10px; 
+	text-align:center;
+	font-weight:bold;
+}
+.person-desc-orange{
+	color:#f39c12;
+}

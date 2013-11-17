@@ -1,3 +1,95 @@
-<!-- Primary author: anuhyag -->
-<div class = "home_page_div">
+<!-- Primary author: isabellat -->
+<div class="onepage-body">
+	<div id="onepage" class="main">
+		<section id="welcome">
+			<div class="col-md-4 col-md-offset-1">
+				<div class="intro-box">
+					<p class="welcome">prtfol.io</p>
+					<p class="main-intro">Showcasing your code has never been easier.</p>
+					<p class="subtitle">Get started today.</p>
+					<div class="github-signin">
+						<button style="margin-right:10px" type="button" onclick ="$('.main').moveTo(2)" class="btn btn-default btn-lg">Learn More</button>
+						<%= link_to "Sign in with Github", signin_path, :class=>"btn btn-info btn-lg" %>
+					</div>
+				</div>
+			</div>
+			<div class ="col-md-4 col-md-offset-1">
+				<%= image_tag "logo.png", :class=>'logo'%>
+			</div>
+		</section>
+		<section id="features">
+			<div class='container'>
+				<div class='row'>
+					<p class="section-title">Features</p>
+				</div>
+				<div class='row'>
+					<div class="showcase-item col-md-4">
+						<div class="showcase-item-box">
+							<%= image_tag "code-icon@2x.png", :class=>'logo'%>
+							<p class="feature-desc feature-desc-orange">
+								Import code gists from github.
+							</p> 
+						</div>
+					</div>
+					<div class="showcase-item col-md-4">
+						<div class="showcase-item-box">
+							<%= image_tag "desc-icon@2x.png", :class=>'logo'%>
+							<p class="feature-desc feature-desc-orange">
+								Add meaningful descriptions to help explain what you did.
+							</p> 
+						</div>
+					</div>
+					<div class="showcase-item col-md-4">
+						<div class="showcase-item-box">
+							<%= image_tag "img-icon-green@2x.png", :class=>'logo'%>
+							<p class="feature-desc feature-desc-orange">
+								Upload images to bring your work to life.
+							</p> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class='container'>
+				<div class='row'>
+					<p class="section-title">About Us</p>
+				</div>
+				<div class='row'>
+					<div class="showcase-item col-md-3">
+						<div class="showcase-item-box">
+							<%= image_tag "person.png", :class=>"person-icon"%>
+								<p class="person-desc person-desc-orange">
+								Hi I am Anuhya.
+							</p>
+						</div>
+					</div>
+					<div class="showcase-item col-md-3">
+						<div class="showcase-item-box">
+							<%= image_tag "person.png", :class=>"person-icon"%>
+								<p class="person-desc person-desc-orange">
+								Hi I am Patricia.
+							</p>
+						</div>
+					</div>			
+					<div class="showcase-item col-md-3">
+						<div class="showcase-item-box">
+							<%= image_tag "person.png", :class=>"person-icon"%>
+									<p class="person-desc person-desc-orange">
+								Hi I am Ryan.
+							</p>
+						</div>
+					</div>	
+					<div class="showcase-item col-md-3">
+						<div class="showcase-item-box">
+							<%= image_tag "person.png", :class=>"person-icon"%>
+								<p class="person-desc person-desc-orange">
+								Hi I am Isabella.
+							</p>
+						</div>
+					</div>			
+				</div>
+			</div>
+		</section>
+	</div>
 </div>

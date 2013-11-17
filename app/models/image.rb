@@ -3,7 +3,7 @@ class Image < ActiveRecord::Base
   
   has_attached_file :content, 
   :styles => {
-    thumb: '100x100>'
+    thumb: '400x250#'
   }
 
 end
