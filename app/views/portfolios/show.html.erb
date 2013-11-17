@@ -2,7 +2,7 @@
 	<div class="row-fluid">
 		<div class="span3">
 			<div class="thumbnail span12" style="border: 5px solid black;">
-				<img src="/test.jpg" alt="Sample Image">
+				<img src=<%= @portfolio.user.image_url %> alt="Sample Image">
 			</div>
 		</div>
 		<div class="span9">
@@ -21,7 +21,7 @@
 <%# List all the projects in image-text templates %>
 <% @projects.each do |project| %>
     <div class = "row-fluid add-space">
-    	<h1><%= project.title %> </h1>
+    	<h1><%= link_to project.title, project %> </h1>
         <p> <%= project.description %> </p>
         <div class="span12">
             <%= render partial: "templates/template1_image_text" %>
