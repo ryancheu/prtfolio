@@ -15,4 +15,11 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def require_correct_user user, msg
+      unless current_user == user
+        flash[:error] = msg
+        redirect_to user
+      end
+    end
+
 end

@@ -39,6 +39,11 @@ class User < ActiveRecord::Base
         return portfolio
     end
 
+    # Creates a new portfolio for the user and returns it
+    def create_portfolio
+    	return Portfolio.create(user: self)
+    end
+
     def has_portfolio?
         return portfolio != nil
     end
