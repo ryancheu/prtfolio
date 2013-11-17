@@ -48,7 +48,6 @@ class User < ActiveRecord::Base
         return portfolio != nil
     end
 
-
 	private
 
 		def create_remember_token

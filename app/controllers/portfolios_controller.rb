@@ -59,7 +59,7 @@ class PortfoliosController < ApplicationController
       params[:portfolio]
     end
 
-     # Redirects to the current user's portfolio if she already has one
+    # Redirects to the current user's portfolio if she already has one
     def require_no_portfolio
       if current_user.has_portfolio?
         flash[:warning] = "You already have a portfolio"

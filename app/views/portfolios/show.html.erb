@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <div class="hero-unit" style="background-color:#CCFF66">
 	<div class="row-fluid">
 		<div class="span3">
@@ -53,8 +52,8 @@
 
 <!-- FOR PROJECT TESTING PURPOSES ONLY: -->
 <% @projects.each do |project| %>
-	<h1> <%= project.portfolio_id %> </h1>
+	<h1> <%= project.id %> </h1>
 <% end %>
 
-
+<br/>
 <%= link_to 'Edit', edit_portfolio_path(@portfolio) %> |

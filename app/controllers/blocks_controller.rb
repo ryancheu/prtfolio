@@ -1,8 +1,9 @@
 class BlocksController < ApplicationController
+  before_action :set_project
   before_action :set_block, only: [:show, :edit, :update, :destroy]
 
   def index
-    @blocks = Block.all
+    @blocks = @project.blocks
   end
 
   def show
@@ -10,18 +11,18 @@ class BlocksController < ApplicationController
   end
 
   def new
-    @block = Block.new
+    @block = @project.blocks.build
   end
 
   def edit
   end
 
   def create
-    @block = Block.new(block_params)
+    @block = @project.blocks.create(block_params)
 
     respond_to do |format|
       if @block.save
-        format.html { redirect_to @block, notice: 'Block was successfully created.' }
+        format.html { redirect_to [@project, @block], notice: 'Block was successfully created.' }
         format.json { render action: 'show', status: :created, location: @block }
       else
         format.html { render action: 'new' }
@@ -33,7 +34,7 @@ class BlocksController < ApplicationController
   def update
     respond_to do |format|
       if @block.update(block_params)
-        format.html { redirect_to @block, notice: 'Block was successfully updated.' }
+        format.html { redirect_to [@project, @block], notice: 'Block was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -45,7 +46,7 @@ class BlocksController < ApplicationController
   def destroy
     @block.destroy
     respond_to do |format|
-      format.html { redirect_to blocks_url }
+      format.html { redirect_to project_blocks_url }
       format.json { head :no_content }
     end
   end
@@ -53,7 +54,11 @@ class BlocksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_block
-      @block = Block.find(params[:id])
+      @block = @project.blocks.find(params[:id])
+    end
+
+    def set_project
+      @project = Project.find(params[:project_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
