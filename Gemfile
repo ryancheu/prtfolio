@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 1.2'
 
 # Format the website with the bootstrap gem
 gem 'bootstrap-sass'
+gem 'bootstrap_form', "~> 1.0.0"
 
 # Using GitHub
 gem "omniauth-github", "~> 1.1.1"

@@ -5,7 +5,8 @@ class Project < ActiveRecord::Base
 	has_one :theme
 
     validates :portfolio, presence: true
-    
+    validates :title, presence: true
+
     # Returns the user who owns this block
     def get_owner
         return self.user

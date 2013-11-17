@@ -64,7 +64,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params[:project]
+      params.require(:project).permit(:title, :description)
     end
 
     # Redirects the user to create a portfolio if she does not have one already
