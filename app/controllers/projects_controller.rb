@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :require_login, except: [:index, :show]
+  before_action :require_portfolio, only: [:new, :create]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  
   include GistHelper
 
   def index
@@ -61,5 +63,13 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params[:project]
+    end
+
+    # Redirects the user to create a portfolio if she does not have one already
+    def require_portfolio
+      unless current_user.has_portfolio?
+        flash[:warning] = "You must first create a portfolio"
+        redirect_to new_portfolio_path
+      end
     end
 end

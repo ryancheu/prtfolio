@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
 	end
 
 	def has_portfolio?
-		return portfolio.not_nil?
+		return portfolio != nil
 	end
 
 	private
