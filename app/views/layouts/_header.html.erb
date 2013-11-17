@@ -1,14 +1,17 @@
 <!--  Primary Author: anuhyag -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="navbar-inner">
-        <%# put the brand name and logo on the left %>
-        <ul class="nav navbar-nav">
-            <li><a class="navbar-brand" href= <%= root_path %> > <%= fa_stacked_icon "code", base: "folder-open-o" %> Portfl.io</a></li>
-            <li><%= link_to "Features", root_path %></li>
-            <li><%= link_to "About Us", root_path %></li>
-        </ul>
-
-        <%# show different links based on signed in status %>
+<nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">prtfol.io</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav pull-right">
             <% if signed_in? %>
                 <li class="dropdown">
@@ -25,6 +28,8 @@
                 <li><a href= <%= signin_path %> > <%= fa_icon "user" %> Sign In</a></li>
             <% end %>
         </ul>
-        
     </div>
 </nav>
+<div class='navbar-accent'>
+</div>
+
