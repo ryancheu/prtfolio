@@ -1,4 +1,4 @@
-body, html {
+.onepage-body, .onepage-html{
   margin: 0;
   overflow: hidden;
   -webkit-transition: opacity 400ms;
@@ -6,7 +6,7 @@ body, html {
   transition: opacity 400ms;
 }
 
-body, .onepage-wrapper, html {
+.onepage-body, .onepage-wrapper, .onepage-html {
   display: block;
   position: static;
   padding: 0;
