@@ -1,13 +1,28 @@
 <div class="page-header">
     <h1>Create a new project</h1>
 </div>
+
+<div class="container">
+    <%= bootstrap_form_for(@project) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.text_field :title, label: :none, placeholder: 'Project Title', class: 'span6' %>
+
+      <%= f.text_area :description, label: :none, placeholder: "Project Description", class: 'span6' %>
+
+      <%= f.actions do %>
+        <%= f.primary 'Create Project', disable_with: 'Saving...' %>
+        <%= f.secondary 'Cancel' %>
+      <% end %>
+    <% end %>
+</div>
+
+
 <ul>
 <% @gist_ids.each do |gid| %>
     <li><%= gid %></li>
 <% end %>
 </ul>
-
-<%= render 'form' %>
 
 
 <%= link_to 'Back', projects_path %>
