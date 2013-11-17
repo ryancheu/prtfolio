@@ -1,4 +1,4 @@
-<div class="jumbotron" style="background-color:#CCFF66">
+<div class="jumbotron">
   <div class="row">
     <div class="col-md-3 portfolio_user_image_container centering">
 	<img src=<%= @portfolio.user.image_url %> alt="Sample Image" class="portfolio_user_image">
@@ -16,10 +16,8 @@
 
 <%# List all the projects in image-text templates %>
 <% @projects.each do |project| %>
-  <div class = "row-fluid add-space">
-    <div class="col-md-12">
+  <div class = "row add-space">
       <%= render partial: "projectOverview", locals: {project: project} %>
-    </div>
   </div>
 <% end %>
 
