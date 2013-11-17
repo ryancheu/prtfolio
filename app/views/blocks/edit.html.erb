@@ -1,6 +1,13 @@
 <h1>Editing block</h1>
 
-<%= render 'form' %>
+<div class="well well-lg">
+    <h2> <%= @block.id %> </h2>
+    <h4>First Resource:</h4>
+    <%= @block.firstres %>
+    <h4>Second Resource:</h4>
+    <%= @block.secondres %>
+
+</div>
 
 <%= link_to 'Show', project_block_path(@project, @block) %> |
 <%= link_to 'Back', project_blocks_path %>

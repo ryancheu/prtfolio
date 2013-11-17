@@ -1,0 +1,9 @@
+<div class="well well-lg">
+    <h2> <%= block.id %> </h2>
+    <h4>First Resource:</h4>
+    <%= block.firstres %>
+    <h4>Second Resource:</h4>
+    <%= block.secondres %>
+
+    <%= link_to 'Edit', edit_project_block_path(@project, block) %>
+</div>
