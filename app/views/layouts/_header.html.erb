@@ -1,23 +1,30 @@
 <!--  Primary Author: anuhyag -->
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-      <nav>
-        <ul class="nav pull-right">
-		<% if signed_in? %>
-			<li><%= link_to "Portfl.io", @current_user.portfolio, id: "logo" %><li>
-			<li><%= link_to "Features", users_path %></li>
-			<li><%= link_to "About Us", users_path %></li>
-			<li><%= link_to "Sign out", signout_path, method: "delete" %></li>
-		<% else %>
-			<li><%= link_to "Portfl.io", @current_user, id: "logo" %><li>
-			<li><%= link_to "Features", users_path %></li>
-			<li><%= link_to "About Us", users_path %></li>
-			<li><%= link_to "Sign In", signout_path, method: "delete" %></li>
-		<% end %>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar-inner">
+        <%# put the brand name and logo on the left %>
+        <ul class="nav navbar-nav">
+            <li><a class="navbar-brand" href= <%= root_path %> > <%= fa_stacked_icon "code", base: "folder-open-o" %> Portfl.io</a></li>
+            <li><%= link_to "Features", root_path %></li>
+            <li><%= link_to "About Us", root_path %></li>
         </ul>
-      </nav>
+
+        <%# show different links based on signed in status %>
+        <ul class="nav navbar-nav pull-right">
+            <% if signed_in? %>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><%= link_to "My Portfolio", portfolios_path %></li>
+                        <li><%= link_to "My Profile", user_path(current_user) %></li>
+                        <li><%= link_to "Find others", users_path %></li>
+                        <li class="divider"></li>
+                        <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+                    </ul>
+                </li>
+            <% else %>
+                <li><a href= <%= signin_path %> > <%= fa_icon "user" %> Sign In</a></li>
+            <% end %>
+        </ul>
+        
     </div>
-</header>
-
-
-
+</nav>

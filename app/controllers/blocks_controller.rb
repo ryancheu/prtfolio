@@ -6,6 +6,7 @@ class BlocksController < ApplicationController
   end
 
   def show
+    puts @block.firstres
   end
 
   def new

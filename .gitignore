@@ -14,3 +14,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+#so server can be run through nohup
+nohup.out
+
+.DS_Store

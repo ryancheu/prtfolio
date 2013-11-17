@@ -18,14 +18,13 @@ class PortfoliosController < ApplicationController
   end
 
   def create
-    @portfolio = Portfolio.find(params[:id]).first
-    respond_to do |format|
-      if @portfolio.save
-        redirect_to @portfolio
-      else
-        render 'new'
-      end
+    @portfolio = Portfolio.create()
+    if @portfolio.save
+      redirect_to @portfolio
+    else
+      render 'new'
     end
+    
   end
 
   def update
