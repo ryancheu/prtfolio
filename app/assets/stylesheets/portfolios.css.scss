@@ -1,3 +1,16 @@
 // Place all the styles related to the Portfolios controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.portfolio_image {
+    width: auto;
+    height: 250px;
+    display: block;
+    margin: auto;
+}
+
+.portfolio_user_image {
+    width: 100px;
+    height: 100px;
+    border: 5px solid black;
+}
