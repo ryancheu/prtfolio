@@ -1,0 +1,9 @@
+<%#  primary author: psaylor %>
+<%
+    template_partial = get_template_partial_name(block.template_id)
+    resources = get_resources_for_template(block)
+%>
+
+<div class = "row-fluid add-space">
+    <%= render partial: template_partial, locals: resources %>
+</div>

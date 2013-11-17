@@ -1,13 +1,6 @@
 <div class="page-header">
     <h1>Create a new project</h1>
 </div>
-<ul>
-<% @gist_ids.each do |gid| %>
-    <li><%= gid %></li>
-<% end %>
-</ul>
+
 
 <%= render 'form' %>
-
-
-<%= link_to 'Back', projects_path %>

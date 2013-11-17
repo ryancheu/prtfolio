@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20131117195817) do
     t.integer  "secondres_id"
     t.string   "firstres_type"
     t.string   "secondres_type"
+    t.integer  "template_id"
   end
 
   create_table "codes", force: true do |t|
@@ -60,12 +61,6 @@ ActiveRecord::Schema.define(version: 20131117195817) do
     t.text     "description"
     t.string   "title"
     t.integer  "image_id"
-  end
-
-  create_table "templates", force: true do |t|
-    t.integer  "block_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "themes", force: true do |t|
