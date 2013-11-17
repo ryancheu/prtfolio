@@ -25,7 +25,8 @@ class UsersController < ApplicationController
       sign_in @user
       flash[:success] = "Welcome to the Portfl.io!"
       build_portfolio
-      @portfolio = Portfolio.where(user_id: @user.id)
+      @portfolio = Portfolio.where(user_id: @user.id).first
+      @user.update_attribute(:portfolio_id, @portfolio.id)
       redirect_to @user.portfolio
     else
       render 'new'

@@ -7,6 +7,7 @@ class PortfoliosController < ApplicationController
 
   def show
     @portfolio = Portfolio.find(params[:id])
+    @projects = Project.where(portfolio_id: @portfolio.id)
   end
 
   def new

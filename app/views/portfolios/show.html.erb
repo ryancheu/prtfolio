@@ -1,4 +1,61 @@
 <p id="notice"><%= notice %></p>
-<h1> I AM IN THE PORTFOLIO. </h1>
+<div class="hero-unit" style="background-color:#CCFF66">
+	<div class="row-fluid">
+		<div class="span3">
+			<div class="thumbnail span12" style="border: 5px solid black;">
+				<img src="/test.jpg" alt="Sample Image">
+			</div>
+		</div>
+		<div class="span9">
+			<div class="portfolio_name">
+				<h1><%= current_user.fullname%></h1>
+				<h4>I am a computer science major at MIT. And I love programming. See what I have done below!</h4>
+				<!-- NEED TO CHANGE THIS to == DON'T KNOW WHY IT'S DOING THIS -->
+				<% if @user != current_user %>
+					<%= button_to 'Create New Project', new_project_path,:method => "get", :class => "btn btn-medium button-primary" %> 
+				<% end %>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- FOR TEMPLATE TESTING PURPOSES ONLY: -->
+<div class = "row-fluid add-space">
+	<h1> Template 1 </h1>
+	<div class="span12">
+		<%= render 'template1_image_text' %>
+	</div>
+</div>
+<div class = "row-fluid add-space">
+	<h1> Template 2 </h1>
+	<div class="span12">
+		<%= render 'template2_text_image' %>
+	</div>
+</div>
+<div class = "row-fluid add-space">
+	<h1> Template 3 </h1>
+	<div class="span12">
+		<%= render 'template3_image_image' %>
+	</div>
+</div>
+<div class = "row-fluid add-space">
+	<h1> Template 4 </h1>
+	<div class="span12">
+		<%= render 'template4_single_image' %>
+	</div>
+</div>
+<div class = "row-fluid add-space">
+	<h1> Template 5 </h1>
+	<div class="span12">
+		<%= render 'template5_single_text' %>
+	</div>
+</div>
+
+<!-- FOR PROJECT TESTING PURPOSES ONLY: -->
+<% @projects.each do |project| %>
+	<h1> <%= project.portfolio_id %> </h1>
+<% end %>
+
+
 <%= link_to 'Edit', edit_portfolio_path(@portfolio) %> |
-<%= link_to 'Back', portfolios_path %>

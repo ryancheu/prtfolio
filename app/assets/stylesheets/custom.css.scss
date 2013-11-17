@@ -39,3 +39,17 @@ html, body {
 }
 
 
+.add-space [class*="span"] {
+    padding: 30px;
+}
+
+.row {
+    height: 100%;
+    vertical-align:middle;
+}
+
+.text-box {
+  border-style:solid;
+  border-color:#000000;
+  vertical-align: text-bottom;
+}

@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    
   end
 
   def edit
@@ -17,7 +18,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-
+    @project.update_attribute(:portfolio_id, current_user.portfolio_id)
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
