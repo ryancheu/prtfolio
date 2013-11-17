@@ -10,9 +10,9 @@
 
         <div id="template1-options" class="well well-sm row-fluid template-options">
             <div class="btn-group offset3 span6">
-                <button type="button" class="btn btn-default code-select-btn"><%= fa_icon "code 4x" %></button>
-                <button type="button" class="btn btn-default text-select-btn"><%= fa_icon "align-left 4x" %></button>
-                <button type="button" class="btn btn-default image-select-btn"><%= fa_icon "picture-o 4x" %></button>
+                <button type="button" class="btn btn-default code-select-btn" data-toggle="modal" data-target="#code-select-modal"><%= fa_icon "code 4x" %></button>
+                <button type="button" class="btn btn-default text-select-btn" data-toggle="modal" data-target="#text-select-modal"><%= fa_icon "align-left 4x" %></button>
+                <button type="button" class="btn btn-default image-select-btn" data-toggle="modal" data-target="#image-select-modal"><%= fa_icon "picture-o 4x" %></button>
             </div>
         </div>
 
@@ -38,9 +38,65 @@
         </div>
 
     <% end %>
+</div>
+</div>
 
-</div>
-</div>
+<!-- Modal -->
+<div class="modal fade" id="code-select-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Select a Gist</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="text-select-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Write your Description</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="image-select-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Select an Image</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <script type="text/javascript">
     $(function() {
