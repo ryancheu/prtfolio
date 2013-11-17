@@ -14,4 +14,36 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require jquery.onepage-scroll
 //= require_tree .
+
+$(document).ready(function() {
+	$(".main").onepage_scroll({
+	   sectionContainer: "section", 
+	   easing: "ease",
+	   animationTime: 1000,
+	   pagination: true,
+	   updateURL: false,
+	   beforeMove: function(index) {
+	   	console.log(index);
+	   	fns = [
+	   		function() {
+	   			$('#welcome').addClass('active');
+	   			$('#features').removeClass('active');
+	   			$('#aboutus').removeClass('active');
+	   		},
+	   		function() {
+	   			$('#welcome').removeClass('active');
+	   			$('#features').addClass('active');
+	   			$('#aboutus').removeClass('active');
+	   		},
+	   		function() {
+	   			$('#welcome').removeClass('active');
+	   			$('#features').removeClass('active');
+	   			$('#aboutus').addClass('active');
+	   		}
+	   	];
+	   	fns[index-1]();
+	   }
+	});
+});
