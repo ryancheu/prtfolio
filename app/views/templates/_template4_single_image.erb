@@ -1,11 +1,14 @@
 <!-- primary author: anuhyag -->
+<%
+	image1_src = image1_src || "/test.jpg"
+%>
 <div class = "template4" id = "template4">
 	<div class = "span3">
 		<p>  <p>
 	</div>
 	<div class = "image">
 		<div class="thumbnail span6" style="border: 5px solid black;">
-			<img src="/test.jpg" alt="Sample Image">
+			<img src=<%= image1_src %> alt="Sample Image">
 		</div>
 	</div>
 	<div class = "span3">

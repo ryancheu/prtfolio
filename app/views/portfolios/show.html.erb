@@ -18,41 +18,15 @@
 	</div>
 </div>
 
-
-<!-- FOR TEMPLATE TESTING PURPOSES ONLY: -->
-<div class = "row-fluid add-space">
-	<h1> Template 1 </h1>
-	<div class="span12">
-        <%= render partial: "templates/template1_image_text" %>
-</div>
-<div class = "row-fluid add-space">
-	<h1> Template 2 </h1>
-	<div class="span12">
-        <%= render partial: "templates/template2_text_image" %>
-	</div>
-</div>
-<div class = "row-fluid add-space">
-	<h1> Template 3 </h1>
-	<div class="span12">
-        <%= render partial: "templates/template3_image_image" %>
-	</div>
-</div>
-<div class = "row-fluid add-space">
-	<h1> Template 4 </h1>
-	<div class="span12">
-        <%= render partial: "templates/template4_single_image" %>
-	</div>
-</div>
-<div class = "row-fluid add-space">
-	<h1> Template 5 </h1>
-	<div class="span12">
-        <%= render partial: "templates/template5_single_text" %>
-	</div>
-</div>
-
-<!-- FOR PROJECT TESTING PURPOSES ONLY: -->
+<%# List all the projects in image-text templates %>
 <% @projects.each do |project| %>
-	<h1> <%= project.id %> </h1>
+    <div class = "row-fluid add-space">
+    	<h1><%= project.title %> </h1>
+        <p> <%= project.description %> </p>
+        <div class="span12">
+            <%= render partial: "templates/template1_image_text" %>
+        </div>
+    </div>
 <% end %>
 
 <br/>
