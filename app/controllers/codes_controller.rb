@@ -28,6 +28,7 @@ class CodesController < ApplicationController
         
       else
         format.js
+        format.json { render json: @code.errors, status: :unprocessable_entity }
       end
     end
   end
