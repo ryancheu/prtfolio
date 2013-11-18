@@ -1,12 +1,15 @@
-<%= bootstrap_form_for(@code) do |f| %>
+<%= bootstrap_form_for(@code, remote: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="field">
-    <%= f.label :gist_id %><br>
-    <%= f.text_area :gist_id %>
-  </div>
+  <% gist_ids = gist_ids || @gist_ids %>
+
+    <%= f.control_group :gist_id do %>
+        <% gist_ids.each do |gid| %>
+            <%= f.radio_button :gist_id, gid, label: gid %>
+        <% end %>
+    <% end %>
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.primary "Embed Gist" %>
   </div>
 <% end %>

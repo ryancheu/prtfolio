@@ -1,44 +1,33 @@
 class CodesController < ApplicationController
   before_action :set_code, only: [:show, :edit, :update, :destroy]
+  before_action :set_gists, only: [:new, :create, :edit, :update]
 
-  # GET /codes
-  # GET /codes.json
+  include GistHelper
+
   def index
     @codes = Code.all
   end
 
-  # GET /codes/1
-  # GET /codes/1.json
   def show
   end
 
-  # GET /codes/new
   def new
     @code = Code.new
   end
 
-  # GET /codes/1/edit
   def edit
   end
 
-  # POST /codes
-  # POST /codes.json
   def create
     @code = Code.new(code_params)
-
-    respond_to do |format|
-      if @code.save
-        format.html { redirect_to @code, notice: 'Code was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @code }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @code.errors, status: :unprocessable_entity }
+    unless @code.save
+      respond_to do |format|
+      format.html { render action: 'new' }
+      format.json { render json: @code.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /codes/1
-  # PATCH/PUT /codes/1.json
   def update
     respond_to do |format|
       if @code.update(code_params)
@@ -51,8 +40,6 @@ class CodesController < ApplicationController
     end
   end
 
-  # DELETE /codes/1
-  # DELETE /codes/1.json
   def destroy
     @code.destroy
     respond_to do |format|
@@ -67,8 +54,12 @@ class CodesController < ApplicationController
       @code = Code.find(params[:id])
     end
 
+    def set_gists
+      @gist_ids = @gist_ids || get_gist_ids(current_user)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def code_params
-      params.require(:code).permit(:content)
+      params.require(:code).permit(:gist_id)
     end
 end
