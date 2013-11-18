@@ -12,7 +12,7 @@
     
     <%= f.actions do %>
       <%= f.primary nil, disable_with: 'Saving...' %>
-      <%= f.secondary 'Cancel' %>
+      <%= link_to 'Cancel', @project, class: 'btn btn-default' %>
     <% end %>
     
   <% end %>
