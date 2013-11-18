@@ -1,3 +1,4 @@
+# Primary Author: psaylor
 class BlocksController < ApplicationController
   before_action :set_project
   before_action :set_block, only: [:show, :edit, :update, :destroy]
@@ -23,8 +24,16 @@ class BlocksController < ApplicationController
   end
 
   def create
-    render_as_yaml params
-    # @block = @project.blocks.create(block_params)
+    # render_as_yaml params
+    @block = @project.blocks.build(block_params)
+    if @block.save
+      redirect_to edit_project_path(@project)
+    else 
+      respond_to do |format|
+        format.html { render action: 'new' }
+        format.json { render json: @block.errors, status: :unprocessable_entity }
+      end
+    end
 
   end
 
@@ -60,6 +69,6 @@ class BlocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def block_params
-      params[:block]
+      params.require(:block).permit(:template_id, :firstres_id, :firstres_type, :secondres_id, :secondres_type)
     end
 end

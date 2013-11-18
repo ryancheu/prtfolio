@@ -9,6 +9,6 @@ console.log("Gist Created");
 
     $('#resource-select-modal').modal('hide');
     var code = "<%= escape_javascript(render(partial: @code)) %>";
-    update_resource_with_partial(code, "code", "<%= @code.id %>");
+    update_resource_with_partial(code, "Code", "<%= @code.id %>");
      
 <% end %>

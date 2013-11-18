@@ -1,3 +1,4 @@
+<!-- Primary Author: psaylor -->
 <div class="page-header">
     <h1>Editing Project <small><%= @project.title %> </small></h1>
 </div>
@@ -19,10 +20,9 @@
       
     <% end %>
 
-    <h4>Blocks</h4>
+    <h4>Current Blocks</h4>
 
     <% @project.blocks.each do |block| %>
-        <h5> Block <%= block.index %> </h5>
         <%= render block %>
     <% end %>
 

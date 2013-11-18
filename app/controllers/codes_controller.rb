@@ -1,3 +1,4 @@
+# Primary Author: psaylor
 class CodesController < ApplicationController
   before_action :set_code, only: [:show, :edit, :update, :destroy]
   before_action :set_gists, only: [:new, :create, :edit, :update]
