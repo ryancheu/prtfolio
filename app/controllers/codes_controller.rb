@@ -1,28 +1,22 @@
 class CodesController < ApplicationController
   before_action :set_code, only: [:show, :edit, :update, :destroy]
 
-  # GET /codes
-  # GET /codes.json
+  include GistHelper
+
   def index
     @codes = Code.all
   end
 
-  # GET /codes/1
-  # GET /codes/1.json
   def show
   end
 
-  # GET /codes/new
   def new
     @code = Code.new
   end
 
-  # GET /codes/1/edit
   def edit
   end
 
-  # POST /codes
-  # POST /codes.json
   def create
     @code = Code.new(code_params)
 
@@ -37,8 +31,6 @@ class CodesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /codes/1
-  # PATCH/PUT /codes/1.json
   def update
     respond_to do |format|
       if @code.update(code_params)
@@ -51,8 +43,6 @@ class CodesController < ApplicationController
     end
   end
 
-  # DELETE /codes/1
-  # DELETE /codes/1.json
   def destroy
     @code.destroy
     respond_to do |format|

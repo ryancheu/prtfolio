@@ -14,11 +14,9 @@ class ProjectsController < ApplicationController
 
   def new
     @project = current_user.new_project({})
-    @gist_ids = get_gist_ids(current_user)
   end
 
   def edit
-    @gist_ids = get_gist_ids(current_user)
   end
 
   def create

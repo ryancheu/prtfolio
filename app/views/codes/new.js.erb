@@ -1,4 +1,22 @@
 // Primary Author: psaylor
-$("#resource-select-modal-body").html('<%= j render "form" %>');
+console.log("New.js for code");
+<% 
+puts "New code for gists..."
+puts @gist_ids
+@gist_ids.each do |gid|
+ %>
+console.log( <%= gid %>);
+<% end %>
+$('#hold').html("this is a test");
+
+console.log($("#resource-select-modal-body"));
+console.log($("#resource-select-modal-title"));
+$("#resource-select-modal-body").html('<%= j render partial: "form", locals: { gist_ids: @gist_ids } %>');
+
 $("#resource-select-modal-title").html("Select a Gist");
  
+ console.log("Got to end");
+
+<% puts "Got to end" %>
+$('#hold').append("<%= j(render :partial => 'form') %>");
+$('#hold').append("this is a test this is a test");

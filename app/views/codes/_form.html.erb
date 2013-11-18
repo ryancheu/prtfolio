@@ -1,10 +1,12 @@
-<%= form_for(@code) do |f| %>
+<%= bootstrap_form_for(@code) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="field">
-    <%= f.label :gist_id %><br>
-    <%= f.text_area :gist_id %>
-  </div>
+      <%= f.control_group :gist_id, label: { text: 'Select a Gist' } do %>
+      <% gist_ids.each do |gid| %>
+          <%= f.radio_button :gist_id, gid , label: "#{gid}" %>
+          <% puts "Gist id #{gid}" %>
+      <% end %>
+    <% end %>
   
   <div class="actions">
     <%= f.submit %>

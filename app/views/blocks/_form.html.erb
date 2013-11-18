@@ -41,7 +41,7 @@
 </div>
 </div>
 
-<%= link_to "Contribute to the fund!", new_code_path, :class => "btn btn-primary", :remote => true, "data-toggle" => "modal", "data-target" => "#resource-select-modal" %>
+<%= link_to "Code!", new_code_path, :class => "btn btn-primary", :remote => true, "data-toggle" => "modal", "data-target" => "#resource-select-modal" %>
 
 <!-- Modal -->
 <div class="modal fade" id="resource-select-modal" tabindex="-1" role="dialog" aria-labelledby="resource-select-modal-title" aria-hidden="true">
@@ -58,24 +58,10 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Select a Gist</button>
+        <button type="button" class="btn btn-primary">Save</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
-<script type="text/javascript">
-    $(function() {
-        // $(".template-options").hide();
-
-        $(".code-select-btn").click( 
-
-            );
-
-        $(".text-select-btn").click();
-
-        $(".image-select-btn").click();
-
-    });
-</script>
+<div id="hold" class="well well-sm"> </div>
