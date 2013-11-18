@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:ryancheu/bootstrap_form.git
+  remote: git://github.com/ryancheu/bootstrap_form.git
   revision: 168c1d48c699415e8d0ac89fd5f374ed8f2753a5
   specs:
     bootstrap_form (1.0.0)
