@@ -29,11 +29,7 @@
     <% @project.blocks.each do |block| %>
     <section>
       <div class="container">
-        <h4> <%= block.id %> </h4>
         <%= render block %>
-        <%= link_to 'Show', [@project, block] %>
-        <%= link_to 'Edit', edit_project_block_path(@project, block) %>
-        <%= link_to 'Destroy', [@project, block], method: :delete, data: { confirm: 'Are you sure?' } %>
       </div>
     </section>
     <% end %>
