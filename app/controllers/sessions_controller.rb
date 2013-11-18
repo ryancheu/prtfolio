@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 		puts new_user_params.to_yaml
 	    user = User.find_by_uid_or_create(auth_hash.uid, new_user_params)
 	    sign_in user
-	    redirect_back_or user
+	    redirect_back_or user.portfolio
 	end
 
 	def destroy
