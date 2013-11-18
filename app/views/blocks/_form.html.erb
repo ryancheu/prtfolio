@@ -4,8 +4,8 @@
       <%= render 'shared/error_messages', object: f.object %>
 
         <%= f.control_group :template_id, label: { text: 'Select a Template' } do %>
-          <%= f.radio_button :template_id, 1, label: 'Single Resource Template' %>
-          <%= f.radio_button :template_id, 2, label: 'Two Resource Template', checked: true %>
+          <%= f.radio_button :template_id, 1, label: 'Single Resource Template',checked: true, :id=>'tid-1' %>
+          <%= f.radio_button :template_id, 2, label: 'Two Resource Template',:id=>'tid-2' %>
         <% end %>
 
         <div id="template1-options" class="well well-sm row-fluid template-options">
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div id="template2-options" class="well well-sm template-options">
+        <div style="display:none" id="template2-options" class="well well-sm template-options">
             <div class="btn-group half-width pull-left">
                 <button type="button" class="btn btn-default code-select-btn"><%= fa_icon "code 4x" %></button>
                 <button type="button" class="btn btn-default text-select-btn"><%= fa_icon "align-left 4x" %></button>
@@ -68,7 +68,14 @@
 <script type="text/javascript">
     $(function() {
         // $(".template-options").hide();
-
+        $('#tid-1').on("change", function(){
+            $("#template2-options").toggle();
+            $("#template1-options").toggle();
+        });
+        $('#tid-2').on("change", function(){
+            $("#template1-options").toggle();
+            $("#template2-options").toggle();
+        });
         $(".code-select-btn").click( 
 
             );
