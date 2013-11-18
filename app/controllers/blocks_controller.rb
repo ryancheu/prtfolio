@@ -23,17 +23,9 @@ class BlocksController < ApplicationController
   end
 
   def create
-    @block = @project.blocks.create(block_params)
+    render_as_yaml params
+    # @block = @project.blocks.create(block_params)
 
-    respond_to do |format|
-      if @block.save
-        format.html { redirect_to [@project, @block], notice: 'Block was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @block }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @block.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   def update
