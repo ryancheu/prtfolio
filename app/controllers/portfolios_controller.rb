@@ -1,3 +1,4 @@
+# Primary Author: psaylor
 class PortfoliosController < ApplicationController
   before_action :require_login, except: [:index, :show]
   before_action :require_no_portfolio, only: [:new, :create]

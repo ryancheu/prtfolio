@@ -1,3 +1,4 @@
+# Primary Author: psaylor
 module ApplicationHelper
 
     # helper method to render the given object as nicely formatted yaml on the page

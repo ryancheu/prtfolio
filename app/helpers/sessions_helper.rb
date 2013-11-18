@@ -1,3 +1,4 @@
+# Primary Author: anuhyag
 module SessionsHelper
 	
 	def sign_in(user)
