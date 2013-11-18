@@ -18,7 +18,7 @@
 <%# List all the projects in image-text templates %>
 <% @projects.each do |project| %>
 <div class="container">
-  <div class = "row add-space panel">
+  <div class = "row add-space panel panel-default">
       <%= render partial: "projectOverview", locals: {project: project} %>
   </div>
 </div>

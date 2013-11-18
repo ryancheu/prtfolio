@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @user  = @project.get_owner()
   end
 
   def new

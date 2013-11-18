@@ -1,0 +1,14 @@
+//<!--  Primary Author: psaylor -->
+console.log("Gist Created");
+<% if @image.errors.any? %>
+    console.log('Error');
+    $("#resource-select-modal-body").html('<%= j render partial: "form", locals: {gist_ids: @gist_ids} %>');
+
+<% else %>
+    console.log('Image Linked');
+
+    $('#resource-select-modal').modal('hide');
+    var image = "<%= escape_javascript(render(partial: @image)) %>";
+    update_resource_with_partial(image, "image", "<%= @image.id %>");
+     
+<% end %>
