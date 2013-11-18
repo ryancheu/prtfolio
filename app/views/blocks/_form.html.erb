@@ -12,7 +12,7 @@
             <div class="btn-group offset3 span6">
                 <button type="button" class="btn btn-default code-select-btn" data-toggle="modal" data-target="#code-select-modal"><%= fa_icon "code 4x" %></button>
                 <button type="button" class="btn btn-default text-select-btn" data-toggle="modal" data-target="#text-select-modal"><%= fa_icon "align-left 4x" %></button>
-                <button type="button" class="btn btn-default image-select-btn" data-toggle="modal" data-target="#image-select-modal"><%= fa_icon "picture-o 4x" %></button>
+                <a type="button" class="btn btn-default" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
             </div>
         </div>
 
@@ -20,13 +20,13 @@
             <div class="btn-group half-width pull-left">
                 <button type="button" class="btn btn-default code-select-btn"><%= fa_icon "code 4x" %></button>
                 <button type="button" class="btn btn-default text-select-btn"><%= fa_icon "align-left 4x" %></button>
-                <button type="button" class="btn btn-default image-select-btn"><%= fa_icon "picture-o 4x" %></button>
+                <a type="button" class="btn btn-default" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
             </div>
 
             <div class="btn-group half-width pull-right">
                 <button type="button" class="btn btn-default code-select-btn"><%= fa_icon "code 4x" %></button>
                 <button type="button" class="btn btn-default text-select-btn"><%= fa_icon "align-left 4x" %></button>
-                <button type="button" class="btn btn-default image-select-btn"><%= fa_icon "picture-o 4x" %></button>
+                <a type="button" class="btn btn-default" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
             </div>
 
             <div class="clearfix"></div>
