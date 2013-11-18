@@ -19,7 +19,7 @@
         <div class="col-md-9">
           <div class="project_name">
             <h1 class="project_title"><%= @project.title %></h1>
-            <h4 class="project_subtitle" ><%= @project.description %></h4>        
+            <h4 class="project_subtitle" ><%= simple_format(@project.description) %></h4>        
           </div>
         </div>
         </div>
