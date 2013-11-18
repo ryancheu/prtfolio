@@ -1,13 +1,13 @@
-<div class="jumbotron" style="background-color:#CCFF66">
+<div class="jumbotron" style="background-color:#BAEBE1">
   <div class="row">
     <div class="col-md-3 portfolio_user_image_container centering">
 	<img src=<%= @portfolio.user.image_url %> alt="Sample Image" class="portfolio_user_image">
     </div>
     <div class="col-md-9">
       <div class="portfolio_name">
-	<h1><%= current_user.fullname%></h1>
+	<h1 style="font-weight:200"><%= current_user.fullname%></h1>
 	<% if @user == current_user %>
-	  <%= button_to 'Create New Project', new_project_path,:method => "get", :class => "btn btn-medium button-primary" %> 
+	  <%= button_to 'Create New Project', new_project_path,:method => "get", :class => "btn btn-md btn-primary" %> 
 	<% end %>
       </div>
     </div>
@@ -22,5 +22,4 @@
     </div>
   </div>
 <% end %>
-
 <br/>

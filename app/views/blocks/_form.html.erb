@@ -4,29 +4,29 @@
       <%= render 'shared/error_messages', object: f.object %>
 
         <%= f.control_group :template_id, label: { text: 'Select a Template' } do %>
-          <%= f.radio_button :template_id, 1, label: 'Single Resource Template' %>
-          <%= f.radio_button :template_id, 2, label: 'Two Resource Template', checked: true %>
+          <%= f.radio_button :template_id, 1, label: 'Single Resource Template',checked: true, :id=>'tid-1' %>
+          <%= f.radio_button :template_id, 2, label: 'Two Resource Template',:id=>'tid-2' %>
         <% end %>
 
         <div id="template1-options" class="well well-sm row-fluid template-options">
             <div class="btn-group offset3 span6">
                 <button type="button" class="btn btn-default code-select-btn" data-toggle="modal" data-target="#code-select-modal"><%= fa_icon "code 4x" %></button>
                 <button type="button" class="btn btn-default text-select-btn" data-toggle="modal" data-target="#text-select-modal"><%= fa_icon "align-left 4x" %></button>
-                <button type="button" class="btn btn-default image-select-btn" data-toggle="modal" data-target="#image-select-modal"><%= fa_icon "picture-o 4x" %></button>
+                <a type="button" class="btn btn-default" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
             </div>
         </div>
 
-        <div id="template2-options" class="well well-sm template-options">
+        <div style="display:none" id="template2-options" class="well well-sm template-options">
             <div class="btn-group half-width pull-left">
                 <button type="button" class="btn btn-default code-select-btn"><%= fa_icon "code 4x" %></button>
                 <button type="button" class="btn btn-default text-select-btn"><%= fa_icon "align-left 4x" %></button>
-                <button type="button" class="btn btn-default image-select-btn"><%= fa_icon "picture-o 4x" %></button>
+                <a type="button" class="btn btn-default" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
             </div>
 
             <div class="btn-group half-width pull-right">
                 <button type="button" class="btn btn-default code-select-btn"><%= fa_icon "code 4x" %></button>
                 <button type="button" class="btn btn-default text-select-btn"><%= fa_icon "align-left 4x" %></button>
-                <button type="button" class="btn btn-default image-select-btn"><%= fa_icon "picture-o 4x" %></button>
+                <a type="button" class="btn btn-default" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
             </div>
 
             <div class="clearfix"></div>
@@ -64,4 +64,17 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div id="hold" class="well well-sm"> </div>
+
+<script type="text/javascript">
+    $(function() {
+        // $(".template-options").hide();
+        $('#tid-1').on("change", function(){
+            $("#template2-options").toggle();
+            $("#template1-options").toggle();
+        });
+        $('#tid-2').on("change", function(){
+            $("#template1-options").toggle();
+            $("#template2-options").toggle();
+        });
+    });
+</script>

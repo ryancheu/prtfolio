@@ -12,6 +12,7 @@ class CodesController < ApplicationController
 
   def new
     @code = Code.new
+    @gist_ids = get_gist_ids(current_user)
   end
 
   def edit

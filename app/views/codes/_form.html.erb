@@ -1,14 +1,14 @@
 <%= bootstrap_form_for(@code) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.control_group :gist_id, label: { text: 'Select a Gist' } do %>
-      <% gist_ids.each do |gid| %>
-          <%= f.radio_button :gist_id, gid , label: "#{gid}" %>
-          <% puts "Gist id #{gid}" %>
-      <% end %>
+    <%= f.control_group :gist_id do %>
+        <% gist_ids.each do |gid| %>
+            <%= f.radio_button :gist_id, gid, label: gid %>
+        <% end %>
     <% end %>
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.primary "Embed Gist" %>
+    <%= f.secondary 'Cancel' %>
   </div>
 <% end %>
