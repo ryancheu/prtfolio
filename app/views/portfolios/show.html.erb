@@ -1,25 +1,30 @@
-<div class="jumbotron" style="background-color:#BAEBE1">
-  <div class="row">
-    <div class="col-md-3 portfolio_user_image_container centering">
-	<img src=<%= @portfolio.user.image_url %> alt="Sample Image" class="portfolio_user_image">
-    </div>
-    <div class="col-md-9">
-      <div class="portfolio_name">
-	<h1 style="font-weight:200"><%= current_user.fullname%></h1>
-	<% if @user == current_user %>
-	  <%= button_to 'Create New Project', new_project_path,:method => "get", :class => "btn btn-md btn-primary" %> 
-	<% end %>
+<div class="container">
+  <div class="jumbotron" style="background-color:#F7BA59">
+    <div class="row">
+      <div class="col-md-2 portfolio_user_image_container centering">
+  	     <img src=<%= @portfolio.user.image_url %> alt="Sample Image" class="portfolio_user_image img-rounded">
+      </div>
+      <div class="col-md-8">
+        <div class="portfolio_name">
+          <h1 style="font-weight:200"><%= current_user.fullname%></h1>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="add_project">
+          <% if @user == current_user %>
+              <%= link_to new_project_path, :method=>"get", :class =>"btn btn-md btn-default" do %>
+                <i style="font-size: 44px" class="fa fa-plus 4x"></i> <br>
+                Add Project
+              <% end %>
+             <% end %>
+          </div>
       </div>
     </div>
   </div>
+  
+  <%# List all the projects in image-text templates %>
+  <% @projects.each do |project| %>
+        <%= render partial: "projectOverview", locals: {project: project} %>
+  <% end %>
+  <br/>
 </div>
-
-<%# List all the projects in image-text templates %>
-<% @projects.each do |project| %>
-  <div class = "row-fluid add-space">
-    <div class="col-md-12">
-      <%= render partial: "projectOverview", locals: {project: project} %>
-    </div>
-  </div>
-<% end %>
-<br/>

@@ -14,14 +14,14 @@
 .portfolio_user_image {
     width: 100px;
     height: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    vertical-align: middle;
-    float: right;
-    border: 5px solid black;
+    border: 5px solid white;
 }
 
 .portfolio_user_image_container {
-    padding-top: 80px;
 }
-
+.portfolio_name{
+    color:#ffffff
+}
+.add_project{
+    margin-top:10px;
+}
