@@ -71,6 +71,7 @@ html, body {
 
 .add-space {
     padding: 30px;
+    margin: 10px;
 }
 
 
@@ -232,4 +233,8 @@ html, body {
 }
 .control-group.success .fileupload .thumbnail {
   border-color: #468847;
+}
+
+.half-width {
+    width: 50%;
 }

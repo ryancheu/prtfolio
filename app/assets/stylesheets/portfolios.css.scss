@@ -6,32 +6,37 @@
     width: auto;
     height: 250px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
     vertical-align: middle;
 }
 
 .portfolio_user_image {
     width: 100px;
     height: 100px;
-    float: right;
     background-color: #fff;
-    border: 5px solid black;
 }
 
 .portfolio_user_image_container {
-    padding-top: 30px;
 }
+
 .portfolio_name{
-    color:#000000;
+    font-weight:200;
+    font-size:70px;
+    color:#bdc3c7;
 }
 .add_project{
     margin-top:10px;
 }
 
+.top-space{
+     padding:40px 0px;
+}
+.add-proj-btn{
+    margin-bottom:40px
+}
+
 .overview {
     border-style: solid;
     border-radius: 4px 4px 0 0;
-    border-color: #ddd;
-    border-width: 1px;
+    border-color: #000;
+    border-width: 3px;
 }

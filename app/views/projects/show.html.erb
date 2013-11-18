@@ -21,6 +21,9 @@
               </div>
             </div>
           </div>
+        <% if @user == current_user %>
+            <%= button_to 'Edit Project', edit_project_path,:method => "get", :class => "btn btn-medium btn-primary" %> 
+        <% end %>
         </div>
       </section>
     <% @project.blocks.each do |block| %>

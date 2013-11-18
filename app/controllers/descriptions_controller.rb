@@ -25,14 +25,9 @@ class DescriptionsController < ApplicationController
   # POST /descriptions.json
   def create
     @description = Description.new(description_params)
-
     respond_to do |format|
       if @description.save
-        format.html { redirect_to @description, notice: 'Description was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @description }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @description.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
