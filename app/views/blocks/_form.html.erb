@@ -1,3 +1,4 @@
+<!-- Primary Author: psaylor -->
 <div class="container">
 <div class="span9">
     <%= bootstrap_form_for([@project, @block]) do |f| %>
@@ -77,7 +78,7 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
+<!-- put this in a script tag b/c we don't want it loaded with every page -->
 <script type="text/javascript">
     $(function() {
         // $(".template-options").hide();
@@ -139,14 +140,27 @@
         // Set the hidden fields in the form based on the resources teh user has created
         $("#new_block").submit( function (event) {
             console.log("Form submitted");
-            event.preventDefault();
             // check which radio button is selected in order to know which resources to use
             var radioOpt = $('input[name="block[template_id]"]:checked', '#new_block').val();
             console.log("Selected radio button: " + radioOpt);            
-            if (radioOpt === 1) {
+            if (radioOpt == 1) {
+                console.log("Using template 1");
+                console.log("Single resource id: " + single_resource.get_id());
+                console.log("Single resource type: " + single_resource.get_type());
+                $("#block_firstres_id").val(single_resource.get_id());
+                $("#block_firstres_type").val(single_resource.get_type());
 
-            } else if (radioOpt === 2) {
-                
+            } else if (radioOpt == 2) {
+                console.log("using template 2");
+                console.log("First resource id: " + resource1.get_id());
+                console.log("First resource type: " + resource1.get_type());
+                $("#block_firstres_id").val(resource1.get_id());
+                $("#block_firstres_type").val(resource1.get_type());
+
+                console.log("Second resource id: " + resource2.get_id());
+                console.log("Second resource type: " + resource2.get_type());
+                $("#block_secondres_id").val(resource2.get_id());
+                $("#block_secondres_type").val(resource2.get_type());
             }
         });
 
