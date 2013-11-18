@@ -1,5 +1,6 @@
 class CodesController < ApplicationController
   before_action :set_code, only: [:show, :edit, :update, :destroy]
+  before_action :set_gists, only: [:new, :create, :edit, :update]
 
   include GistHelper
 
@@ -12,7 +13,6 @@ class CodesController < ApplicationController
 
   def new
     @code = Code.new
-    @gist_ids = get_gist_ids(current_user)
   end
 
   def edit
@@ -20,14 +20,10 @@ class CodesController < ApplicationController
 
   def create
     @code = Code.new(code_params)
-
-    respond_to do |format|
-      if @code.save
-        format.html { redirect_to @code, notice: 'Code was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @code }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @code.errors, status: :unprocessable_entity }
+    unless @code.save
+      respond_to do |format|
+      format.html { render action: 'new' }
+      format.json { render json: @code.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,8 +54,12 @@ class CodesController < ApplicationController
       @code = Code.find(params[:id])
     end
 
+    def set_gists
+      @gist_ids = @gist_ids || get_gist_ids(current_user)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def code_params
-      params.require(:code).permit(:content)
+      params.require(:code).permit(:gist_id)
     end
 end

@@ -1,5 +1,7 @@
-<%= bootstrap_form_for(@code) do |f| %>
+<%= bootstrap_form_for(@code, remote: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+
+  <% gist_ids = gist_ids || @gist_ids %>
 
     <%= f.control_group :gist_id do %>
         <% gist_ids.each do |gid| %>
@@ -9,6 +11,5 @@
   
   <div class="actions">
     <%= f.primary "Embed Gist" %>
-    <%= f.secondary 'Cancel' %>
   </div>
 <% end %>
