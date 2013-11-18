@@ -9,30 +9,36 @@
         <% end %>
 
         <div id="template1-options" class="well well-sm row-fluid template-options">
-            <div class="btn-group offset3 span6 single-resource">
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
+            <div class="offset3 span6 single-resource">
+                <div class="btn-group">
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
 
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
 
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+                </div>
             </div>
         </div>
 
         <div style="display:none" id="template2-options" class="well well-sm template-options">
-            <div class="btn-group half-width pull-left resource1">
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
+            <div class="half-width pull-left resource1">
+                <div class="btn-group ">
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
 
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
 
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+                </div>
             </div>
 
-            <div class="btn-group half-width pull-right resource2">
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
+            <div class="half-width pull-right resource2">
+                <div class="btn-group">
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
 
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
 
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+                </div>
             </div>
 
             <div class="clearfix"></div>
@@ -86,5 +92,16 @@
             console.log("Resource clicked");
             console.log(clicked_resource);
         });
+
+        // intentionally global
+        update_resource_with_partial = function( partial ) {
+            console.log("Updating resource with partial");
+            console.log(partial);
+            console.log("That was teh partial");
+            var target = clicked_resource.parent().parent();
+            target.html(partial);
+            embed_gists();
+            partial.hide().fadeIn();
+        };
     });
 </script>

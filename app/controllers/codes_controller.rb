@@ -20,10 +20,14 @@ class CodesController < ApplicationController
 
   def create
     @code = Code.new(code_params)
-    unless @code.save
-      respond_to do |format|
-      format.html { render action: 'new' }
-      format.json { render json: @code.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      unless @code.save
+        
+        format.html { render action: 'new' }
+        format.json { render json: @code.errors, status: :unprocessable_entity }
+        
+      else
+        format.js
       end
     end
   end
