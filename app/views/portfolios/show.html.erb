@@ -1,26 +1,30 @@
 <div class="container">
-  <div class="jumbotron">
-  <div class="row">
-    <div class="col-md-3 portfolio_user_image_container centering">
-        <img src=<%= @portfolio.user.image_url %> alt="Sample Image" class="portfolio_user_image">
+  <div class="row top-space">
+    <div class="col-md-3 portfolio_user_image_container">
+        <img src=<%= @portfolio.user.image_url %> alt="Sample Image" class="portfolio_user_image img-rounded">
     </div>
     <div class="col-md-9">
       <div class="portfolio_name">
-        <h1><%= current_user.fullname%></h1>
-        <% if @user == current_user %>
-          <%= button_to 'Create New Project', new_project_path,:method => "get", :class => "btn btn-medium btn-primary" %> 
-        <% end %>
+        <p class="portfolio_name"><%= current_user.fullname%></p>
       </div>
     </div>
-  </div>
 </div>
 </div>
 <%# List all the projects in image-text templates %>
 <% @projects.each do |project| %>
 <div class="container">
-  <div class = "row add-space panel">
+  <div class = "row top-space">
       <%= render partial: "projectOverview", locals: {project: project} %>
   </div>
 </div>
-<% end %>
 <br/>
+<% end %>
+<div class="container">
+  <div class = "row top-space">
+    <% if @user == current_user %>
+          <%= link_to new_project_path,:method => "get", :class => "btn btn-medium btn-info btn-block" do%>
+          <i style="font-size:80px" class="fa fa-plus"></i><b style="margin-left:20px;font-size:80px"> add project</b>
+          <% end %> 
+        </div>
+      </div>
+<% end %>
