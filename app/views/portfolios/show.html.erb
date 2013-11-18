@@ -1,13 +1,15 @@
 <div class="container">
-  <div class="row top-space">
-    <div class="col-md-3 portfolio_user_image_container">
-        <img src=<%= @portfolio.user.image_url %> alt="Sample Image" class="portfolio_user_image img-rounded">
-    </div>
-    <div class="col-md-9">
-      <div class="portfolio_name">
-        <p class="portfolio_name"><%= current_user.fullname%></p>
+  <div class="row" style="margin-top:40px; margin-bottom:60px">
+    <div class="col-md-10">
+      <div class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object img-rounded" src=<%= @portfolio.user.image_url %> alt="Sample Image">
+        </a>
+      <div class="media-body">
+        <h1 style="color:#bdc3c7; font-size:80px; margin-left:20px"class="media-heading"><%= current_user.fullname%></h1>
       </div>
-    </div>
+  </div>
+</div>
 </div>
 </div>
 <%# List all the projects in image-text templates %>
@@ -22,7 +24,7 @@
 <div class="container">
   <div class = "row top-space">
     <% if @user == current_user %>
-          <%= link_to new_project_path,:method => "get", :class => "btn btn-medium btn-info btn-block" do%>
+          <%= link_to new_project_path,:method => "get", :class => "btn btn-medium btn-info btn-block add-proj-btn" do%>
           <i style="font-size:80px" class="fa fa-plus"></i><b style="margin-left:20px;font-size:80px"> add project</b>
           <% end %> 
         </div>
