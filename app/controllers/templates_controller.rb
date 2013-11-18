@@ -1,4 +1,4 @@
-#  primary author: saylorp
+# Primary Author: psaylor
 class TemplatesController < ApplicationController
   include BlocksHelper
   
