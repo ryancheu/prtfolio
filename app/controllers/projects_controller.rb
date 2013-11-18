@@ -15,7 +15,11 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    puts "Creating new project"
+    puts "current_user: #{current_user}"
     @project = current_user.new_project({})
+    puts "new project?"
+    puts @project
   end
 
   def edit
