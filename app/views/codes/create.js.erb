@@ -1,0 +1,16 @@
+//<!--  Primary Author: psaylor -->
+<% if @code.errors.any? %>
+     console.log('Error');
+     $("#resource-select-modal-body").html('<%= j render partial: "form", locals: {gist_ids: @gist_ids} %>');
+
+<% else %>
+     console.log('Gist Linked');
+
+     $('#resource-select-modal').modal('hide');
+     
+     $("<%= escape_javascript(render(@code) %>")
+         .html("#contributions")
+         .hide()
+         .fadeIn();
+     
+<% end %>

@@ -10,15 +10,15 @@ class ApplicationController < ActionController::Base
     def require_login
       unless signed_in?
         store_location
-        flash[:error] = "You must be logged in to access this page"
+        flash[:danger] = "You must be logged in to access this page"
         redirect_to root_url
       end
     end
-
+    
     def require_correct_user user, msg
       unless current_user == user
-        flash[:error] = msg
-        redirect_to user
+        flash[:danger] = msg
+        redirect_to root_path
       end
     end
 end

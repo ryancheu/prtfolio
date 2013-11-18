@@ -1,14 +1,14 @@
 <div class="jumbotron">
   <div class="row">
     <div class="col-md-3 portfolio_user_image_container centering">
-	<img src=<%= @portfolio.user.image_url %> alt="Sample Image" class="portfolio_user_image">
+        <img src=<%= @portfolio.user.image_url %> alt="Sample Image" class="portfolio_user_image">
     </div>
     <div class="col-md-9">
       <div class="portfolio_name">
-	<h1><%= current_user.fullname%></h1>
-	<% if @user == current_user %>
-	  <%= button_to 'Create New Project', new_project_path,:method => "get", :class => "btn btn-medium button-primary" %> 
-	<% end %>
+        <h1><%= current_user.fullname%></h1>
+        <% if @user == current_user %>
+          <%= button_to 'Create New Project', new_project_path,:method => "get", :class => "btn btn-medium btn-primary" %> 
+        <% end %>
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
 
 <%# List all the projects in image-text templates %>
 <% @projects.each do |project| %>
-  <div class = "row add-space">
+  <div class = "row add-space panel">
       <%= render partial: "projectOverview", locals: {project: project} %>
   </div>
 <% end %>
