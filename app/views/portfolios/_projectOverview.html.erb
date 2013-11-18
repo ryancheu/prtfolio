@@ -1,16 +1,20 @@
-  <div class="col-md-5" >
+
+
+<div class="col-md-5" >
     <% unless project.image.nil? %>
-      <%= image_tag(project.image.content.url alt="Sample Image", :class => "portfolio_image") %>
+    <%= image_tag(project.image.content.url alt="Sample Image", :class => "portfolio_image") %>
     <% else  %>
-      <img src= <%= "/test.jpg" %> alt="Sample Image" class="portfolio_image">
+    <img src= <%= "/assets/img-icon-green.png" %> alt="Sample Image" class="portfolio_image">
     <% end  %>
-  </div>
+</div>
 
-  <div class="col-md-1">
+<div class="col-md-1">
     <p></p>
-  </div>
+</div>
 
-  <div class = "col-md-5">
-      <h2> <%= project.title %> </h1>
-      <h5> <%= project.description %> </h5>
-  </div>
+<div class = "col-md-5">
+    <h2> <%= link_to project.title, project %> </h1>
+<h5> <%= project.description %> </h5>
+</div>
+
+</div>

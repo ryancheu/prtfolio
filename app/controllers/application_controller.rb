@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
         redirect_to root_url
       end
     end
-
+    
     def require_correct_user user, msg
       unless current_user == user
         flash[:danger] = msg

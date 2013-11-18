@@ -18,8 +18,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                        <li><%= link_to "My Portfolio", current_user.portfolio %></li>
+                       <% if Rails.env.development? %>
                         <li><%= link_to "My Profile", user_path(current_user) %></li>
-                        <% if Rails.env.development? %>
                         <li><%= link_to "Find others", users_path %></li>
                         <% end %>
                         <li class="divider"></li>

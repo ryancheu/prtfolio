@@ -35,7 +35,6 @@
 	
 	$.fn.swipeEvents = function() {
       return this.each(function() {
-
         var startX,
             startY,
             $this = $(this);
