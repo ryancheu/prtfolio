@@ -9,6 +9,6 @@ console.log("Gist Created");
 
     $('#resource-select-modal').modal('hide');
     var image = "<%= escape_javascript(render(partial: @image)) %>";
-    update_resource_with_partial(image, "image", "<%= @image.id %>");
+    update_resource_with_partial(image, "Image", "<%= @image.id %>");
      
 <% end %>
