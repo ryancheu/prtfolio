@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:ryancheu/bootstrap_form.git
+  revision: 168c1d48c699415e8d0ac89fd5f374ed8f2753a5
+  specs:
+    bootstrap_form (1.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -37,7 +43,6 @@ GEM
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.9)
       will_paginate
-    bootstrap_form (1.0.0)
     builder (3.1.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -169,7 +174,7 @@ DEPENDENCIES
   bcrypt-ruby (= 3.0.1)
   bootstrap-sass (~> 3.0.2.0)
   bootstrap-will_paginate (= 0.0.9)
-  bootstrap_form (~> 1.0.0)
+  bootstrap_form (~> 1.0.0)!
   coffee-rails (~> 4.0.0)
   font-awesome-rails
   hirb (~> 0.7.1)
