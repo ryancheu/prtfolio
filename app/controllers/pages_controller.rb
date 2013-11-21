@@ -1,3 +1,4 @@
+# Primary Author: isabella
 class PagesController < ApplicationController
 
     def home

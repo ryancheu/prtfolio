@@ -1,3 +1,4 @@
+# Primary Author: ryan
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
 

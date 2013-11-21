@@ -3,34 +3,35 @@
   <div id="onepage" class="main">
     <section>
       <div class="container">
-        <div class="jumbotron" style="background-color:#BAEBE1">
-          <div class="row">
-            <div class="col-md-3 portfolio_user_image_container centering">
-              <img src=<%= @project.get_owner.image_url%> alt="Sample Image" class="portfolio_user_image">
-            </div>
-            <div class="col-md-9">
-              <div class="portfolio_name">
-                <h1 style="font-weight:200"><%= current_user.fullname%></h1>
-                  <div class="col-md-9">
-                    <div class="project_name">
-                      <h1><%= @project.title %></h1>
-                      <h4><%= @project.description %></h4>        
-                    </div>
-                  </div>
-                </div>
+        <div class="row person-section">
+          <div class="col-md-10">
+            <div class="media">
+              <a class="pull-left" href="#">
+                <img class="media-object img-rounded" src=<%= @project.get_owner.image_url %> alt="Sample Image">
+              </a>
+              <div class="media-body">
+                <h1 class="media-heading name"><%= current_user.fullname%></h1>
               </div>
             </div>
+        </div>
+        </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="project_name">
+            <h1 class="project_title"><%= @project.title %></h1>
+            <h4 class="project_subtitle" ><%= @project.description %></h4>        
           </div>
+        </div>
+        </div>
+        <% if @user == current_user %>
+            <%= button_to 'Edit Project', edit_project_path,:method => "get", :class => "btn btn-medium btn-primary" %> 
+        <% end %>
         </div>
       </section>
     <% @project.blocks.each do |block| %>
     <section>
       <div class="container">
-        <h4> <%= block.id %> </h4>
         <%= render block %>
-        <%= link_to 'Show', [@project, block] %>
-        <%= link_to 'Edit', edit_project_block_path(@project, block) %>
-        <%= link_to 'Destroy', [@project, block], method: :delete, data: { confirm: 'Are you sure?' } %>
       </div>
     </section>
     <% end %>

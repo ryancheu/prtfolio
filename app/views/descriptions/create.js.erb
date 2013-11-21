@@ -1,0 +1,14 @@
+//<!--  Primary Author: isabella -->
+console.log("Gist Created");
+<% if @description.errors.any? %>
+    console.log('Error');
+    $("#resource-select-modal-body").html('<%= j render partial: "form", locals: {gist_ids: @gist_ids} %>');
+
+<% else %>
+    console.log('Description Linked');
+
+    $('#resource-select-modal').modal('hide');
+    var desc = "<%= escape_javascript(render(partial: @description)) %>";
+    update_resource_with_partial(desc, "Description", "<%= @description.id %>");
+     
+<% end %>

@@ -1,3 +1,4 @@
+# Primary Author: psaylor
 class CodesController < ApplicationController
   before_action :set_code, only: [:show, :edit, :update, :destroy]
   before_action :set_gists, only: [:new, :create, :edit, :update]
@@ -20,10 +21,15 @@ class CodesController < ApplicationController
 
   def create
     @code = Code.new(code_params)
-    unless @code.save
-      respond_to do |format|
-      format.html { render action: 'new' }
-      format.json { render json: @code.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      unless @code.save
+        
+        format.html { render action: 'new' }
+        format.json { render json: @code.errors, status: :unprocessable_entity }
+        
+      else
+        format.js
+        format.json { render json: @code.errors, status: :unprocessable_entity }
       end
     end
   end

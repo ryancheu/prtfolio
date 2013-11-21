@@ -1,5 +1,7 @@
+<!-- Primary Author: psaylor -->
 <div class="container">
-<div class="span9">
+<div class="row">
+    <div class="col-md-9">
     <%= bootstrap_form_for([@project, @block]) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
@@ -8,31 +10,42 @@
           <%= f.radio_button :template_id, 2, label: 'Two Resource Template',:id=>'tid-2' %>
         <% end %>
 
+        <%= f.hidden_field :firstres_id %>
+        <%= f.hidden_field :firstres_type %>
+        <%= f.hidden_field :secondres_id %>
+        <%= f.hidden_field :secondres_type %>
+
         <div id="template1-options" class="well well-sm row-fluid template-options">
-            <div class="btn-group offset3 span6 single-resource">
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
+            <div class="offset3 span6" id="single-resource">
+                <div class="btn-group">
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
 
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
 
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+                </div>
             </div>
         </div>
 
         <div style="display:none" id="template2-options" class="well well-sm template-options">
-            <div class="btn-group half-width pull-left resource1">
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
+            <div class="half-width pull-left" id="resource1">
+                <div class="btn-group ">
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
 
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
 
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+                </div>
             </div>
 
-            <div class="btn-group half-width pull-right resource2">
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
+            <div class="half-width pull-right" id="resource2">
+                <div class="btn-group">
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
 
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
 
-                <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+                    <a type="button" class="btn btn-default resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+                </div>
             </div>
 
             <div class="clearfix"></div>
@@ -44,6 +57,7 @@
         </div>
 
     <% end %>
+</div>
 </div>
 </div>
 
@@ -66,7 +80,7 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
+<!-- put this in a script tag b/c we don't want it loaded with every page -->
 <script type="text/javascript">
     $(function() {
         // $(".template-options").hide();
@@ -79,6 +93,24 @@
             $("#template2-options").toggle();
         });
 
+        var resource = function() {
+            var resource_id = null;
+            var resource_type = null;
+            var object = {
+                update: function (type, id) {
+                    resource_type = type;
+                    resource_id = id;
+                },
+                get_id: function() { return resource_id},
+                get_type: function() { return resource_type},
+            };
+            return object;
+        };
+
+        var single_resource = resource();
+        var resource1 = resource();
+        var resource2 = resource();
+
         var clicked_resource = null;
 
         $(".resource-select-btn").click(function(event) {
@@ -86,5 +118,53 @@
             console.log("Resource clicked");
             console.log(clicked_resource);
         });
+
+        // intentionally global
+        update_resource_with_partial = function (partial, type, id) {
+            console.log("Updating resource with partial");
+            var target = clicked_resource.parent().parent();
+           
+            if (target.attr('id') === "single-resource") {
+                console.log("Updating single resource");
+                single_resource.update(type, id);
+            } else if (target.attr('id') === "resource1") {
+                console.log("Updating resource1");
+                resource1.update(type, id);
+            } else if (target.attr('id') === "resource2") {
+                console.log("Updating resource2");
+                resource2.update(type, id);
+            }
+
+            target.html(partial);
+            embed_gists();
+        };
+
+        // Set the hidden fields in the form based on the resources teh user has created
+        $("#new_block").submit( function (event) {
+            console.log("Form submitted");
+            // check which radio button is selected in order to know which resources to use
+            var radioOpt = $('input[name="block[template_id]"]:checked', '#new_block').val();
+            console.log("Selected radio button: " + radioOpt);            
+            if (radioOpt == 1) {
+                console.log("Using template 1");
+                console.log("Single resource id: " + single_resource.get_id());
+                console.log("Single resource type: " + single_resource.get_type());
+                $("#block_firstres_id").val(single_resource.get_id());
+                $("#block_firstres_type").val(single_resource.get_type());
+
+            } else if (radioOpt == 2) {
+                console.log("using template 2");
+                console.log("First resource id: " + resource1.get_id());
+                console.log("First resource type: " + resource1.get_type());
+                $("#block_firstres_id").val(resource1.get_id());
+                $("#block_firstres_type").val(resource1.get_type());
+
+                console.log("Second resource id: " + resource2.get_id());
+                console.log("Second resource type: " + resource2.get_type());
+                $("#block_secondres_id").val(resource2.get_id());
+                $("#block_secondres_type").val(resource2.get_type());
+            }
+        });
+
     });
 </script>

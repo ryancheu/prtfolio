@@ -1,14 +1,14 @@
-//<!--  Primary Author: psaylor -->
+//<!--  Primary Author: ryan -->
 console.log("Gist Created");
-<% if @code.errors.any? %>
+<% if @image.errors.any? %>
     console.log('Error');
     $("#resource-select-modal-body").html('<%= j render partial: "form", locals: {gist_ids: @gist_ids} %>');
 
 <% else %>
-    console.log('Gist Linked');
+    console.log('Image Linked');
 
     $('#resource-select-modal').modal('hide');
-    var code = "<%= escape_javascript(render(partial: @code)) %>";
-    update_resource_with_partial(code, "Code", "<%= @code.id %>");
+    var image = "<%= escape_javascript(render(partial: @image)) %>";
+    update_resource_with_partial(image, "Image", "<%= @image.id %>");
      
 <% end %>

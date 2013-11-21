@@ -1,3 +1,4 @@
+# Primary Author: psaylor
 class ProjectsController < ApplicationController
   before_action :require_login, except: [:index, :show]
   before_action :require_portfolio, only: [:new, :create]
@@ -10,6 +11,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @user  = @project.get_owner()
   end
 
   def new
