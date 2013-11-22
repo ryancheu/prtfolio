@@ -3,7 +3,7 @@
   <div id="onepage" class="main">
     <section>
       <div class="container">
-        <div class="row person-section">
+        <div class="row">
           <div class="col-md-10">
             <div class="media">
               <a class="pull-left" href="#">
@@ -17,27 +17,125 @@
         </div>
       <div class="row">
         <div class="col-md-9">
-          <div class="project_name">
-            <h1 class="project_title"><%= @project.title %></h1>
-            <h4 class="project_subtitle" ><%= @project.description %></h4>        
+          <div class="title-box">
+            <div id="title" class="usrinput medium-title"></div> 
+            <div id="subtitle" class="usrinput medium-subtitle"></div>
           </div>
         </div>
         </div>
-        <% if @user == current_user %>
-            <%= button_to 'Edit Project', edit_project_path,:method => "get", :class => "btn btn-medium btn-primary" %> 
-        <% end %>
-        </div>
-      </section>
-    <% @project.blocks.each do |block| %>
-    <section>
-      <div class="container">
-        <%= render block %>
+        <p id="add_block_btn" style="position:absolute;
+        bottom:0;
+        right:0; 
+        padding:30px 40px"
+        class="add_block_btn add_block_btn_active" data-content="<i style='font-size:20px;color:#7f8c8d' class='fa fa-picture-o'></i><i style='font-size:20px; color:#7f8c8d' class='fa fa-code'></i><i style='font-size:20px; color:#7f8c8d' class='fa fa-align-left'></i>'" class='fa fa-align-left'data-title:'popover-title' onclick="create_section()"><i style='font-size:60px' class='fa fa-plus'></i><br> block</p>
+        <!--onclick='create_section()-->
       </div>
-    </section>
-    <% end %>
+      </section>
 </div>
+</div>
+<style>
+.add_block_btn{
+  color:#7f8c8d;
+  text-decoration:none;
+  text-align:center;
+}
+.remove_block_btn{
+  color:#7f8c8d;
+  text-decoration:none;
+  text-align:center;
+}
+.add_block_btn_active:hover{
+  color:#000;
+}
+.add_block_btn_inactive:hover{
+  color:#7f8c8d;
+}
+.add-img-icon{
+  width:50%;
+  height:50%;
+
+}
+
+</style>
+<script>
+
+  $(document).ready(function(){
+    //every time a button gets pressed check and see if the text or contents of the section is empty-allow them to create a new section only if this seciton is complete
+
+    // $('#add_block_btn').popover({html:true,placement: 'top', trigger: "hover"})
+    // check_section = function(){
+    //   if ($('#onepage section:last .usrinput p').length -$('#onepage section:last .usrinput p').not('.Medium-placeholder').length >0){
+    //     return false;
+    //   }
+    //   return true;
+    // }
+    // $('#onepage section:last').on("click keydown keyup", function(e){
+    //   if (check_section()){
+    //     //make add block button inactive
+    //     //check all elements with the class us'rinput
+    //     $('#add_block_btn').removeClass('add_block_btn_inactive')
+    //     $('#add_block_btn').addClass('add_block_btn_active')
+    //   }
+    //     else{
+    //     console.log('still stuff to fill in')
+    //     $('#add_block_btn').addClass('add_block_btn_inactive')
+    //     $('#add_block_btn').removeClass('add_block_btn_active')
+    //     }
+    //   }
+    // )
+    //}
+
+description = function(){
+      num_sections = $('section').length
+      return '<div class="container"><div class="row"><div class="col-md-6"><div id="description-'+(num_sections) + '" class="usrinput article medium-description"></div></div><div class="col-md-6"><i style="font-size:80px;padding:10px;color:#7f8c8d" class="fa fa-picture-o"></i><i style="font-size:80px;padding:10px; color:#7f8c8d" class="fa fa-code"></i><i style="font-size:80px;padding:10px; color:#7f8c8d" class="fa fa-align-left"></i></div></div></div>'
+    }
+
+    $(".main").onepage_scroll();
+    create_section = function(){
+      //hide all sections that are not the current one
 
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
-</div>
+      $('.main').addSection()
+      $('#onepage section:last').append(description())
+      $('#onepage section:last').append('<p id="add_block_btn" style="position:absolute;bottom:0;right:0; padding:30px 40px"class="add_block_btn add_block_btn_active" onclick="create_section()"><i style="font-size:60px" class="fa fa-plus"></i><br>block</p>')
+       new Medium({
+          element: document.getElementById('description-' + (num_sections)),
+            mode: 'rich',
+          maxLength: 200,
+          placeholder: 'Enter your description here'
+        });
+      }
+      
+      // create_section= function(){
+      //   if (check_section()){
+      //     $('#add_block_btn').popover('hide')
+      //     $('#add_block_btn').remove()
+      //     $(".main").addSection();
+      //     $('#onepage section:last').append('<p id="add_block_btn" style="position:absolute;bottom:0;right:0; padding:30px 40px"class="add_block_btn add_block_btn_inactive" onclick="create_section()"><i style="font-size:60px" class="fa fa-plus"></i><br>block</p>')
+      //     
+      //     console.log($('#onepage section:last'))
+      //     num_sections = $('section').length
+      //     new Medium({
+      //       element: document.getElementById('description-' + (num_sections)),
+      //       mode: 'rich',
+      //       maxLength: 200,
+      //       placeholder: 'Enter your description here'
+      //     });
+      //   }
+
+    
+    new Medium({
+      element: document.getElementById('title'),
+      mode: 'inline',
+      maxLength: 25,
+      placeholder: 'Type your title'
+    });
+    new Medium({
+      element: document.getElementById('subtitle'),
+      mode: 'inline',
+      maxLength: 100,
+      placeholder: 'Type your subtitle'
+    });
+  });
+
+    </script>

@@ -27,14 +27,15 @@
     afterMove: null,
     loop: false,
     responsiveFallback: false
-	};
-	
-	/*------------------------------------------------*/
-	/*  Credit: Eike Send for the awesome swipe event */    
-	/*------------------------------------------------*/
-	
-	$.fn.swipeEvents = function() {
+  };
+  
+  /*------------------------------------------------*/
+  /*  Credit: Eike Send for the awesome swipe event */    
+  /*------------------------------------------------*/
+  
+  $.fn.swipeEvents = function() {
       return this.each(function() {
+
         var startX,
             startY,
             $this = $(this);
@@ -76,7 +77,7 @@
 
       });
     };
-	
+  
 
   $.fn.onepage_scroll = function(options){
     var settings = $.extend({}, defaults, options),
@@ -88,6 +89,7 @@
         lastAnimation = 0,
         quietPeriod = 500,
         paginationList = "";
+
     
     $.fn.transformPage = function(settings, pos, index) {
       $(this).css({
@@ -121,7 +123,7 @@
       }else {
         pos = (index * 100) * -1;
       }
-      if (typeof settings.beforeMove == 'function') settings.beforeMove( current.data("index")+1);
+      // if (typeof settings.beforeMove == 'function') settings.beforeMove( current.data("index"));
       current.removeClass("active")
       next.addClass("active");
       if(settings.pagination == true) {
@@ -129,14 +131,14 @@
         $(".onepage-pagination li a" + "[data-index='" + next.data("index") + "']").addClass("active");
       }
       
-      $("body")[0].className = $("body")[0].className.replace(/\bviewing-page-\d.*?\b/g, '');
-      $("body").addClass("viewing-page-"+next.data("index"))
+      // $("body")[0].className = $("body")[0].className.replace(/\bviewing-page-\d.*?\b/g, '');
+      // $("body").addClass("viewing-page-"+next.data("index"))
       
-      if (history.replaceState && settings.updateURL == true) {
-        var href = window.location.href.substr(0,window.location.href.indexOf('#')) + "#" + (index + 1);
-        history.pushState( {}, document.title, href );
-      }   
-      el.transformPage(settings, pos, index+1);
+      // if (history.replaceState && settings.updateURL == true) {
+      //   var href = window.location.href.substr(0,window.location.href.indexOf('#')) + "#" + (index + 1);
+      //   history.pushState( {}, document.title, href );
+      // }   
+      el.transformPage(settings, pos, index);
     }
     
     $.fn.moveUp = function() {
@@ -156,68 +158,95 @@
       }else {
         pos = ((next.data("index") - 1) * 100) * -1;
       }
-      if (typeof settings.beforeMove == 'function') settings.beforeMove(current.data("index")-1);
+      // if (typeof settings.beforeMove == 'function') settings.beforeMove(current.data("index"));
       current.removeClass("active")
       next.addClass("active")
       if(settings.pagination == true) {
         $(".onepage-pagination li a" + "[data-index='" + index + "']").removeClass("active");
         $(".onepage-pagination li a" + "[data-index='" + next.data("index") + "']").addClass("active");
       }
-      $("body")[0].className = $("body")[0].className.replace(/\bviewing-page-\d.*?\b/g, '');
-      $("body").addClass("viewing-page-"+next.data("index"))
+      // $("body")[0].className = $("body")[0].className.replace(/\bviewing-page-\d.*?\b/g, '');
+      // $("body").addClass("viewing-page-"+next.data("index"))
       
-      if (history.replaceState && settings.updateURL == true) {
-        var href = window.location.href.substr(0,window.location.href.indexOf('#')) + "#" + (index - 1);
-        history.pushState( {}, document.title, href );
-      }
-      el.transformPage(settings, pos, index-1);
+      // if (history.replaceState && settings.updateURL == true) {
+      //   var href = window.location.href.substr(0,window.location.href.indexOf('#')) + "#" + (index - 1);
+      //   history.pushState( {}, document.title, href );
+      // }
+      el.transformPage(settings, pos, index);
     }
     
     $.fn.moveTo = function(page_index) {
       current = $(settings.sectionContainer + ".active")
       next = $(settings.sectionContainer + "[data-index='" + (page_index) + "']");
       if(next.length > 0) {
-        if (typeof settings.beforeMove == 'function') settings.beforeMove(page_index);
+        // if (typeof settings.beforeMove == 'function') settings.beforeMove(current.data("index"));
         current.removeClass("active")
         next.addClass("active")
         $(".onepage-pagination li a" + ".active").removeClass("active");
         $(".onepage-pagination li a" + "[data-index='" + (page_index) + "']").addClass("active");
-        $("body")[0].className = $("body")[0].className.replace(/\bviewing-page-\d.*?\b/g, '');
-        $("body").addClass("viewing-page-"+next.data("index"))
+        // $("body")[0].className = $("body")[0].className.replace(/\bviewing-page-\d.*?\b/g, '');
+        // $("body").addClass("viewing-page-"+next.data("index"))
         
         pos = ((page_index - 1) * 100) * -1;
         el.transformPage(settings, pos, page_index);
         if (settings.updateURL == false) return false;
       }
     }
-    
-    function responsive() {
-      if ($(window).width() < settings.responsiveFallback) {
-        $("body").addClass("disabled-onepage-scroll");
-        $(document).unbind('mousewheel DOMMouseScroll');
-        el.swipeEvents().unbind("swipeDown swipeUp");
-      } else {
-        if($("body").hasClass("disabled-onepage-scroll")) {
-          $("body").removeClass("disabled-onepage-scroll");
-          $("html, body, .wrapper").animate({ scrollTop: 0 }, "fast");
+
+    $.fn.addSection = function(){
+      // section = $("<section>").css({
+      //       position: "absolute",
+      //       top: topPos + "%"
+      //   }).addClass("section").attr("data-index", sections.length+1).appendTo('#onepage');
+      // // createPagination()
+      // sections = $(settings.sectionContainer)
+      // total = sections.length
+      // el.moveDown()
+        pos = (sections.length)*100
+        section = $("<section>").css({
+            position: "absolute",
+            top: pos + "%"
+          }).addClass("section").attr("data-index", sections.length+1).appendTo('#onepage');
+        sections = $('section')
+        if(settings.pagination == true) {
+          paginationList += "<li><a data-index='"+(sections.length)+"' href='#" + (sections.length) + "'></a></li>"
+          //remove old pagination list
+          $('.onepage-pagination').remove()
+          //add new pagination list
+          $("<ul class='onepage-pagination'>" + paginationList + "</ul>").prependTo("body");
+          posTop = (el.find(".onepage-pagination").height() / 2) * -1;
+          el.find(".onepage-pagination").css("margin-top", posTop);
         }
-        
-        
-        el.swipeEvents().bind("swipeDown",  function(event){ 
-          if (!$("body").hasClass("disabled-onepage-scroll")) event.preventDefault();
-          el.moveUp();
-        }).bind("swipeUp", function(event){ 
-          if (!$("body").hasClass("disabled-onepage-scroll")) event.preventDefault();
-          el.moveDown();
-        });
-        
-        $(document).bind('mousewheel DOMMouseScroll', function(event) {
-          event.preventDefault();
-          var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
-          init_scroll(event, delta);
-        });
-      }
+        el.moveDown()
     }
+    
+    // function responsive() {
+    //   if ($(window).width() < settings.responsiveFallback) {
+    //     $("body").addClass("disabled-onepage-scroll");
+    //     $(document).unbind('mousewheel DOMMouseScroll');
+    //     el.swipeEvents().unbind("swipeDown swipeUp");
+    //   } else {
+    //     if($("body").hasClass("disabled-onepage-scroll")) {
+    //       $("body").removeClass("disabled-onepage-scroll");
+    //       $("html, body, .wrapper").animate({ scrollTop: 0 }, "fast");
+    //     }
+        
+        
+    //     el.swipeEvents().bind("swipeDown",  function(event){ 
+    //       if (!$("body").hasClass("disabled-onepage-scroll")) event.preventDefault();
+    //       el.moveUp();
+    //     }).bind("swipeUp", function(event){ 
+    //       if (!$("body").hasClass("disabled-onepage-scroll")) event.preventDefault();
+    //       el.moveDown();
+    //     });
+        
+    //     $(document).bind('mousewheel DOMMouseScroll', function(event) {
+    //       event.preventDefault();
+    //       var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
+    //       init_scroll(event, delta);
+    //     });
+    //   }
+    // }
     
     
     function init_scroll(event, delta) {
@@ -259,60 +288,63 @@
       el.moveDown(); 
     });
     
-    // Create Pagination and Display Them
-    if(settings.pagination == true) {
-      $("<ul class='onepage-pagination'>" + paginationList + "</ul>").prependTo("body");
-      posTop = (el.find(".onepage-pagination").height() / 2) * -1;
-      el.find(".onepage-pagination").css("margin-top", posTop);
-    }
-    
-    if(window.location.hash != "" && window.location.hash != "#1") {
-      init_index =  window.location.hash.replace("#", "")
-      $(settings.sectionContainer + "[data-index='" + init_index + "']").addClass("active")
-      $("body").addClass("viewing-page-"+ init_index)
-      if(settings.pagination == true) $(".onepage-pagination li a" + "[data-index='" + init_index + "']").addClass("active");
-      
-      next = $(settings.sectionContainer + "[data-index='" + (init_index) + "']");
-      if(next) {
-        next.addClass("active")
-        if(settings.pagination == true) $(".onepage-pagination li a" + "[data-index='" + (init_index) + "']").addClass("active");
-        $("body")[0].className = $("body")[0].className.replace(/\bviewing-page-\d.*?\b/g, '');
-        $("body").addClass("viewing-page-"+next.data("index"))
-        if (history.replaceState && settings.updateURL == true) {
-          var href = window.location.href.substr(0,window.location.href.indexOf('#')) + "#" + (init_index);
-          history.pushState( {}, document.title, href );
-        }
+    // function createPagination(){
+    //   // Create Pagination and Display Them
+      if(settings.pagination == true) {
+        $("<ul class='onepage-pagination'>" + paginationList + "</ul>").prependTo("body");
+        posTop = (el.find(".onepage-pagination").height() / 2) * -1;
+        el.find(".onepage-pagination").css("margin-top", posTop);
       }
-      pos = ((init_index - 1) * 100) * -1;
-      el.transformPage(settings, pos, init_index);
       
-    }else{
-      $(settings.sectionContainer + "[data-index='1']").addClass("active")
-      $("body").addClass("viewing-page-1")
-      if(settings.pagination == true) $(".onepage-pagination li a" + "[data-index='1']").addClass("active");
-    }
-    if(settings.pagination == true)  {
-      $(".onepage-pagination li a").click(function (){
-        var page_index = $(this).data("index");
-        if (!$(this).hasClass("active")) {
-          current = $(settings.sectionContainer + ".active")
-          next = $(settings.sectionContainer + "[data-index='" + (page_index) + "']");
-          if(next) {
-            current.removeClass("active")
-            next.addClass("active")
-            $(".onepage-pagination li a" + ".active").removeClass("active");
-            $(".onepage-pagination li a" + "[data-index='" + (page_index) + "']").addClass("active");
-            $("body")[0].className = $("body")[0].className.replace(/\bviewing-page-\d.*?\b/g, '');
-            $("body").addClass("viewing-page-"+next.data("index"))
-          }
-          pos = ((page_index - 1) * 100) * -1;
-          el.transformPage(settings, pos, page_index);
+      if(window.location.hash != "" && window.location.hash != "#1") {
+        init_index =  window.location.hash.replace("#", "")
+        $(settings.sectionContainer + "[data-index='" + init_index + "']").addClass("active")
+        $("body").addClass("viewing-page-"+ init_index)
+        // if(settings.pagination == true) $(".onepage-pagination li a" + "[data-index='" + init_index + "']").addClass("active");
+        
+        next = $(settings.sectionContainer + "[data-index='" + (init_index) + "']");
+        if(next) {
+          next.addClass("active")
+          if(settings.pagination == true) $(".onepage-pagination li a" + "[data-index='" + (init_index) + "']").addClass("active");
+          // $("body")[0].className = $("body")[0].className.replace(/\bviewing-page-\d.*?\b/g, '');
+          // $("body").addClass("viewing-page-"+next.data("index"))
+          // if (history.replaceState && settings.updateURL == true) {
+          //   var href = window.location.href.substr(0,window.location.href.indexOf('#')) + "#" + (init_index);
+          //   history.pushState( {}, document.title, href );
+          //}
         }
-        if (settings.updateURL == false) return false;
-      });
-    }
+        pos = ((init_index - 1) * 100) * -1;
+        el.transformPage(settings, pos, init_index);
+        
+      }else{
+        $(settings.sectionContainer + "[data-index='1']").addClass("active")
+        // $("body").addClass("viewing-page-1")
+        if(settings.pagination == true) $(".onepage-pagination li a" + "[data-index='1']").addClass("active");
+      }
+      // if(settings.pagination == true)  {
+      //   $(".onepage-pagination li a").click(function (){
+      //     var page_index = $(this).data("index");
+      //     if (!$(this).hasClass("active")) {
+      //       current = $(settings.sectionContainer + ".active")
+      //       next = $(settings.sectionContainer + "[data-index='" + (page_index) + "']");
+      //       if(next) {
+      //         current.removeClass("active")
+      //         next.addClass("active")
+      //         $(".onepage-pagination li a" + ".active").removeClass("active");
+      //         $(".onepage-pagination li a" + "[data-index='" + (page_index) + "']").addClass("active");
+      //         $("body")[0].className = $("body")[0].className.replace(/\bviewing-page-\d.*?\b/g, '');
+      //         $("body").addClass("viewing-page-"+next.data("index"))
+      //       }
+      //       pos = ((page_index - 1) * 100) * -1;
+      //       el.transformPage(settings, pos, page_index);
+      //     }
+      //     if (settings.updateURL == false) return false;
+      //   });
+      // }
+    // }
     
-    
+    // createPagination()
+
     $(document).bind('mousewheel DOMMouseScroll', function(event) {
       event.preventDefault();
       var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
@@ -320,36 +352,73 @@
     });
     
     
-    if(settings.responsiveFallback != false) {
-      $(window).resize(function() {
-        responsive();
-      });
+    // if(settings.responsiveFallback != false) {
+    //   $(window).resize(function() {
+    //     responsive();
+    //   });
       
-      responsive();
-    }
+    //   responsive();
+    // }
     
-    if(settings.keyboard == true) {
-      $(document).keydown(function(e) {
-        var tag = e.target.tagName.toLowerCase();
+    // if(settings.keyboard == true) {
+    //   $(document).keydown(function(e) {
+    //     var tag = e.target.tagName.toLowerCase();
         
-        if (!$("body").hasClass("disabled-onepage-scroll")) {
-          switch(e.which) {
-            case 38:
-              if (tag != 'input' && tag != 'textarea') el.moveUp()
-            break;
-            case 40:
-              if (tag != 'input' && tag != 'textarea') el.moveDown()
-            break;
-            default: return;
-          }
-        }
+    //     if (!$("body").hasClass("disabled-onepage-scroll")) {
+    //       switch(e.which) {
+    //         case 38:
+    //           if (tag != 'input' && tag != 'textarea') el.moveUp()
+    //         break;
+    //         case 40:
+    //           if (tag != 'input' && tag != 'textarea') el.moveDown()
+    //         break;
+    //         default: return;
+    //       }
+    //     }
         
-        e.preventDefault(); 
-      });
-    }
+    //     e.preventDefault(); 
+    //   });
+    // }
     return false;
   }
+
+   // $.fn.initializeOnepage = function(){
+   //    var defaults = {
+   //      sectionContainer: "section",
+   //      easing: "ease",
+   //      animationTime: 1000,
+   //      pagination: true,
+   //      updateURL: false,
+   //      keyboard: true,
+   //      beforeMove: null,
+   //      afterMove: null,
+   //      loop: false,
+   //      responsiveFallback: false
+   //    };
+
+
+   //    var settings = $.extend({}, defaults),
+   //      el = $(this),
+   //      animationTime=1000,
+   //      sections = $(settings.sectionContainer)
+   //      total = sections.length,
+   //      status = "off",
+   //      topPos = 0,
+   //      lastAnimation = 0,
+   //      quietPeriod = 500,
+   //      paginationList = "";
+
+   //  $.fn.addSection = function(){
+   //      pos = (sections.length)*100
+   //      section = $("<section>").css({
+   //          position: "absolute",
+   //          top: pos + "%"
+   //        }).addClass("section").attr("data-index", sections.length+1).appendTo('#onepage');
+   //      sections = $('section')
+   //      el.moveDown()
+   //  }
   
   
 }(window.jQuery);
+
 

@@ -2,38 +2,31 @@
 .feature-desc{
 	text-align:center;
 }
-.welcome{
-	font-size:55px;
-	font-weight:bold; 
-	color:#1abc9c;
-}
-.intro-box{
-	position:absolute;
+.section-inner{
 	margin-top:10%;
 }
+.welcome{
+	font-size:55px;
+	font-weight:400; 
+	color:#1abc9c;
+}
 .logo{
-	width:100%;
-	position:absolute;
-	margin-top:11%;
+	max-width:80%;
+	height:auto;
 }
 .main-intro{
-	font-weight:bold; 
+	font-weight:300; 
 	font-size:35px;
 	color:#f39c12
 }
 .subtitle{
+	font-weight:200;
 	font-size:25px;
 	color:#f39c12;
 }
 .github-signin{
 	margin-top:50px;
 }
-.showcase-item{
-}
-	.showcase-item .showcase-item-box{
-		position:absolute;
-		margin-top:15%;
-	}
 
 .icon{
 	width:100%;
@@ -43,17 +36,57 @@
 	width:100%;
 	padding: 0 30px;
 }
+.bottom-hint-blue{
+	color:#fff;
+	background-color:#34495e;
+	margin-right:50%;
+	margin-left:50%; 
+	font-size:30px;
+	position:fixed;bottom:0px;
+	border-top-left-radius:60px;
+	border-top-right-radius:60px; 
+	padding-left:10px; 
+	padding-right:10px
+}
+.bottom-padding-blue{
+	color:#fff;
+	background-color:#34495e;
+	position:fixed;
+	bottom:0px;
+	width:100%; 
+	height:10px;
+}
+.bottom-hint-gray{
+	color:#34495e;
+	background-color:#ecf0f1;
+	margin-right:50%;
+	margin-left:50%; 
+	font-size:30px;
+	position:fixed;
+	bottom:0px;
+	border-top-left-radius:60px;
+	border-top-right-radius:60px; 
+	padding-left:10px; 
+	padding-right:10px
+	
+}
+.bottom-padding-gray{
+	color:#fff;
+	background-color:#ecf0f1;
+	position:fixed;
+	bottom:0px;
+	width:100%; 
+	height:10px;
+}
 .section-title{
 	color:#1abc9c;
-	font-weight:bold;
+	font-weight:300;
 	font-size:35px;
 }
 .feature-desc{
 	font-size:20px; 
-	padding: 20px 80px; 
-	margin-top:350px; 
 	text-align:center;
-	font-weight:bold;
+	font-weight:200;
 }
 .feature-desc-orange{
 	color:#f39c12;
@@ -62,8 +95,8 @@
 	font-size:20px; 
 	padding: 20px 80px; 
 	margin-top:10px; 
+	font-weight:200;
 	text-align:center;
-	font-weight:bold;
 }
 .person-desc-orange{
 	color:#f39c12;
