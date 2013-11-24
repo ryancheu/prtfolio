@@ -3,22 +3,18 @@
   <div class="container" style="padding-top:40px">
     <div class="row" >
       <div class="col-md-12">
-        <div class="media">
+        <div class="media outer-align">
           <a class="pull-left" href="#">
             <img class="media-object img-rounded" src=<%= @portfolio.user.image_url %> alt="Sample Image">
           </a>
-          <div class="media-body">
-            <h1 class="media-heading name"><%= current_user.fullname%><p style="font-size:20px"><%= @user_location %></p></h1>
+          <div class="media-body inner-align">
+            <h1 class="media-heading name"><%= current_user.fullname%><p style="font-size:10px"><%unless @user_location.blank?%><%= @user_location %></p><% end %></h1>
           </div>
         </div>
       </div>
     </div>
-    <div style="margin-top:20px">
+    <div style="margin-top:30px">
       <div class="row">
-        <div class="col-md-3">
-          <h3 style="color:#fff">Followers</h3>
-          <h3 style="color:#fff">Following</h3>
-        </div>
         <div class="col-md-3">
           <h2 style="color:#fff">Repositories</h2>
           <% @repos.each do |repo| %>
@@ -32,7 +28,7 @@
           </p>
           <% end %>
         </div>
-       <div class="col-md-6">
+       <div class="col-md-6 col-md-offset-3">
         <div class="language_box">
          <div class="language_stats">
             <svg id="language_chart"></svg>
@@ -42,23 +38,46 @@
     </div>
   </div>
 </div>
-   <div style="position:absolute; bottom:0" class="bottom-hint-white"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding-white"></div>
+   <div style="position:absolute; bottom:0" class="bottom-hint-gray"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding-gray"></div>
   </div>
 </div>
+
   <%# List all the projects in image-text templates %>
+  <div style="background-color:#ecf0f1;">
+  <div style="padding-top:50px; padding-bottom:50px">
   <div class="container">
-  <% @projects.each do |project| %>
-    <div class = "row top-space">
-        <%= render partial: "projectOverview", locals: {project: project} %>
-    </div>
-  <% end %>
-  <div class = "row">
-    <% if @user == current_user %>
-          <%= link_to new_project_path,:method => "get", :class => "btn btn-medium btn-info btn-block add-proj-btn" do%>
-          <i style="font-size:80px" class="fa fa-plus"></i><b style="margin-left:20px;font-size:80px"> add project</b>
-          <% end %> 
+      <!--backend - specify the total number of projects, the number per row, i.e. the col-width and the number of rows, iterate through each 'row' of projects in a loop (creating approprite col -widht inside the loop and for each row add a new row class)-->
+      <% index = 0 %>
+      <!--start the first row -->
+      <div class="row">
+      <% @projects.each do |project| %>
+        <%= puts index %>
+        <% if ((index)%3)==0 && index>1 %>
+          </div>
+          <div class="row" style="padding-top:40px">
+        <% end %>
+          <div class="col-md-4">
+            <%= render partial: "projectOverview", locals: {project: project} %>
+          </div>
+    <% index = index +1 %>
     <% end %>
+    <div class="col-md-4 outer-align">
+      <div style="text-align:center;height:401px;" class="inner-align">
+        <i style="color:#2c3e50;font-size:200px" class="fa fa-plus"></i>
+         <p style="font-size:20px"> add project</p>
+      </div>
   </div>
+</div>
+    
+  <!-- <div class = "row">
+      <% if @user == current_user %>
+            <%= link_to new_project_path,:method => "get", :class => "btn btn-medium btn-info btn-block add-proj-btn" do%>
+            <i style="font-size:80px" class="fa fa-plus"></i><b style="margin-left:20px;font-size:80px"> add project</b>
+            <% end %> 
+      <% end %>
+    </div> -->
+  </div>
+</div>
 </div>
 <script>
   $(document).ready(function(){

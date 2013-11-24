@@ -4,7 +4,7 @@
 
 .portfolio_image {
     height: auto;
-    width: 50%;
+    width: 100%;
 }
 
 .person_section{
@@ -19,6 +19,7 @@
 .name{
     color:#fff; 
     font-weight:300;
+    font-size:70px;
 }
 
 .portfolio_user_image_container {
@@ -31,6 +32,15 @@
 }
 .add_project{
     margin-top:10px;
+}
+
+.outer-align{
+  display:table
+}
+.outer-align .inner-align{
+  display:table-cell;
+  vertical-align:middle;
+  width:100%
 }
 
 .top-space{
