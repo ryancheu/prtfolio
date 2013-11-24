@@ -18,18 +18,19 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
     letter-spacing: 1px;
-    font-size:100px;
+    font-size:80px;
     min-height: 180px !important;
     padding:10px 0px;
+    color:#fff;
 }
 .medium-subtitle{
     font-family: 'Open Sans', sans-serif;
-    color:#333;
     font-weight: 700;
     letter-spacing: 1px;
     font-size:40px;
     min-height: 80px !important;
     padding:10px 0px;
+    color:#fff;
 }
 .medium-description{
     font-family: 'Open Sans', sans-serif;
@@ -40,6 +41,16 @@
     min-height: 400px !important;
     padding:10px 0px;
    }
+.medium-github-link{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size:20px;
+    min-height: 80px !important;
+    padding:10px 0px;
+    color:#fff;
+}
+
 .article{
     min-height: 300px !important;
     margin-bottom: 30px;

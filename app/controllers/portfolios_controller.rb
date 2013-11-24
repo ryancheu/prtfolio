@@ -3,11 +3,18 @@ class PortfoliosController < ApplicationController
   before_action :require_no_portfolio, only: [:new, :create]
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
 
+  include PortfoliosHelper
+
   def index
     @portfolios = Portfolio.all
   end
 
   def show
+    @languages = get_project_languages(@user).to_json.html_safe
+    @language_byte_count = get_project_byte_count_languages(@user).to_json.html_safe
+    @repos = get_user_repos(@user)
+    user_stats = get_user_location(@user)
+    @user_location = user_stats
   end
 
   def new

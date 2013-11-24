@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require bootstrap
 //= require jquery.onepage-scroll
+//= require d3.min
+//= require nv.d3
 //= require_tree .
 
 $(document).ready(onReady);
