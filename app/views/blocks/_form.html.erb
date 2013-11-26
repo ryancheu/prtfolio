@@ -53,7 +53,7 @@
 
         <div class="actions">
         <%= f.primary nil, disable_with: 'Saving...' %>
-        <%= f.secondary 'Cancel' %>
+        <%= link_to 'Cancel', edit_project_path(@project), class: 'btn btn-default' %>
         </div>
 
     <% end %>

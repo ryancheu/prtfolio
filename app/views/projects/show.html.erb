@@ -10,7 +10,7 @@
                 <img class="media-object img-rounded" src=<%= @project.get_owner.image_url %> alt="Sample Image">
               </a>
               <div class="media-body">
-                <h1 class="media-heading name"><%= current_user.fullname%></h1>
+                <h1 class="media-heading name"><%= @project.get_owner.fullname%></h1>
               </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
         <div class="col-md-9">
           <div class="project_name">
             <h1 class="project_title"><%= @project.title %></h1>
-            <h4 class="project_subtitle" ><%= @project.description %></h4>        
+            <h4 class="project_subtitle" ><%= simple_format(@project.description) %></h4>        
           </div>
         </div>
         </div>
