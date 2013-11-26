@@ -2,6 +2,8 @@
 //loads it in and formats it with a slightly modified SyntaxHighlighter
 //@primaryauthor ryancheu, with various parts taken from other places and noted
 var CodeImport = function() {
+    var _startLineNumber = null;
+    var _endLineNumber = null;
 
     //Extract github parameters from a file url in the online viewer
     //Private function
@@ -106,9 +108,16 @@ var CodeImport = function() {
             var rx2 = /number([0-9]*)/g;
             var startMatch = rx.exec(startClasses);
             var endMatch = rx2.exec(endClasses);
+            //If no matches found, exit
+            if ( !startMatch || !endMatch ) {
+                return; //EARLY RETURN
+            }
             var startLine = parseInt(startMatch[1]);
             var endLine = parseInt(endMatch[1]);
             
+            //Set the line numbers that are currently being displayed so we can grab the code from them later
+            _startLineNumber = startLine;
+            _endLineNumber = endLine;
             
             //The syntax highlighter class doesn't take ranges, only a string
             //formatted like an array of all the lines to highlight
@@ -132,6 +141,23 @@ var CodeImport = function() {
         
     }
 
+    var getCodeFromSelection = function() {
+        codeText = $('#code_area').attr("data");
+        if ( codeText ) {
+            returnText = "";
+            codeLines = codeText.split("\n");
+            for ( var i = _startLineNumber; i <= _endLineNumber; i++ ) {
+                returnText = returnText + codeLines[i] + "\n";
+            }
+            return returnText;
+        }
+        else{ 
+            //TODO: Make better error handling
+            alert("Error, no code selected, please select a block of code");
+            return null;
+        }
+    }
+
     //Prepare page for syntax and code highlighting
     //Public function
     var initializeHighlighting = function() { 
@@ -147,7 +173,8 @@ var CodeImport = function() {
     //Public function
     var registerLoadButton = function() { 
         $('#loadCodeButton').click(
-            function () {
+            function (e) {
+                e.preventDefault();
                 var linkString = $('#code_link').val();
                 fetechCodeFromGithub(linkString, displayCode);
             }
@@ -157,19 +184,37 @@ var CodeImport = function() {
 
     return {
         registerLoadButton : registerLoadButton,
-        initializeHighlighting : initializeHighlighting
+        initializeHighlighting : initializeHighlighting,
+        getCodeFromSelection : getCodeFromSelection
     }
 }
 
-
 ci = CodeImport();
 
-$(document).ready(
-    function() {
-        ci.registerLoadButton();
-        ci.initializeHighlighting();
-    }
-);
+var PrepareCodeImportModule = function() {
+    $("#new_code").submit(function(e){
+        e.preventDefault();
+        var form = this;
+        thecode = ci.getCodeFromSelection();
+
+        var s = document.createElement("input");
+        s.type="hidden"; s.name="code[content]"; s.value=thecode; s.id="code_content";
+        
+        form.appendChild(s);
+        $("#new_code").trigger("submit.rails");
+    });
+
+    ci.registerLoadButton();
+    
+
+}
+
+$(document).ready( function() {
+
+    ci.initializeHighlighting();
+}
+                 );
+
 
 
 
