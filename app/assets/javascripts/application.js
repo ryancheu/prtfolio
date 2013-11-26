@@ -15,7 +15,8 @@
 //= require turbolinks
 //= require bootstrap
 //= require jquery.onepage-scroll
-//= require_tree .
+//= require_tree ./global
+//= require ./syntax/shCore.js
 
 $(document).ready(onReady);
 $(document).on('page:load', onReady);

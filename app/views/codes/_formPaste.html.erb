@@ -1,0 +1,26 @@
+<!-- Primary Author: ryancheu -->
+<%= bootstrap_form_for(@code, remote: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <div class="field">
+    <%= f.text_field :link, class: "form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= f.button "Load Code", class: "form-control", id: "loadCodeButton" %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= f.primary "Create Code Snippet" %>
+  </div>
+<% end %>
+
+
+<pre id="code_area" class="brush: js"> 
+  function foo()
+{
+}
+</pre>
+

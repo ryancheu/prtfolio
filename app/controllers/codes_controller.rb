@@ -1,4 +1,5 @@
 # Primary Author: psaylor
+require 'net/http'
 class CodesController < ApplicationController
   before_action :set_code, only: [:show, :edit, :update, :destroy]
   before_action :set_gists, only: [:new, :create, :edit, :update]
@@ -18,6 +19,7 @@ class CodesController < ApplicationController
 
   def edit
   end
+
 
   def create
     @code = Code.new(code_params)
