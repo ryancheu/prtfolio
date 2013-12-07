@@ -2,8 +2,6 @@
 <%= bootstrap_form_for(@image) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-
-
   <div class="form-group">
     <div class="fileupload fileupload-new" data-provides="fileupload">
       <div class="input-group">
@@ -20,9 +18,6 @@
       </div>
     </div>
   </div>
-
-
-
 
   <div class="actions">
     <%= f.submit "Embed Image", class:"btn btn-primary" %>
