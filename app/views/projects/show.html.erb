@@ -8,7 +8,6 @@
     <section style="background-color:#2c3e50">
       <div class="margin_top">
         <div class="container">
-
           <div class="row">
             <div class="col-md-10">
               <div class="media" style="margin-top:20px">
@@ -38,24 +37,35 @@
               </div>
             </div>
           </div>
-          <p id="add_block_btn" class="add_block_btn" onclick="create_section()"><i style='font-size:60px' class='fa fa-plus'></i><br> block</p>
+          <a id="add_block_btn" class="add_block_btn" onclick="create_section()" href="<%= new_project_block_path @project %>"><i style='font-size:60px' class='fa fa-plus'></i><br> block</a>
         </div>
       </div>
     </section>
   </div>
 </div>
+
 <!-- template code for creating a new block in its own section on the page; this div meant to be cloned and the modified -->
 <div id='new-block-html-template' class="margin_top">
   <div class="container">
-    <br>
+
     <div class="row new_block_template_choice" id = "new_block_template_choice">
+
       <div class = "col-md-4">
         <div class="outer_square">
           <div class = "horizontal">
-            hi1
+            <div class="btn-group">
+              <a class=" resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
+
+              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
+
+              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+              
+              <a class=" resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_video_path %>"><%= fa_icon "video-camera 4x" %></a>
+          </div>
           </div>
         </div>
       </div>
+
       <div class = "col-md-4">
         <div class="outer_square">
           <div class = "vertical">
@@ -63,6 +73,7 @@
           </div>
         </div>
       </div>
+
       <div class = "col-md-4">
         <div class="outer_square">
           <div class = "center">
@@ -70,7 +81,9 @@
           </div>
         </div>
       </div>
+
     </div> 
+
     <div class="row">
       <div class="col-md-8 usrinput article medium-description">
       </div>
