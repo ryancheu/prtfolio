@@ -1,14 +1,15 @@
 //<!--  Primary Author: psaylor -->
 console.log("Gist Created");
 <% if @code.errors.any? %>
-    console.log('Error');
-    $("#resource-select-modal-body").html('<%= j render partial: "form", locals: {gist_ids: @gist_ids} %>');
+  console.log('Error');
+  $("#resource-select-modal-body").html('<%= j render partial: "form", locals: {gist_ids: @gist_ids} %>');
 
 <% else %>
-    console.log('Gist Linked');
 
-    $('#resource-select-modal').modal('hide');
-    var code = "<%= escape_javascript(render(partial: @code)) %>";
-    update_resource_with_partial(code, "Code", "<%= @code.id %>");
-     
+  $('#resource-select-modal').modal('hide');
+  var code = "<%= escape_javascript(render(partial: @code)) %>";
+  update_resource_with_partial(code, "Code", "<%= @code.id %>");
+  SyntaxHighlighter.run();
+
+
 <% end %>
