@@ -1,8 +1,8 @@
 @import "bootstrap";
 body{
-    padding-top: 58px; 
+    padding-top: 48px; 
     color:#2c3e50;
-    font-family: 'helvetica neue', helvetica, arial, sans-serif;
+    font-family: 'Varela Round', sans-serif;
 }
 .navbar{
     z-index:1000;
@@ -13,8 +13,16 @@ body{
 .navbar-accent{
     margin-bottom:-1px;
     height:10px;
-    background:#1abc9c;
+    background:#005F6B;
     
+}
+
+#welcome{
+  background: url(image_path('hackathon.png')) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .text-centered{text-align: center;}
