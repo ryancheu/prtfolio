@@ -14,6 +14,22 @@
     margin: 0 auto;
     padding-bottom: 20px;
 }
+.medium-name{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size:60px;
+    min-height: 100px !important;
+    color:#fff;
+}
+.medium-blurb{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size:50px;
+    min-height: 70px !important;
+    color:#fff;
+}
 .medium-title{
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
