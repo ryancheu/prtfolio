@@ -18,9 +18,4 @@
 //= require_tree ./global
 //= require ./syntax/shCore.js
 //= require ./syntax/shBrushJScript.js
-//= require d3.min
-//= require nv.d3
 
-
-$(document).ready(onReady);
-$(document).on('page:load', onReady);
