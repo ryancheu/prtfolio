@@ -562,6 +562,19 @@
             utils.removeEvent(settings.element, 'keydown', intercept.down);
             utils.removeEvent(settings.element, 'focus', intercept.focus);
         };
+
+        // added this function to know when the element is empty but there's a placeholder in it
+        this.isEmpty = function(){
+            var innerText = utils.html.text(settings.element);
+            if( innerText === ""  ){
+                return true;
+            }
+            var c = settings.element.firstChild;
+            if (c.className === settings.cssClasses.placeholder) {
+                return true;
+            }
+            return false;
+        };
         
         init(userOpts);
     

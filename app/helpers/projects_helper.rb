@@ -11,4 +11,10 @@ module ProjectsHelper
 		end
 		return repo_names
     end
+
+    # Returns true if the given string is neither nil nor empty
+    # and thus can be shown in the view
+    def can_show? str
+    	return not(str.nil? || str === "")
+    end
 end
