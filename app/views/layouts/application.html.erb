@@ -5,6 +5,7 @@
   <title>Portfl.io</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= yield :javascript_includes %>
   <%= csrf_meta_tags %>
 
   <!-- Using Code Formatting from https://github.com/blairvanderhoof/gist-embed -->
@@ -15,17 +16,23 @@
 </head>
 <body>
 
-<%= render 'layouts/header' %>
+    <%= render 'layouts/header' %>
 
-<%# helpful place to show flashes at the top of the container %>
-<% flash.each do |key, value| %>
+    <%# helpful place to show flashes at the top of the container %>
+    <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
+    <% end %>
 
-<%= yield %>
+    <%= yield %>
 
-<%# show the params only in development environments %>
+    <%# show the params only in development environments %>
 
-<%= render 'layouts/footer' %>
+    <%= render 'layouts/footer' %>
+
+    <script type="text/javascript" >
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['smart-tabs'] = false;
+        SyntaxHighlighter.all(); 
+    </script>
 </body>
 </html>

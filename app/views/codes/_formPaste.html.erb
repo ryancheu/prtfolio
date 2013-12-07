@@ -1,0 +1,25 @@
+<!-- Primary Author: ryancheu -->
+<%= bootstrap_form_for(@code, remote: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= token_tag form_authenticity_token %>
+
+  <div class="field">
+    <%= f.text_field :link, class: "form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= f.button "Load Code", class: "form-control", id: "loadCodeButton", type: "" %>
+  </div>
+
+  <pre id="code_area" class="brush: js"> 
+
+  </pre>
+
+  <div class="actions">
+    <%= f.primary "Create Code Snippet" %>
+  </div>
+<% end %>
+
+
+
+

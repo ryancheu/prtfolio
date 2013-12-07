@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20131204023643) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "gist_id"
+    t.string   "link"
+    t.text     "content"
   end
 
   create_table "descriptions", force: true do |t|

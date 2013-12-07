@@ -15,9 +15,12 @@
 //= require turbolinks
 //= require bootstrap
 //= require jquery.onepage-scroll
+//= require_tree ./global
+//= require ./syntax/shCore.js
+//= require ./syntax/shBrushJScript.js
 //= require d3.min
 //= require nv.d3
-//= require_tree .
+
 
 $(document).ready(onReady);
 $(document).on('page:load', onReady);
