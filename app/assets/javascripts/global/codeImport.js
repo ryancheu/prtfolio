@@ -82,7 +82,7 @@ var CodeImport = function() {
             while ( node != null && node.parentNode != null && node.parentNode.className != "container" ) {
                 node = node.parentNode;
             }
-            if ( node != null && node.parentNode.className == "container") {
+            if ( node != null && node.parentNode && node.parentNode.className == "container") {
                 s = node;
             }
 
@@ -90,7 +90,7 @@ var CodeImport = function() {
             while ( node != null && node.parentNode != null && node.parentNode.className != "container" ) {
                 node = node.parentNode;
             }
-            if ( node != null && node.parentNode.className == "container") {
+            if ( node != null && node.parentNode && node.parentNode.className == "container") {
                 e = node;
             }
         }
