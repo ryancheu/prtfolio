@@ -250,3 +250,10 @@ html, body {
   height: 350px;
   border: 2px dashed;
 }
+
+.sidebar {
+        position:absolute;
+        left:10px; top:0px; bottom: 0;
+        width: 40px;
+        background-color: #a9afb4; 
+    }
