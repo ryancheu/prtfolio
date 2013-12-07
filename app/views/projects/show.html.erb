@@ -20,8 +20,8 @@
           <div class="row">
             <div class="col-md-12">
               <div class="title-box">
-                <div id="title" class="usrinput medium-title"> </div> 
-                <div id="subtitle" class="usrinput medium-subtitle"></div>
+                <div id="proj-title" class="usrinput medium-title"> </div> 
+                <div id="proj-description" class="usrinput medium-subtitle"></div>
               </div>
             </div>
           </div>
@@ -82,18 +82,21 @@
          
         //initializes the title and subtitle as medium editable elements
         new Medium({
-          element: document.getElementById('title'),
+          element: document.getElementById('proj-title'),
           mode: 'inline',
           maxLength: 30,
           placeholder: 'Project title'
         });
-        $('#title').html("<%= @project.title %>");
+        
 
         new Medium({
-          element: document.getElementById('subtitle'),
-          mode: 'inline',
+          element: document.getElementById('proj-description'),
+          mode: 'partial',
           maxLength: 100,
           placeholder: 'Project subtitle'
         });
+        $('#proj-title').html("<%= @project.title %>");
+        $("#proj-description").html("<%= @project.description %>");
+
       });
     </script>
