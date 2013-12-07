@@ -1,12 +1,12 @@
-<!-- # Primary Author: anuhyag -->
-<div class="col-md-5" >
-    <% unless project.image.nil? %>
-    <%= image_tag(project.image.content.url alt="Sample Image", :class => "portfolio_image") %>
-    <% else  %>
-    <img src= <%= "/assets/img-icon-green.png" %> alt="Sample Image" class="portfolio_image">
-    <% end  %>
-</div>
 
+<% unless project.image.nil? %>
+<div class="imgproj" style="background-image: image-url('<%=project.image.content.url%>')">
+	<!--<%= image_tag(project.image.content.url alt="Sample Image", :class => "portfolio_image") %>-->
+</div>
+<% else  %>
+	<div class="imgproj"></div>
+<!-- 		<img src= <%= asset_path 'default.jpg' %> alt="Sample Image" class="img-responsive portfolio_image">
+-->	<% end  %>
 <div class="outer-align" style="width:100%;height:50px;background-color:#fff">
 <div class="inner-align"style="text-align:center">
 <% unless project.title.blank? %>
@@ -21,6 +21,5 @@
 <% end %>-->
 </div>
 </div>
-
 		
 
