@@ -14,3 +14,7 @@
  *= require onepage-scroll
  *= require nv.d3
  */
+
+.margin_top {
+    margin-top: 20px;
+}
