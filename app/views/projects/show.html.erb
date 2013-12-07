@@ -20,7 +20,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="title-box">
-                <div id="title" class="usrinput medium-title"></div> 
+                <div id="title" class="usrinput medium-title"> </div> 
                 <div id="subtitle" class="usrinput medium-subtitle"></div>
               </div>
             </div>
@@ -31,6 +31,7 @@
     </section>
   </div>
 </div>
+
 <script>
   $(document).ready(function(){
     //------Add description div for medium editing-----//
@@ -84,13 +85,15 @@
           element: document.getElementById('title'),
           mode: 'inline',
           maxLength: 30,
-          placeholder: 'Type your title'
+          placeholder: 'Project title'
         });
+        $('#title').html("<%= @project.title %>");
+
         new Medium({
           element: document.getElementById('subtitle'),
           mode: 'inline',
           maxLength: 100,
-          placeholder: 'Type your subtitle'
+          placeholder: 'Project subtitle'
         });
       });
     </script>
