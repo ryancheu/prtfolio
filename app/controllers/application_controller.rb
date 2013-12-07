@@ -1,3 +1,4 @@
+# Primary Author: psaylor
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -15,10 +16,10 @@ class ApplicationController < ActionController::Base
       end
     end
     
-    def require_correct_user user, msg
+    def require_correct_user user, msg, redirect_path=root_path
       unless current_user == user
         flash[:danger] = msg
-        redirect_to root_path
+        redirect_to redirect_path
       end
     end
 end

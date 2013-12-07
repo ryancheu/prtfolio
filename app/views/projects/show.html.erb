@@ -6,7 +6,7 @@
         <div class="container">
 
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10">
               <div class="media" style="margin-top:20px">
                 <a class="pull-left" href="#">
                   <img class="media-object img-rounded portfolio_user_image" src=<%= @project.get_owner.image_url %> alt="Sample Image">
@@ -16,12 +16,21 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-2">
+              <%# Use remote form to submit live changes to the project's title and description %>
+              <%= form_for(@project, remote: true) do |f| %>
+                <%= f.hidden_field :title %>
+                <%= f.hidden_field :description %>
+                <%= f.submit 'Save Changes', class: "btn btn-warning", disable_with: "Saving..." %>
+              <% end %>
+            </div>
+            
           </div>
           <div class="row">
             <div class="col-md-12">
               <div class="title-box">
-                <div id="title" class="usrinput medium-title"></div> 
-                <div id="subtitle" class="usrinput medium-subtitle"></div>
+                <div id="proj-title" class="usrinput medium-title"> </div> 
+                <div id="proj-description" class="usrinput medium-subtitle"></div>
               </div>
             </div>
           </div>
@@ -31,12 +40,13 @@
     </section>
   </div>
 </div>
+
 <script>
   $(document).ready(function(){
     //------Add description div for medium editing-----//
     description = function(){
           num_sections = $('section').length
-          return '<div class="container"><div class="row"><div class="col-md-6"><div id="description-'+(num_sections) + '" class="usrinput article medium-description"></div></div><div class="col-md-6"><i style="font-size:80px;padding:10px;color:#7f8c8d" class="fa fa-picture-o"></i><i style="font-size:80px;padding:10px; color:#7f8c8d" class="fa fa-code"></i><i style="font-size:80px;padding:10px; color:#7f8c8d" class="fa fa-align-left"></i></div></div></div>'
+          return '<h1> Please Choose A Template For This Block: </h1><br><div class = "new_block_template_choice" id = "new_block_template_choice"><div class = "col-md-4"><div class="thumbnail"><%= image_tag "center.png"%></div></div><div class = "col-md-4"><div class="thumbnail"><%=image_tag "horizontal.png"%></div></div><div class = "col-md-4"><div class="thumbnail"><%= image_tag "vertical.png"%></div></div></div><div class="container"><div class="row"><div id="description-'+(num_sections) + '" class="usrinput article medium-description"></div></div></div>'
         }
     ////////////////////
 
@@ -80,17 +90,46 @@
         }
          
         //initializes the title and subtitle as medium editable elements
-        new Medium({
-          element: document.getElementById('title'),
+        var proj_title_medium = new Medium({
+          element: document.getElementById('proj-title'),
           mode: 'inline',
           maxLength: 30,
-          placeholder: 'Type your title'
+          placeholder: 'Project title'
         });
-        new Medium({
-          element: document.getElementById('subtitle'),
-          mode: 'inline',
+        
+        var proj_desc_medium = new Medium({
+          element: document.getElementById('proj-description'),
+          mode: 'partial',
           maxLength: 100,
-          placeholder: 'Type your subtitle'
+          placeholder: 'Project subtitle'
+        });
+
+        // populate the title and description fields if appropriate
+        <% if can_show? @project.title %>
+          $('#proj-title').html("<%= @project.title.html_safe %>");
+        <% end %>
+
+        <% if can_show? @project.description %>
+          $("#proj-description").html("<%= @project.description.html_safe %>");
+        <% end %>
+
+        // save the title and description when it loses focus
+        $("#proj-title").blur(function() {
+          var updated_title = $(this).html();
+          console.log("Updated Title: " + updated_title);
+          if (proj_title_medium.isEmpty()) {
+            updated_title = "";
+          }
+          $("#project_title").val(updated_title);
+        });
+
+        $("#proj-description").blur(function() {
+          var updated_description = $(this).html();
+          console.log("Updated Description: " + updated_description);
+          if (proj_desc_medium.isEmpty()) {
+            updated_description = "";
+          }
+          $("#project_description").val(updated_description);
         });
       });
     </script>

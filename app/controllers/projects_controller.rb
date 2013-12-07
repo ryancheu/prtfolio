@@ -1,7 +1,9 @@
+# Primary Author: psaylor
 class ProjectsController < ApplicationController
   before_action :require_login, except: [:index, :show]
   before_action :require_portfolio, only: [:new, :create]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :require_owner, only: [:edit, :update, :destroy]
 
   include GistHelper
   include ProjectsHelper
@@ -16,7 +18,11 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    puts "Creating new project"
+    puts "current_user: #{current_user}"
     @project = current_user.new_project({})
+    puts "new project?"
+    puts @project
   end
 
   def edit
@@ -77,11 +83,9 @@ class ProjectsController < ApplicationController
       end
     end
 
-    # Redirects the user to create a portfolio if she does not have one already
-    def require_portfolio
-      unless current_user.has_portfolio?
-        flash[:warning] = "You must first create a portfolio"
-        redirect_to new_portfolio_path
-      end
+    def require_owner
+      msg = "You do not have permission to modify this project"
+      redirect_path = project_path(@project)
+      require_correct_user(@project.get_owner, msg, redirect_path)
     end
 end

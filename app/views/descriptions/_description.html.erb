@@ -1,8 +1,9 @@
+<!-- # Primary Author: psaylor -->
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"> <%= description.title %> </h3>
     </div>
     <div class="panel-body">
-        <%= description.content %>
+        <%= simple_format(description.content) %>
     </div>
 </div>
