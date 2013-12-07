@@ -1,4 +1,5 @@
 # Primary Author: psaylor
+require 'net/http'
 class CodesController < ApplicationController
   before_action :set_code, only: [:show, :edit, :update, :destroy]
   before_action :set_gists, only: [:new, :create, :edit, :update]
@@ -19,17 +20,18 @@ class CodesController < ApplicationController
   def edit
   end
 
+
   def create
     @code = Code.new(code_params)
     respond_to do |format|
       unless @code.save
-        
+        puts "there were errors saving!"
         format.html { render action: 'new' }
         format.json { render json: @code.errors, status: :unprocessable_entity }
         
       else
+        puts "returning code!"
         format.js
-        format.json { render json: @code.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -66,6 +68,6 @@ class CodesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def code_params
-      params.require(:code).permit(:gist_id)
+      params.require(:code).permit(:gist_id, :content, :link)
     end
 end
