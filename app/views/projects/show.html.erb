@@ -46,8 +46,9 @@
     //------Add description div for medium editing-----//
     description = function(){
           num_sections = $('section').length
-          return '<h1> Please Choose A Template For This Block: </h1><br><div class = "new_block_template_choice" id = "new_block_template_choice"><div class = "col-md-4"><div class="thumbnail"><%= image_tag "center.png"%></div></div><div class = "col-md-4"><div class="thumbnail"><%=image_tag "horizontal.png"%></div></div><div class = "col-md-4"><div class="thumbnail"><%= image_tag "vertical.png"%></div></div></div><div class="container"><div class="row"><div id="description-'+(num_sections) + '" class="usrinput article medium-description"></div></div></div>'
+          return '<div class="container"><div class="row"><div class="col-md-6"><div id="description-'+(num_sections) + '" class="usrinput article medium-description"></div></div><div class="col-md-6"><i style="font-size:80px;padding:10px;color:#7f8c8d" class="fa fa-picture-o"></i><i style="font-size:80px;padding:10px; color:#7f8c8d" class="fa fa-code"></i><i style="font-size:80px;padding:10px; color:#7f8c8d" class="fa fa-align-left"></i></div></div></div>'
         }
+
     ////////////////////
 
 
