@@ -29,8 +29,7 @@ class VideosController < ApplicationController
 
     respond_to do |format|
       if @video.save
-        format.html { redirect_to @video, notice: 'Video was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @video }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @video.errors, status: :unprocessable_entity }
@@ -70,6 +69,6 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params[:video]
+      params[:video].permit(:video)
     end
 end

@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   before_action :require_owner, only: [:edit, :update, :destroy]
 
   include GistHelper
+  include ProjectsHelper
 
   def index
     @projects = Project.all
@@ -13,6 +14,7 @@ class ProjectsController < ApplicationController
 
   def show
     @user  = @project.get_owner()
+    @projects = get_projects(@user)
   end
 
   def new

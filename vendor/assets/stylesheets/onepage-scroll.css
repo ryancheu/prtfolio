@@ -9,7 +9,6 @@
 .onepage-body, .onepage-wrapper, .onepage-html {
   display: block;
   position: static;
-  padding: 0;
   width: 100%;
   height: 100%;
 }
