@@ -1,4 +1,8 @@
 <%#  primary author: isabellat %>
+<script type="text/javascript">
+  <%= render 'helper.js.erb' %>
+</script>
+
 <div class="onepage-body">
   <div id="onepage" class="main">
     <section style="background-color:#2c3e50">
@@ -63,100 +67,3 @@
   </div>
 </div>
 
-<script>
-  $(document).ready(function(){
-    // Add one page scroll to the project page
-    $(".main").onepage_scroll();
-
-    // Initialize title and description as medium editable elements, with content from project
-      var proj_title_medium = new Medium({
-        element: document.getElementById('proj-title'),
-        mode: 'inline',
-        maxLength: 30,
-        placeholder: 'Project title'
-      });
-      
-      var proj_desc_medium = new Medium({
-        element: document.getElementById('proj-description'),
-        mode: 'partial',
-        maxLength: 100,
-        placeholder: 'Project subtitle'
-      });
-
-      // populate the title and description fields if appropriate
-      <% if can_show? @project.title %>
-        $('#proj-title').html("<%= @project.title.html_safe %>");
-      <% end %>
-
-      <% if can_show? @project.description %>
-        $("#proj-description").html("<%= @project.description.html_safe %>");
-      <% end %>
-
-      // save the title and description when it loses focus
-      $("#proj-title").blur(function() {
-        var updated_title = $(this).html();
-        console.log("Updated Title: " + updated_title);
-        if (proj_title_medium.isEmpty()) {
-          updated_title = "";
-        }
-        $("#project_title").val(updated_title);
-      });
-
-      $("#proj-description").blur(function() {
-        var updated_description = $(this).html();
-        console.log("Updated Description: " + updated_description);
-        if (proj_desc_medium.isEmpty()) {
-          updated_description = "";
-        }
-        $("#project_description").val(updated_description);
-      });
-
-    //------Add description div for medium editing-----//
-    description = function(){
-      num_sections = $('section').length - 1;
-      var new_block_div = $("#new-block-html-template").clone();
-      new_block_div.attr("id", "block-"+num_sections);
-      new_block_div.find(".medium-description").attr("id", "description-"+num_sections)
-      return new_block_div;
-    };
-
-    // Create a new section for one page scrolling
-    create_section = function(){
-      //determine how to color the section based on the index (number of sections already created)
-      section_color = function(hex){
-        hex = typeof hex !== 'undefined' ? hex : false;
-        colors = ['gray', 'white']
-        hex_colors=["#ecf0f1", "#fff"]
-        if (hex){
-          section_index = ($('section').length) % 2
-          return hex_colors[section_index]
-        }
-        section_index = ($('section').length + 1) % 2
-        return colors[section_index]
-      }
-      //add the chevron/down arrow and div to go down to next section
-      $('#onepage section:last').append('<div class="bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding-'+section_color()+'"></div>')
-
-      //adds the section (method in jquery.onepage-scroll)
-      $('.main').addSection()
-      
-      $('#onepage section:last').css("background-color",section_color(true))
-      
-      //---Append description to the section--//
-      $('#onepage section:last').append(description())
-
-      //----Append the 'add section' button to end of section--//
-      $('#onepage section:last').append('<p id="add_block_btn" style="position:absolute;bottom:0;right:0; padding:30px 40px"class="add_block_btn" onclick="create_section()"><i style="font-size:60px" class="fa fa-plus"></i><br>block</p>')
-      //////////////
-
-      //creates new medium section when you click 'add_secton'
-      var block_desc_medium = new Medium({
-        element: document.getElementById('description-' + (num_sections)),
-          mode: 'rich',
-        maxLength: 200,
-        placeholder: 'Enter your description here'
-      });
-    }
-           
-  });
-</script>
