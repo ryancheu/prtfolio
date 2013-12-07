@@ -1,4 +1,9 @@
 // Primary Author: psaylor
-$("#resource-select-modal-body").html('<%= j render partial: "form", locals: {gist_ids: @gist_ids} %>');
-$("#resource-select-modal-title").html("Select a Gist");
+$("#resource-select-modal-body").html('<%= j render "formPaste" %>');
+$("#resource-select-modal-title").html("Select some lines of code");    
 
+PrepareCodeImportModule();                                               
+
+$('#new_code').ajaxForm(function() {
+
+});
