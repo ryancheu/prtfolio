@@ -1,16 +1,13 @@
 <!-- Primary Author: isabella -->
-<div class="name_section">
-  <div class="container" style="padding-top:40px">
-    <div class="row" >
-      <div class="col-md-12">
-        <div class="media outer-align">
-          <a class="pull-left" href="#">
-            <img class="media-object img-rounded" src=<%= @portfolio.user.image_url %> alt="Sample Image">
-          </a>
-          <div class="media-body inner-align">
-            <h1 class="media-heading name"><%= current_user.fullname%><p style="font-size:10px"><%unless @user_location.blank?%><%= @user_location %></p><% end %></h1>
-          </div>
-        </div>
+<div class="container">
+  <div class="row person_section">
+    <div class="col-md-10">
+      <div class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object img-rounded" src=<%= @portfolio.user.image_url %> alt="Sample Image">
+        </a>
+      <div class="media-body">
+        <h1 class="media-heading name"><%= @portfolio.user.fullname%></h1>
       </div>
     </div>
     <div style="margin-top:30px">

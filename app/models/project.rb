@@ -1,3 +1,4 @@
+# Primary Author: anuhyag
 class Project < ActiveRecord::Base
   belongs_to :portfolio
   has_one :user, through: :portfolio

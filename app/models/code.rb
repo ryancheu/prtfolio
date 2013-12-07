@@ -1,3 +1,4 @@
+# Primary Author: psaylor
 class Code < ActiveRecord::Base
   has_one :block, as: :resource
 

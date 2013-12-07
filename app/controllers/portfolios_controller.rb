@@ -1,7 +1,9 @@
+# Primary Author: psaylor
 class PortfoliosController < ApplicationController
   before_action :require_login, except: [:index, :show]
   before_action :require_no_portfolio, only: [:new, :create]
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
+  before_action :require_owner, only: [:edit, :update, :destroy]
 
   include PortfoliosHelper
 
@@ -73,5 +75,11 @@ class PortfoliosController < ApplicationController
         flash[:warning] = "You already have a portfolio"
         redirect_to current_user.portfolio
       end
+    end
+
+    def require_owner
+      msg = "You do not have permission to modify this portfolio"
+      redirect_path = portfolio_path(@portfolio)
+      require_correct_user(@portfolio.user, msg, redirect_path)
     end
 end

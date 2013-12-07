@@ -1,0 +1,15 @@
+//<!--  Primary Author: psaylor -->
+console.log("Video Created");
+<% if @video.errors.any? %>
+    console.log('Error');
+    <% puts "Error in creating video" %>
+    $("#resource-select-modal-body").html('<%= j render partial: "form" %>');
+
+<% else %>
+    console.log('Video Embedded');
+    <% "Video embedded " %>
+    $('#resource-select-modal').modal('hide');
+    var video = "<%= escape_javascript(render(partial: @video)) %>";
+    update_resource_with_partial(video, "Video", "<%= @video.id %>");
+     
+<% end %>

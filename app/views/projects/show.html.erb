@@ -6,7 +6,7 @@
         <div class="container">
 
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10">
               <div class="media" style="margin-top:20px">
                 <a class="pull-left" href="#">
                   <img class="media-object img-rounded portfolio_user_image" src=<%= @project.get_owner.image_url %> alt="Sample Image">
@@ -16,12 +16,21 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-2">
+              <%# Use remote form to submit live changes to the project's title and description %>
+              <%= form_for(@project, remote: true) do |f| %>
+                <%= f.hidden_field :title %>
+                <%= f.hidden_field :description %>
+                <%= f.submit 'Save Changes', class: "btn btn-warning", disable_with: "Saving..." %>
+              <% end %>
+            </div>
+            
           </div>
           <div class="row">
             <div class="col-md-12">
               <div class="title-box">
-                <div id="title" class="usrinput medium-title"></div> 
-                <div id="subtitle" class="usrinput medium-subtitle"></div>
+                <div id="proj-title" class="usrinput medium-title"> </div> 
+                <div id="proj-description" class="usrinput medium-subtitle"></div>
               </div>
             </div>
           </div>
@@ -31,6 +40,7 @@
     </section>
   </div>
 </div>
+
 <script>
   $(document).ready(function(){
     //------Add description div for medium editing-----//

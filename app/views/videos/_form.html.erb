@@ -1,7 +1,12 @@
-<%= bootstrap_form_for(@video) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= bootstrap_form_for(@video, remote: true) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+		<%= f.text_field :video, class: "form-control"  %>
+	</div>
+
+	<div class="actions">
+		<%= f.primary "Embed Video" %>
+	</div>
 <% end %>
+

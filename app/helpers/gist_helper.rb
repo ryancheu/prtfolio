@@ -1,3 +1,4 @@
+# Primary Author: psaylor
 module GistHelper
 
     # Returns a list of all gists created by the user
