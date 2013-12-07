@@ -44,21 +44,31 @@
     </section>
   </div>
 </div>
-
 <!-- template code for creating a new block in its own section on the page; this div meant to be cloned and the modified -->
 <div id='new-block-html-template' class="margin_top">
   <div class="container">
-    <h1> Select A Template </h1>
     <br>
     <div class="row new_block_template_choice" id = "new_block_template_choice">
       <div class = "col-md-4">
-        <div class="thumbnail"><%= image_tag "center.png"%></div>
+        <div class="outer_square">
+          <div class = "horizontal">
+            hi1
+          </div>
+        </div>
       </div>
       <div class = "col-md-4">
-        <div class="thumbnail"><%=image_tag "horizontal.png"%></div>
+        <div class="outer_square">
+          <div class = "vertical">
+            hi2
+          </div>
+        </div>
       </div>
       <div class = "col-md-4">
-        <div class="thumbnail"><%= image_tag "vertical.png"%></div>
+        <div class="outer_square">
+          <div class = "center">
+            hi3
+          </div>
+        </div>
       </div>
     </div> 
     <div class="row">
@@ -67,4 +77,3 @@
     </div>
   </div>
 </div>
-
