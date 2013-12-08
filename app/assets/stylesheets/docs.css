@@ -26,6 +26,25 @@
     color:#fff;
 }
 
+.medium-description-title{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 650px;
+    letter-spacing: 1px;
+    font-size:40px;
+    min-height: 100px !important;
+    color:#000;
+}
+
+
+.medium-description-content{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 200px;
+    letter-spacing: 1px;
+    font-size:30px;
+    min-height: 100px !important;
+    color:#000;
+}
+
 .medium-blurb{
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;

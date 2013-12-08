@@ -150,8 +150,10 @@ $(document).ready(function(){
 
     $(".sidebar_double_horizontal").tooltip({ content: "Horizontal Template" });
     $(sidebar_horizontal).click(function() {
-      console.log("Horizontal");
       block_for_section.set_template(2);
+      if (curr == null){
+        console.log("Horizontal");
+        block_for_section.set_template(2);
       if (curr == null){
         reset();
       }

@@ -17,7 +17,7 @@
 	<div class="inner-align">
 		<div style="text-align:center">
 			<% unless project.title.blank? %>
-				<p style="color:#78BAE2" class="proj_link"><%= link_to project.title, project %></p>
+				<p style="color:#78BAE2" class="proj_link"><%= link_to project.title.html_safe, project %></p>
 				<% else %>
 				<p> No Title </p>
 			<% end %>
