@@ -37,7 +37,7 @@
               </div>
             </div>
           </div>
-          <a id="add_block_btn" class="add_block_btn" data-remote="true" href="<%= new_project_block_path @project %>"><i style='font-size:60px' class='fa fa-plus'></i><br> block</a>
+          <%= render 'plusBlock' %>
         </div>
       </div>
     </section>
@@ -47,8 +47,8 @@
 <!-- sidebar with different template options -->
 <div class="sidebar">
 
-  <!-- sets up the div representing double resource horizontal template when new block is created -->
-  <div class="sidebar_double_horizontal">
+  <!-- sets up the icon representing double resource vertical template in sidebar -->
+  <div class="sidebar_double_horizontal" id= <%="chosen_sidebar_vertical_"%>>
     <div class="sidebar_vertical_square">
       <div class="sidebar_vertical_smaller_square">
       </div>
@@ -58,8 +58,8 @@
     <div class="block-form"></div>
   </div>
 
-  <!-- sets up the div representing double resource vertical template when new block is created -->
-  <div class="sidebar_double_vertical">
+  <!-- sets up the icon representing double resource horizontal template in sidebar -->
+  <div class="sidebar_double_vertical" id= <%="chosen_sidebar_horizontal_"%>>
     <div class="sidebar_horizontal_square">
       <div class="sidebar_horizontal_smaller_square">
       </div>
@@ -68,8 +68,8 @@
     </div>
   </div>
 
-  <!-- sets up the div representing single resource center template when new block is created -->
-  <div class="sidebar_single_centered">
+  <!-- sets up the div representing single resource denter template when new block is created -->
+  <div class="sidebar_single_centered" id= <%="chosen_sidebar_center_"%>>
     <div class="sidebar_center_square">
       <div class="sidebar_horizontal_smaller_square">
       </div>

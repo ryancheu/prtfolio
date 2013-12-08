@@ -61,22 +61,6 @@ $(document).ready(function(){
   // Create a new section for one page scrolling
   create_section = function(new_section_html, block_id){
     //determine how to color the section based on the index (number of sections already created)
-    
-    $("#horizontal").click(function() {
-      console.log("I am in horizontal");
-      alert("horizontal chosen");
-    });
-
-    $("#vertical").click(function() {
-      console.log("I am in vertical");
-      alert("vertical chosen");
-    });
-
-    $("#center").click(function() {
-      console.log("I am in center");
-      alert("center chosen");
-    });
-
     console.log("Creating section for block "+block_id+"...");
     var section_color = function(hex){
       hex = typeof hex !== 'undefined' ? hex : false;
@@ -101,9 +85,100 @@ $(document).ready(function(){
 
     //---Append description to the section--//
     $('#onepage section:last').append(new_section_html);
+    var curr = null;
+    // template choice divs
+    var horizontal = $("#horizontal-" + block_id);
+    var vertical = $("#vertical-" + block_id);
+    var center = $("#center-" + block_id);
 
+    // chosen template div
+    var chosen_horizontal = $("#chosen_horizontal_" + block_id);
+    var chosen_vertical = $("#chosen_vertical_" + block_id);
+    var chosen_center = $("#chosen_center_" + block_id);
+    
+    // sidebar template div
+    var sidebar_horizontal = $("#chosen_sidebar_horizontal_");
+    var sidebar_vertical = $("#chosen_sidebar_vertical_" );
+    var sidebar_center = $("#chosen_sidebar_center_" );
+
+    chosen_horizontal.hide();
+    chosen_center.fadeOut();
+    chosen_vertical.fadeOut();
+
+    $(horizontal).click(function() {
+      curr = chosen_horizontal;
+      console.log("I am in horizontal");
+      $("#template_selection_heading").remove();
+      horizontal.hide();
+      vertical.fadeOut();
+      center.fadeOut();
+      chosen_horizontal.fadeIn();
+    });
+
+
+    $(vertical).click(function() {
+      curr = chosen_vertical;
+      console.log("I am in vertical");
+      $("#template_selection_heading").remove();
+      horizontal.fadeOut();
+      vertical.fadeOut();
+      center.fadeOut();
+      chosen_vertical.fadeIn();
+    });
+
+    $(center).click(function() {
+      curr = chosen_center;
+      console.log("I am in center");
+      $("#template_selection_heading").remove();
+      horizontal.fadeOut();
+      vertical.fadeOut();
+      center.fadeOut();
+      chosen_center.fadeIn();
+    });
+
+    $(sidebar_horizontal).click(function() {
+       if (curr == null){
+        $("#template_selection_heading").remove();
+        horizontal.fadeOut();
+        vertical.fadeOut();
+        center.fadeOut();
+      }
+      else {
+        $(curr).fadeOut();
+      }
+      curr = chosen_horizontal;
+      $(curr).fadeIn();
+    });
+
+    $(sidebar_vertical).click(function() {
+      if (curr == null){
+        $("#template_selection_heading").remove();
+        horizontal.fadeOut();
+        vertical.fadeOut();
+        center.fadeOut();
+      }
+      else {
+        $(curr).fadeOut();
+      }
+      curr = chosen_vertical;
+      $(curr).fadeIn();
+    });
+
+    $(sidebar_center).click(function() {
+       if (curr == null){
+        $("#template_selection_heading").remove();s
+        horizontal.fadeOut();
+        vertical.fadeOut();
+        center.fadeOut();
+      }
+      else {
+        $(curr).fadeOut();
+      }
+      curr = chosen_center;
+      $(curr).fadeIn();
+    });
     //----Append the 'add section' button to end of section--//
-    $('#onepage section:last').append('<p id="add_block_btn" style="position:absolute;bottom:0;right:0; padding:30px 40px"class="add_block_btn" onclick="create_section()"><i style="font-size:60px" class="fa fa-plus"></i><br>block</p>');
+    $('#onepage section:last').append($('<%= j render "plusBlock" %>'));
     //////////////
 
   }

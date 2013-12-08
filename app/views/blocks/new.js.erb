@@ -1,7 +1,9 @@
 // Primary Author: psaylor
+console.log("new.js.erb");
 (function () {
     console.log("Creating New block section...");
     var block_id = "<%= @block.id %>";
+    console.log(" New block has id " + block_id);
     var new_section = "<%= j render partial: 'projects/section', locals: {:block => @block} %>";
     create_section(new_section, block_id);
 })();
