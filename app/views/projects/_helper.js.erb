@@ -1,5 +1,20 @@
 $(document).ready(function(){
   // Add one page scroll to the project page
+  $("#horizontal").click(function() {
+      console.log("I am in horizontal");
+      alert("horizontal chosen");
+    });
+
+  $("#vertical").click(function() {
+    console.log("I am in vertical");
+    alert("vertical chosen");
+  });
+
+  $("#center").click(function() {
+    console.log("I am in center");
+    alert("center chosen");
+  });
+
   $(".main").onepage_scroll();
 
   // Initialize title and description as medium editable elements, with content from project
@@ -45,6 +60,11 @@ $(document).ready(function(){
       $("#project_description").val(updated_description);
     });
 
+
+    // javascript to handle choosing of templates for block design 
+
+    
+
   //------Add description div for medium editing-----//
   description = function(){
     num_sections = $('section').length - 1;
@@ -83,13 +103,13 @@ $(document).ready(function(){
     $('#onepage section:last').append('<p id="add_block_btn" style="position:absolute;bottom:0;right:0; padding:30px 40px"class="add_block_btn" onclick="create_section()"><i style="font-size:60px" class="fa fa-plus"></i><br>block</p>')
     //////////////
 
-    //creates new medium section when you click 'add_secton'
-    var block_desc_medium = new Medium({
-      element: document.getElementById('description-' + (num_sections)),
-        mode: 'rich',
-      maxLength: 200,
-      placeholder: 'Enter your description here'
-    });
+    // //creates new medium section when you click 'add_secton'
+    // var block_desc_medium = new Medium({
+    //   element: document.getElementById('description-' + (num_sections)),
+    //     mode: 'rich',
+    //   maxLength: 200,
+    //   placeholder: 'Enter your description here'
+    // });
   }
          
 });
