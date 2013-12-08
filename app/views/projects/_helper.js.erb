@@ -1,19 +1,5 @@
 $(document).ready(function(){
   // Add one page scroll to the project page
-  $("#horizontal").click(function() {
-      console.log("I am in horizontal");
-      alert("horizontal chosen");
-    });
-
-  $("#vertical").click(function() {
-    console.log("I am in vertical");
-    alert("vertical chosen");
-  });
-
-  $("#center").click(function() {
-    console.log("I am in center");
-    alert("center chosen");
-  });
 
   $(".main").onepage_scroll();
 
@@ -75,6 +61,22 @@ $(document).ready(function(){
   // Create a new section for one page scrolling
   create_section = function(new_section_html, block_id){
     //determine how to color the section based on the index (number of sections already created)
+    
+    $("#horizontal").click(function() {
+      console.log("I am in horizontal");
+      alert("horizontal chosen");
+    });
+
+    $("#vertical").click(function() {
+      console.log("I am in vertical");
+      alert("vertical chosen");
+    });
+
+    $("#center").click(function() {
+      console.log("I am in center");
+      alert("center chosen");
+    });
+
     console.log("Creating section for block "+block_id+"...");
     var section_color = function(hex){
       hex = typeof hex !== 'undefined' ? hex : false;
@@ -106,8 +108,6 @@ $(document).ready(function(){
 
   }
          
-};
-
 });
 
 $(function() {
