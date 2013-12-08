@@ -54,9 +54,12 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    @user  = @project.get_owner()
+    portfolio = @project.portfolio
     @project.destroy
+    @projects = portfolio.projects 
     respond_to do |format|
-      format.html { redirect_to portfolio_path(@project.portfolio) }
+      format.js {}
       format.json { head :no_content }
     end
   end

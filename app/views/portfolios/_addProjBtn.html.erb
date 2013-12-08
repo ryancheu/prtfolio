@@ -1,0 +1,10 @@
+<% if user == current_user and projects.length<6%>
+    <div class="col-md-4 outer-align">
+      <div style="text-align:center;height:200px;" class="inner-align add-proj">
+        <%= link_to new_project_path,:method => "get" do%>
+          <i style="color:#78BAE2 !important;font-size:200px;margin-top:10%" onclick='<%=new_project_path%>' class="add-proj fa fa-plus"></i>
+        <% end %> 
+        <p style="color:#78BAE2 !important; font-size:20px"> add project</p>
+      </div>
+    </div>
+ <% end %>
