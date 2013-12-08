@@ -1,21 +1,16 @@
 <!-- Primary Author: psaylor -->
-<div class="row">
-    <div class="col-md-9">
-    <%= bootstrap_form_for([@project, @block], remote: true) do |f| %>
-      <%# render 'shared/error_messages', object: f.object %>
+<%= bootstrap_form_for([@project, @block], remote: true) do |f| %>
+  <%# render 'shared/error_messages', object: f.object %>
 
-        <%= f.hidden_field :firstres_id %>
-        <%= f.hidden_field :firstres_type %>
-        <%= f.hidden_field :secondres_id %>
-        <%= f.hidden_field :secondres_type %>
-        <%= f.hidden_field :template_id %>
+    <%= f.hidden_field :firstres_id %>
+    <%= f.hidden_field :firstres_type %>
+    <%= f.hidden_field :secondres_id %>
+    <%= f.hidden_field :secondres_type %>
+    <%= f.hidden_field :template_id %>
 
-        <div class="actions">
-        <%= f.primary nil, disable_with: 'Saving...' %>
-        <%= link_to 'Cancel', edit_project_path(@project), class: 'btn btn-default' %>
-        </div>
+    <div class="actions">
+    <%= f.primary nil, disable_with: 'Saving...' %>
+    <%= link_to 'Cancel', edit_project_path(@project), class: 'btn btn-default' %>
+    </div>
 
-    <% end %>
-</div>
-</div>
-
+<% end %>

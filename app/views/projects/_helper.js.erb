@@ -50,7 +50,10 @@ $(document).ready(function(){
     var new_block_div = $("#new-block-html-template").clone();
     new_block_div.attr("id", "block-"+block_id);
     new_block_div.find(".medium-description").attr("id", "description-"+block_id);
+    console.log("block form");
+    console.log(block_form);
     new_block_div.find(".block-form").html(block_form);
+    console.log(new_block_div.find(".block_form").html());
     return new_block_div;
   };
 
@@ -136,7 +139,7 @@ $(function() {
         embed_gists();
     };
 
-    // Set the hidden fields in the form based on the resources teh user has created
+    // Set the hidden fields in the form based on the resources the user has created
     $("#new_block").submit( function (event) {
         console.log("Form submitted");
         // check which radio button is selected in order to know which resources to use
