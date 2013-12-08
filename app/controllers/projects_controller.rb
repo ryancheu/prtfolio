@@ -33,7 +33,6 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        flash[:success] = "Project was successfully created"
         format.html { redirect_to @project }
         format.json { render action: 'show', status: :created, location: @project }
       else
@@ -46,7 +45,6 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        flash[:success] = "Project was successfully updated"
         format.html { redirect_to @project }
         format.json { head :no_content }
       else
