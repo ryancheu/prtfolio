@@ -1,6 +1,7 @@
 $(document).ready(function(){
   // Add one page scroll to the project page
-
+  $("#sidebar").hide();
+  $("[rel=tooltip]").tooltip();
   $(".main").onepage_scroll();
 
   // Initialize title and description as medium editable elements, with content from project
@@ -85,6 +86,8 @@ $(document).ready(function(){
 
     //---Append description to the section--//
     $('#onepage section:last').append(new_section_html);
+    $("#sidebar").show();
+
     var curr = null;
     // template choice divs
     var horizontal = $("#horizontal-" + block_id);
@@ -101,6 +104,13 @@ $(document).ready(function(){
     var sidebar_vertical = $("#chosen_sidebar_vertical_" );
     var sidebar_center = $("#chosen_sidebar_center_" );
 
+    var reset = function(){
+      $("#template_selection_heading").remove();
+      horizontal.hide();
+      vertical.hide();
+      center.hide();
+    }
+
     chosen_horizontal.hide();
     chosen_center.hide();
     chosen_vertical.hide();
@@ -108,10 +118,7 @@ $(document).ready(function(){
     $(horizontal).click(function() {
       curr = chosen_horizontal;
       console.log("I am in horizontal");
-      $("#template_selection_heading").remove();
-      horizontal.hide();
-      vertical.hide();
-      center.hide();
+      reset();
       chosen_horizontal.fadeIn();
     });
 
@@ -119,29 +126,22 @@ $(document).ready(function(){
     $(vertical).click(function() {
       curr = chosen_vertical;
       console.log("I am in vertical");
-      $("#template_selection_heading").remove();
-      horizontal.hide();
-      vertical.hide();
-      center.hide();
+      reset();
       chosen_vertical.fadeIn();
     });
 
     $(center).click(function() {
       curr = chosen_center;
       console.log("I am in center");
-      $("#template_selection_heading").remove();
-      horizontal.hide();
-      vertical.hide();
-      center.hide();
+      reset();
       chosen_center.fadeIn();
     });
 
+
+    $(".sidebar_double_horizontal").tooltip({ content: "Horizontal Template" });
     $(sidebar_horizontal).click(function() {
        if (curr == null){
-        $("#template_selection_heading").remove();
-        horizontal.hide();
-        vertical.hide();
-        center.hide();
+        reset();
       }
       if (curr != chosen_horizontal) {
         $(curr).hide();
@@ -150,12 +150,10 @@ $(document).ready(function(){
       }
     });
 
+    $(".sidebar_double_vertical").tooltip({ content: "Vertical Template" });
     $(sidebar_vertical).click(function() {
       if (curr == null){
-        $("#template_selection_heading").remove();
-        horizontal.hide();
-        vertical.hide();
-        center.hide();
+        reset();
       }
       if (curr != chosen_vertical) {
         $(curr).hide();
@@ -164,12 +162,10 @@ $(document).ready(function(){
       }
     });
 
+    $(".sidebar_single_centered").tooltip({ content: "Single Resource Template" });
     $(sidebar_center).click(function() {
        if (curr == null){
-        $("#template_selection_heading").remove();s
-        horizontal.hide();
-        vertical.hide();
-        center.hide();
+        reset();
       }
       if (curr != chosen_center) {
         $(curr).hide();

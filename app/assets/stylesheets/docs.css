@@ -3,17 +3,20 @@
 	color: #FFF;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 }
+
 *{
 	-webkit-font-smoothing:antialiased;
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	box-sizing:border-box
 }
+
 .wrap{
     width: 500px;
     margin: 0 auto;
     padding-bottom: 20px;
 }
+
 .medium-name{
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
@@ -22,6 +25,7 @@
     min-height: 100px !important;
     color:#fff;
 }
+
 .medium-blurb{
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -30,6 +34,7 @@
     min-height: 70px !important;
     color:#fff;
 }
+
 .medium-title{
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
@@ -39,6 +44,7 @@
     padding:10px 0px;
     color:#fff;
 }
+
 .medium-subtitle{
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
@@ -48,6 +54,7 @@
     padding:10px 0px;
     color:#fff;
 }
+
 .medium-description{
     font-family: 'Open Sans', sans-serif;
     color:#333;
@@ -57,6 +64,7 @@
     min-height: 400px !important;
     padding:10px 0px;
    }
+
 .medium-github-link{
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;

@@ -4,18 +4,21 @@ body{
     color:#2c3e50;
     font-family: 'Varela Round', sans-serif;
 }
+
 .navbar{
     z-index:1000;
     border-radius: 0;
     position: fixed;
     width:100%;
 }
+
 .navbar-accent{
     margin-bottom:-1px;
     height:10px;
     background:#005F6B;
     
 }
+
 .nav-img{
   border-radius:3px;
   margin-top:-2px; 
@@ -71,7 +74,6 @@ body{
     padding-top: 30px;
 }
 
-
 html, body {
     width: 100%;
     height: 100%;
@@ -85,7 +87,6 @@ html, body {
     padding: 30px;
     margin: 10px;
 }
-
 
 .row {
     vertical-align:middle;
@@ -101,6 +102,7 @@ html, body {
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
 
     display: block;
@@ -114,6 +116,7 @@ html, body {
   overflow: hidden;                 /*Added this line*/
   max-height: 34px;                 /*Added this line*/
 }
+
 .fileupload .fileupload-preview {   /*Added this line*/
   line-height: 21px;                /*Added this line*/
 }                                   /*Added this line*/
@@ -121,15 +124,18 @@ html, body {
 .clearfix {
   *zoom: 1;
 }
+
 .clearfix:before,
 .clearfix:after {
   display: table;
   content: "";
   line-height: 0;
 }
+
 .clearfix:after {
   clear: both;
 }
+
 .hide-text {
   font: 0/0 a;
   color: transparent;
@@ -137,6 +143,7 @@ html, body {
   background-color: transparent;
   border: 0;
 }
+
 .input-block-level {
   display: block;
   width: 100%;
@@ -145,11 +152,13 @@ html, body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 .btn-file {
   overflow: hidden;
   position: relative;
   vertical-align: middle;
 }
+
 .btn-file > input {
   position: absolute;
   top: 0;
@@ -162,9 +171,11 @@ html, body {
   direction: ltr;
   cursor: pointer;
 }
+
 .fileupload {
   margin-bottom: 9px;
 }
+
 .fileupload .uneditable-input {
   display: inline-block;
   margin-bottom: 0px;
@@ -173,9 +184,11 @@ html, body {
   overflow: hidden;                 /*Added this line*/
   max-height: 34px;                 /*Added this line*/
 }
+
 .fileupload .fileupload-preview {   /*Added this line*/
   line-height: 21px;                /*Added this line*/
 }                                   /*Added this line*/
+
 .fileupload .thumbnail {
   overflow: hidden;
   display: inline-block;
@@ -183,26 +196,32 @@ html, body {
   vertical-align: middle;
   text-align: center;
 }
+
 .fileupload .thumbnail > img {
   display: inline-block;
   vertical-align: middle;
   max-height: 100%;
 }
+
 .fileupload .btn {
   vertical-align: middle;
 }
+
 .fileupload-exists .fileupload-new,
 .fileupload-new .fileupload-exists {
   display: none;
 }
+
 .fileupload-inline .fileupload-controls {
   display: inline;
 }
+
 .fileupload-new .input-append .btn-file {
   -webkit-border-radius: 0 3px 3px 0;
   -moz-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
 }
+
 .thumbnail-borderless .thumbnail {
   border: none;
   padding: 0;
@@ -213,36 +232,46 @@ html, body {
   -moz-box-shadow: none;
   box-shadow: none;
 }
+
 .fileupload-new.thumbnail-borderless .thumbnail {
   border: 1px solid #ddd;
 }
+
 .control-group.warning .fileupload .uneditable-input {
   color: #a47e3c;
   border-color: #a47e3c;
 }
+
 .control-group.warning .fileupload .fileupload-preview {
   color: #a47e3c;
 }
+
 .control-group.warning .fileupload .thumbnail {
   border-color: #a47e3c;
 }
+
 .control-group.error .fileupload .uneditable-input {
   color: #b94a48;
   border-color: #b94a48;
 }
+
 .control-group.error .fileupload .fileupload-preview {
   color: #b94a48;
 }
+
 .control-group.error .fileupload .thumbnail {
   border-color: #b94a48;
 }
+
 .control-group.success .fileupload .uneditable-input {
   color: #468847;
   border-color: #468847;
 }
+
 .control-group.success .fileupload .fileupload-preview {
   color: #468847;
 }
+
 .control-group.success .fileupload .thumbnail {
   border-color: #468847;
 }
@@ -250,7 +279,6 @@ html, body {
 .half-width {
     width: 50%;
 }
-
 
 /* //////////////////////// NEW BLOCK TEMPLATE AND SIDEBAR ////////////////////////////// */
 
@@ -263,7 +291,6 @@ html, body {
   border: 2px dashed;
   border-color: #a9afb4;
   display: inline-block;
-
 }
 
 .chosen_template_square{
@@ -282,7 +309,6 @@ html, body {
   border-color: #a9afb4;
   margin-left: 100px;
   background-color: #FFFFFF;
-
 }
 
 .template_choice_horizontal{

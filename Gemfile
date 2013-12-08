@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
+# only used for the tooltip
+gem 'jquery-ui-rails'
+
+# used for embedding video
 gem 'auto_html'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

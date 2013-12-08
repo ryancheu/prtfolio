@@ -12,10 +12,10 @@
             <div class="col-md-10">
               <div class="media" style="margin-top:20px">
                 <a class="pull-left" href="#">
-                  <img class="media-object img-rounded portfolio_user_image" src=<%= @project.get_owner.image_url %> alt="Sample Image">
+                  <img class="media-object img-rounded portfolio_user_image" style="width: 75px; height: 75px;" src=<%= @project.get_owner.image_url %> alt="Sample Image">
                 </a>
                 <div class="media-body">
-                  <h1 class="media-heading name"><%= current_user.fullname%></h1>
+                  <h1 class="media-heading name" style="margin-left:5px;"><%= current_user.fullname%></h1>
                 </div>
               </div>
             </div>
@@ -45,8 +45,7 @@
 </div>
 
 <!-- sidebar with different template options -->
-<div class="sidebar">
-
+<div class="sidebar" id="sidebar" rel="tooltip">
   <!-- sets up the icon representing double resource vertical template in sidebar -->
   <div class="sidebar_double_horizontal" id= <%="chosen_sidebar_vertical_"%>>
     <div class="sidebar_vertical_square">
