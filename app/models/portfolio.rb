@@ -4,6 +4,11 @@ class Portfolio < ActiveRecord::Base
 	has_many :projects
 	has_one :theme
 
+  
+
     validates :user, presence: true
+  def to_param
+    user.username;
+  end
     
 end
