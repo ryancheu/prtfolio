@@ -15,7 +15,6 @@ class DescriptionsController < ApplicationController
 
   # GET /descriptions/new
   def new
-    puts params.to_yaml
     @description = Description.new
     @block_id = params[:block_id]
     @res_pos = params[:res_pos]
@@ -29,9 +28,7 @@ class DescriptionsController < ApplicationController
   # POST /descriptions.json
   def create
     @description = Description.new(description_params)
-    puts params.to_yaml
-    puts block_params.to_yaml
-    # NOTE: @description.block cannot be used because of the polymorphic association (Rails looks for a column resource_id that does not exist), so we have to set up the assocation in a more roundabout way
+    # NOTE: @description.block cannot be used because of the polymorphic association (Rails looks for a column resource_id that does not exist)
     @block = Block.find(block_params[:block_id])
     @res_pos = block_params[:res_pos]
     puts "created Description for block #{@block.id} at position #{@res_pos}"

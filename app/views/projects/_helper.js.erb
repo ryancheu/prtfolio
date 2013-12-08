@@ -150,7 +150,9 @@ $(document).ready(function(){
 
     $(".sidebar_double_horizontal").tooltip({ content: "Horizontal Template" });
     $(sidebar_horizontal).click(function() {
-       if (curr == null){
+      console.log("Horizontal");
+      block_for_section.set_template(2);
+      if (curr == null){
         reset();
       }
       if (curr != chosen_horizontal) {
@@ -158,11 +160,13 @@ $(document).ready(function(){
         curr = chosen_horizontal;
         $(curr).fadeIn();
       }
-      block_for_section.set_template(2);
+      
     });
 
     $(".sidebar_double_vertical").tooltip({ content: "Vertical Template" });
     $(sidebar_vertical).click(function() {
+      console.log("Vertical");
+      block_for_section.set_template(3);
       if (curr == null){
         reset();
       }
@@ -171,12 +175,14 @@ $(document).ready(function(){
         curr = chosen_vertical;
         $(curr).fadeIn();
       }
-      block_for_section.set_template(3);
+      
     });
 
     $(".sidebar_single_centered").tooltip({ content: "Single Resource Template" });
     $(sidebar_center).click(function() {
-       if (curr == null){
+      console.log("Center");
+      block_for_section.set_template(1);
+      if (curr == null){
         reset();
       }
       if (curr != chosen_center) {
@@ -184,7 +190,7 @@ $(document).ready(function(){
         curr = chosen_center;
         $(curr).fadeIn();
       }
-      block_for_section.set_template(1);
+      
     });
 
   };
@@ -202,7 +208,6 @@ $(document).ready(function(){
   // and save the form
   $('#resource-select-modal').on('hidden.bs.modal', function () {
       $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
-      block_in_focus().save();
   });
 
          
