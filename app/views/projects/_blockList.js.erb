@@ -1,0 +1,164 @@
+// Primary Author: psaylor
+
+$(function() {
+  /* Javascript representation for a resource in Rails.
+  Maintains the type and id of a resource.
+  */
+  var Resource = function() {
+    var resource_id = null;
+    var resource_type = null;
+    var object = {
+      update: function (type, id) {
+        resource_type = type;
+        resource_id = id;
+      },
+      get_id: function() { return resource_id},
+      get_type: function() { return resource_type},
+    };
+
+    return object;
+  };
+
+  /* Javascript representation for a block in Rails.
+  Maintains the information about the block as it is modified
+  and updates the block's form accordingly */
+  Block = function (bid) {
+    var block_id = bid;
+    var res0 = Resource(); // Single Resource
+    var res1 = Resource(); // Left Resource
+    var res2 = Resource(); // Right Resource
+    var res3 = Resource(); // Top Resource
+    var res4 = Resource(); // Bottom Resource
+
+    var template_id = -1;
+    var template1 = $("#chosen_center_"+block_id);
+    var template2 = $("#chosen_horizontal_"+block_id);
+    var template3 = $("#chosen_vertical_"+block_id);
+    var form = $("#block-"+block_id+" form");
+
+    // Takes a resource and sets the firstres input fields in the form to its type and id
+    // Clears the input fields if res is undefined
+    var set_firstres_in_form = function (res) {
+      if (res === undefined) {
+        form.find("#block_firstres_id").val("");
+        form.find("#block_firstres_type").val("");
+        return;
+      }
+      form.find("#block_firstres_id").val(res.get_id());
+      form.find("#block_firstres_type").val(res.get_type());
+    }
+
+    // Takes a resource and sets the secondres input fields in the form to its type and id
+    // Clears the input fields if res is undefined
+    var set_secondres_in_form = function (res) {
+      if (res === undefined) {
+        form.find("#block_secondres_id").val("");
+        form.find("#block_secondres_type").val("");
+        return;
+      }
+      form.find("#block_secondres_id").val(res.get_id());
+      form.find("#block_secondres_type").val(res.get_type());
+    }
+    
+    // the object to be returned that holds all of block's "public" functions
+    var self = createObject(Block.prototype);
+    // Sets the template_id of the block to tid
+    self.set_template = function (tid) {
+      template_id = tid;
+    };
+
+    // Updates the resource at position res_pos in the block's template
+    // to have the type and id specified
+    // Also set the view of that resource in the block to the provided partial
+    self.update_resource = function (res_pos, partial, type, id) {
+      console.log("Updating resource at position " + res_pos);
+      if (res_pos === 0 ) {
+        res0.update(type, id);
+      } else if (res_pos === 1) {
+        res1.update(type, id);
+      } else if (res_pos === 2) {
+        res2.update(type, id);
+      } else if (res_pos === 3) {
+        res3.update(type, id);
+      } else if (res_pos === 4) {
+        res4.update(type, id);
+      }
+    };
+
+    self.swap_resources = function () {
+      if (template_id === 1) { // Single Resource Template
+        console.error("Cannot swap resources on template 1");
+      } else if (template_id === 2) { // Left/Right Template
+        console.log("Swapping left and right resources");
+        var temp_res = res1;
+        res1= res2;
+        res2 = temp_res;
+      } else if (template_id === 3) { // Top/Bottom Template
+        console.log("Swapping top and bottom resources");
+        var temp_res = res3;
+        res3= res4;
+        res4 = temp_res;
+      } else {
+        console.error("Cannot swap resources of undefined template");
+      }
+    };
+
+    self.save = function () {
+      console.log("Saving block with template ");
+      // Set the template id if valid
+      if (template_id === 1 || template_id === 2 || template_id === 3) {
+        form.find("#block_template_id").val(template_id);
+      } else {
+        console.error("Cannot save block with invalid template " + template_id);
+        return;
+      }
+
+      // Set the resources based on the current template
+      if (template_id === 1) { // Single Resource Template
+        set_firstres_in_form(res0);
+        set_secondres_in_form();
+      } else if (template_id === 2) { // Left/Right Template
+        set_firstres_in_form(res1);
+        set_secondres_in_form(res2);
+      } else if (template_id === 3) { // Top/Bottom Template
+        set_firstres_in_form(res3);
+        set_secondres_in_form(res4);
+      } 
+      form.submit();
+    }
+
+    Object.freeze(self);
+    return self;
+
+  };
+
+  BlockList = function () {
+    var bList = new Array();
+
+    var self = createObject(BlockList.prototype);
+
+    // Creates a new block instance with block_id bid and adds it to the BlockList
+    self.create_and_add_block = function (bid) {
+      var b = Block(bid);
+      bList[bid] = b;
+      return self;
+    };
+
+    // Returns the block in BlockList with block_id bid 
+    self.get_block = function (bid) {
+      return bList[bid];
+    }
+
+    // Removes the block in BlockList with block_id bid and returns it
+    self.remove_block = function (bid) {
+      var b = bList[bid];
+      bList[bid] = undefined;
+      return b;
+    }
+
+    Object.freeze(self);
+    return self;
+
+  }
+
+});
