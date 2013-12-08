@@ -1,0 +1,58 @@
+<!-- primary author: anuhyag -->
+<%
+  block
+  bid = block.id
+  # section_id = section_id || 0
+  # puts "Section id #{section_id}"
+%>
+
+<!-- template code for creating a new block in its own section on the page; this div meant to be cloned and the modified -->
+<div class="margin_top" id=<%= "block-#{bid}" %>>
+  <div class="container">
+    <h1 style="color:#a9afb4;"> Select A Template: </h1>
+    <br>
+    <div class="row new_block_template_choice">
+      
+      <!-- sets up the icon representing double resource horizontal template in sidebar -->
+      <div class = "col-md-4">
+        <div class="template_choice_outer_square" id=<%= "horizontal-#{bid}" %> >
+          <div class = "template_choice_horizontal">
+          </div>
+           <div class = "template_choice_horizontal">
+          </div>
+        </div>
+        <div class="btn-group">
+          <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
+
+          <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
+
+          <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
+          
+          <a class=" resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_video_path %>"><%= fa_icon "video-camera 4x" %></a>
+      </div>
+      </div>
+      
+      <!-- sets up the icon representing double resource vertical template in sidebar -->
+      <div class = "col-md-4">
+        <div class="template_choice_outer_square" id=<%= "vertical-#{bid}" %>>
+          <div class = "template_choice_vertical">
+          </div>
+          <div class = "template_choice_vertical">
+          </div>
+        </div>
+      </div>
+      
+      <!-- sets up the icon representing single resource template in sidebar -->
+      <div class = "col-md-4">
+        <div class="template_choice_outer_square" id=<%= "center-#{bid}" %>>
+            <div class = "template_choice_center">
+            </div>
+        </div>
+      </div>
+    
+    </div> 
+    <div class="block-form row">
+      <%= render :partial => "blocks/form", :locals => {:block => block} %>
+    </div>
+  </div>
+</div> <!--  new-block-html-template -->
