@@ -314,6 +314,7 @@ var theOnePageBindEvent;
         // $("body").addClass("viewing-page-1")
         if(settings.pagination == true) $(".onepage-pagination li a" + "[data-index='1']").addClass("active");
       }
+      attach_click_handler()
       
       function attach_click_handler(){
         if(settings.pagination == true)  {
