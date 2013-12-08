@@ -2,6 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.trash{
+  float:right;
+  display:none;
+  padding:4px;
+  color:#fff;
+  font-size:50px;
+}
+p.proj_link a{
+  color:#343838;
+}
+p.proj_link a:hover{
+  color:#78BAE2;
+}
 
 .imgproj{
     background: url(image_path('default.jpg')) no-repeat; 

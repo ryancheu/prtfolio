@@ -1,4 +1,7 @@
 <!-- Primary Author: isabella -->
+<script type="text/javascript">
+  <%= render 'helper.js.erb' %>
+</script>
 <div class="onepage-body">
   <div id="onepage" class="main">
       <section class="section_portfolio">
@@ -35,12 +38,12 @@
       <div class="bottom-hint bottom-hint-dark-gray" onclick ="$('.main').moveDown()" >
         <i class="fa fa-chevron-down"></i>
       </div>
-      <div class="bottom-padding bottom-padding-dark-gray">
-      </div>
-    </section>
-    <%# List all the projects in image-text templates %>
-    <section id="features" style="background-color:#343838;">
-      <div style="margin-top:20px">
+    <div class="bottom-padding bottom-padding-dark-gray">
+    </div>
+  </section>
+  <%# List all the projects in image-text templates %>
+  <section id="features" style="background-color:#343838;">
+    <div style="margin-top:40px">
         <div class="container">
           <!--backend - specify the total number of projects, the number per row, i.e. the col-width and the number of rows, iterate through each 'row' of projects in a loop (creating approprite col -width inside the loop and for each row add a new row class)-->
           <% index = 0 %>
@@ -53,31 +56,26 @@
           <div class="row" style="padding-top:40px">
               <% end %>
               <div class="col-md-4">
-                <%= render partial: "projectOverview", locals: {project: project} %>
+                <%= render partial: "projectOverview", locals: {index: index, project: project} %>
               </div>
               <% index = index +1 %>
-            <% end %>
-            <div class="col-md-4 outer-align">
-              <div style="text-align:center;height:401px;" class="inner-align">
-                <i style="color:#2c3e50;font-size:200px" class="fa fa-plus"></i>
-                <p style="font-size:20px"> add project</p>
-              </div>
+        <% end %>
+        <% if @user == current_user and @projects.length<6%>
+          <div class="col-md-4 outer-align">
+            <div style="text-align:center;height:200px;" class="inner-align add-proj">
+              <%= link_to new_project_path,:method => "get" do%>
+                <i style="font-size:200px;margin-top:10%" onclick='<%=new_project_path%>' class="add-proj fa fa-plus"></i>
+              <% end %> 
+              <p style="color:#78BAE2; font-size:20px"> add project</p>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- <div class = "row">
-    <% if @user == current_user %>
-    <%= link_to new_project_path,:method => "get", :class => "btn btn-medium btn-info btn-block add-proj-btn" do%>
-    <i style="font-size:80px" class="fa fa-plus"></i><b style="margin-left:20px;font-size:80px"> add project</b>
-    <% end %> 
-    <% end %>
-    </div> -->
+      <% end %>
+    </div>
+  </div>
+</div>
+</section>
   </div>
 </div>
 <script type="text/javascript">
  <%= render 'helper.js.erb' %>
 </script>
-

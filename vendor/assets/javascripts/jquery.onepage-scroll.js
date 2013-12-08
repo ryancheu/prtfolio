@@ -80,6 +80,7 @@
   
 
   $.fn.onepage_scroll = function(options){
+    console.log("onepage")
     var settings = $.extend({}, defaults, options),
         el = $(this),
         sections = $(settings.sectionContainer)
@@ -90,7 +91,6 @@
         quietPeriod = 500,
         paginationList = "";
 
-    
     $.fn.transformPage = function(settings, pos, index) {
       $(this).css({
         "-webkit-transform": "translate3d(0, " + pos + "%, 0)", 
@@ -250,7 +250,6 @@
             event.preventDefault();
             return;
         }
-
         if (deltaOfInterest < 0) {
           el.moveDown()
         } else {
@@ -303,7 +302,7 @@
           // if (history.replaceState && settings.updateURL == true) {
           //   var href = window.location.href.substr(0,window.location.href.indexOf('#')) + "#" + (init_index);
           //   history.pushState( {}, document.title, href );
-          //}
+          // }
         }
         pos = ((init_index - 1) * 100) * -1;
         el.transformPage(settings, pos, init_index);
@@ -313,6 +312,7 @@
         // $("body").addClass("viewing-page-1")
         if(settings.pagination == true) $(".onepage-pagination li a" + "[data-index='1']").addClass("active");
       }
+      
       function attach_click_handler(){
         if(settings.pagination == true)  {
           $(".onepage-pagination li a").click(function (){

@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    $('.imgproj').mouseenter(function(){console.log($(this));$(this).find('.trash').show()}).mouseleave(function(){$(this).find('.trash').hide()})
+
     $(".main").onepage_scroll();
     var realname_medium = new Medium({
         element: document.getElementById('realname'),
@@ -8,8 +10,8 @@ $(document).ready(function() {
     });
     var bio_medium = new Medium({
         element: document.getElementById('bio'),
-        mode: 'rich',
-        maxLength: 200,
+        mode: 'inline',
+        maxLength: 100,
         placeholder: 'Write about yourself'
     });
     // populate the title and description fields if appropriate
