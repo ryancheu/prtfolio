@@ -1,14 +1,20 @@
 <!-- Primary Author: isabella -->
 <div class="onepage-body">
   <div id="onepage" class="main">
-    <section style="background-color:#78BAE2">
-      <div style="margin-top:20px">
+      <section class="section_portfolio">
+          <%# Use remote form to submit live changes to the project's title and description %>
+          <%= form_for(@user, remote: true) do |f| %>
+            <%= f.hidden_field :realname %>
+            <%= f.hidden_field :bio %>
+            <%= f.submit 'Save Changes', class: "btn btn-warning save_button_portfolio", disable_with: "Saving..." %>
+          <% end %>
+      <div style="margin-top:160px">
         <div class="container">
           <div class="row" >
             <div class="col-md-12">
               <div class="media outer-align">
                 <a class="pull-left" href="#">
-                  <img style="margin-top:5px" class="media-object img-rounded" src=<%= @portfolio.user.image_url %> alt="Sample Image">
+                  <img style="margin-top:5px" class="media-object img-rounded portfolio_user_image_big" src=<%= @portfolio.user.image_url %> alt="Sample Image">
                 </a>
                 <div class="media-body inner-align">
                   <div id="realname" class="usrinput medium-name name"></div>
@@ -24,12 +30,6 @@
               </div>
             </div>
           </div>
-          <%# Use remote form to submit live changes to the project's title and description %>
-          <%= form_for(@user, remote: true) do |f| %>
-            <%= f.hidden_field :realname %>
-            <%= f.hidden_field :bio %>
-            <%= f.submit 'Save Changes', class: "btn btn-warning", disable_with: "Saving..." %>
-          <% end %>
         </div>
       </div>
       <div class="bottom-hint bottom-hint-dark-gray" onclick ="$('.main').moveDown()" >
