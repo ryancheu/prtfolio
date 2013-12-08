@@ -148,12 +148,8 @@ $(document).ready(function(){
     });
 
 
-    $(".sidebar_double_horizontal").tooltip({ content: "Horizontal Template" });
     $(sidebar_horizontal).click(function() {
       block_for_section.set_template(2);
-      if (curr == null){
-        console.log("Horizontal");
-        block_for_section.set_template(2);
       if (curr == null){
         reset();
       }
@@ -165,7 +161,6 @@ $(document).ready(function(){
       
     });
 
-    $(".sidebar_double_vertical").tooltip({ content: "Vertical Template" });
     $(sidebar_vertical).click(function() {
       console.log("Vertical");
       block_for_section.set_template(3);
@@ -180,7 +175,6 @@ $(document).ready(function(){
       
     });
 
-    $(".sidebar_single_centered").tooltip({ content: "Single Resource Template" });
     $(sidebar_center).click(function() {
       console.log("Center");
       block_for_section.set_template(1);
