@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131208030303) do
+ActiveRecord::Schema.define(version: 20131208205938) do
 
   create_table "blocks", force: true do |t|
     t.integer  "page_index"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20131208030303) do
     t.string   "font"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "image_id"
   end
 
   create_table "projects", force: true do |t|
