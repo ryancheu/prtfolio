@@ -15,8 +15,10 @@ class DescriptionsController < ApplicationController
 
   # GET /descriptions/new
   def new
+    puts params.to_yaml
     @description = Description.new
-    @block = Block.find(params[:block_id])
+    @block_id = params[:block_id]
+    @res_pos = params[:res_pos]
   end
 
   # GET /descriptions/1/edit
@@ -31,7 +33,8 @@ class DescriptionsController < ApplicationController
     puts block_params.to_yaml
     # NOTE: @description.block cannot be used because of the polymorphic association (Rails looks for a column resource_id that does not exist), so we have to set up the assocation in a more roundabout way
     @block = Block.find(block_params[:block_id])
-    puts "created Description for block #{@block.id}"
+    @res_pos = block_params[:res_pos]
+    puts "created Description for block #{@block.id} at position #{@res_pos}"
     respond_to do |format|
       if @description.save
         format.js
@@ -75,6 +78,6 @@ class DescriptionsController < ApplicationController
     end
 
     def block_params
-      params.require(:description).permit(:block_id)
+      params.require(:description).permit(:block_id, :res_pos)
     end
 end

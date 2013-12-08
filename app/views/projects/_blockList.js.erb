@@ -31,16 +31,14 @@ $(function() {
     var res4 = Resource(); // Bottom Resource
 
     var template_id = -1;
-    var pos0 = $("[data-block-id="+block_id+"] [data-pos=0]"); // Single Resource
-    var pos1 = $("[data-block-id="+block_id+"] [data-pos=1]"); // Left Resource
-    var pos2 = $("[data-block-id="+block_id+"] [data-pos=2]"); // Right Resource
-    var pos3 = $("[data-block-id="+block_id+"] [data-pos=3]"); // Top Resource
-    var pos4 = $("[data-block-id="+block_id+"] [data-pos=4]"); // Bottom Resource
+    // Single Resource, Left Resource, Right Resource, Top Resource, Bottom Resource
+    var pos0, pos1, pos2, pos3, pos4;
+    var part;
 
-    var template1 = $("#chosen_center_"+block_id);
-    var template2 = $("#chosen_horizontal_"+block_id);
-    var template3 = $("#chosen_vertical_"+block_id);
-    var form = $("#block-"+block_id+" form");
+    // var template1 = $("#chosen_center_"+block_id);
+    // var template2 = $("#chosen_horizontal_"+block_id);
+    // var template3 = $("#chosen_vertical_"+block_id);
+    var form;
 
     // Takes a resource and sets the firstres input fields in the form to its type and id
     // Clears the input fields if res is undefined
@@ -82,18 +80,31 @@ $(function() {
     // to have the type and id specified
     // Also set the view of that resource in the block to the provided partial
     self.update_resource = function (res_pos, res_type, res_id, partial) {
-      console.log("Updating resource at position " + res_pos);
-      if (res_pos === 0 ) {
+      console.log("Updating resource at position " + res_pos + " with type " + res_type + " and id " + res_id);
+      if (res_pos == 0 ) {
+        console.log("Upating single resource");
         res0.update(res_type, res_id);
-        pos0.innerHtml(partial);
-      } else if (res_pos === 1) {
+        pos0.html(partial);
+
+      } else if (res_pos == 1) {
+        console.log("Upating left resource");
         res1.update(res_type, res_id);
-      } else if (res_pos === 2) {
+        pos1.html(partial);
+
+      } else if (res_pos == 2) {
+        console.log("Upating right resource");
         res2.update(res_type, res_id);
-      } else if (res_pos === 3) {
+        pos2.html(partial);
+
+      } else if (res_pos == 3) {
+        console.log("Upating top resource");
         res3.update(res_type, res_id);
-      } else if (res_pos === 4) {
+        pos3.html(partial);
+
+      } else if (res_pos == 4) {
+        console.log("Upating bottom resource");
         res4.update(res_type, res_id);
+        pos4.html(partial);
       }
     };
 
@@ -138,6 +149,37 @@ $(function() {
       } 
       form.submit();
     }
+
+    self.on_resource_positions_ready = function () {
+      pos0 = $("[data-block-id="+block_id+"] [data-pos=0]"); // Single Resource
+      pos1 = $("[data-block-id="+block_id+"] [data-pos=1]"); // Left Resource
+      pos2 = $("[data-block-id="+block_id+"] [data-pos=2]"); // Right Resource
+      pos3 = $("[data-block-id="+block_id+"] [data-pos=3]"); // Top Resource
+      pos4 = $("[data-block-id="+block_id+"] [data-pos=4]"); // Bottom Resource
+    }
+
+    self.on_form_ready = function () {
+      console.log("Form Ready");
+      form = $("#block-"+block_id+" form");
+    }
+
+    <% if Rails.env.development? %>
+      self.pos0 = function () {
+        return pos0;
+      };
+      self.pos1 = function () {
+        return pos1;
+      };
+      self.pos2 = function () {
+        return pos2;
+      };
+      self.pos3 = function () {
+        return pos3;
+      };
+      self.pos4 = function () {
+        return pos4;
+      };
+    <% end %>
 
     Object.freeze(self);
     return self;
