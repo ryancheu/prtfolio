@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131204023643) do
+ActiveRecord::Schema.define(version: 20131208013145) do
 
   create_table "blocks", force: true do |t|
     t.integer  "page_index"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20131204023643) do
     t.string   "gist_id"
     t.string   "link"
     t.text     "content"
+    t.string   "language"
   end
 
   create_table "descriptions", force: true do |t|

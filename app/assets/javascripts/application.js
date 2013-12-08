@@ -17,7 +17,7 @@
 //= require jquery.onepage-scroll
 //= require_tree ./global
 //= require ./syntax/shCore.js
-//= require ./syntax/shBrushJScript.js
+//= require_tree ./syntax/
 //= require d3.min
 //= require nv.d3
 
