@@ -251,6 +251,99 @@ html, body {
     width: 50%;
 }
 
+/* css code for the divs that allow a user to choose a template upon block creation */
+/* primary author: anuhyag */
+
+.template_choice_outer_square{
+  width: 350px;
+  height: 350px;
+  border: 2px dashed;
+  border-color: #a9afb4;
+}
+
+.template_choice_horizontal{
+  display: inline-block;
+  margin-top: 125px;
+  margin-left: 40px;
+  margin-right:20px;
+  width: 100px;
+  height: 100px;
+  background-color: #78BAE2;
+  float:left; 
+}
+
+.template_choice_vertical{
+  margin-left: 125px;
+  margin-top: 50px;
+  width: 100px;
+  height: 100px;
+  background-color: #78BAE2; 
+}
+
+.template_choice_center{
+  display: inline-block;
+  margin:125px;
+  width: 100px;
+  height: 100px;
+  background-color: #78BAE2;
+  float:left;
+}
+
+/* css code for the sidebar that allows a user to toggle between templates */
+/* primary author: anuhyag */
+
+.sidebar {
+  position:absolute;
+  left:10px; top:60px; bottom: 0;
+  width: 45px;
+}
+
+.sidebar_horizontal_square{
+  display: table-cell;
+  vertical-align: middle;
+  margin: 5px;
+  width: 35px;
+  height: 35px;
+  border: 1px;
+  border-color:#a9afb4;
+  border-style:hidden dashed dashed dashed;
+}
+
+.sidebar_horizontal_smaller_square{
+  display: inline-block;
+  margin: 3px;
+  width: 10px;
+  height: 10px;
+  background-color: #78BAE2;
+  float:left;
+}
+
+.sidebar_vertical_square{
+  width: 35px;
+  height: 35px;
+  border: 1px;
+  border-color:#a9afb4;
+  border-style:dashed dashed dashed dashed;
+}
+
+.sidebar_vertical_smaller_square{
+  margin-left: 10px;
+  margin-top: 4.5px;
+  margin-bottom: 4.5px;
+  width: 10px;
+  height: 10px;
+  background-color: #78BAE2;
+}
+
+.sidebar_center_square{
+  padding: 8px;
+  width: 35px;
+  height: 35px;
+  border: 1px;
+  border-color:#a9afb4;
+  border-style:hidden dashed dashed dashed;
+}
+
 .outer_square{
     width: 350px;
     height: 350px;
@@ -264,11 +357,9 @@ html, body {
     vertical-align: middle;
  }
 
-
 .centeredText {
  text-align: middle;
 }
-
 
 ::-webkit-scrollbar {
     width: 12px;
