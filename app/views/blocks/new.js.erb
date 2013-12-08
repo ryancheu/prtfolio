@@ -3,5 +3,6 @@
     console.log("Creating New block section...");
     var form_for_block = "<%= j render partial: 'form' %>";
     var block_id = "<%= @block.id %>";
-    create_section(form_for_block, block_id);
+    var new_section = "<%= j render partial: 'projects/section', locals: {:section_id => @block.id} %>";
+    create_section(new_section, form_for_block, block_id);
 })();
