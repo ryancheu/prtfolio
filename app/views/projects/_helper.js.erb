@@ -93,16 +93,16 @@ $(document).ready(function(){
     var sidebar_center = $("#chosen_sidebar_center_" );
 
     chosen_horizontal.hide();
-    chosen_center.fadeOut();
-    chosen_vertical.fadeOut();
+    chosen_center.hide();
+    chosen_vertical.hide();
 
     $(horizontal).click(function() {
       curr = chosen_horizontal;
       console.log("I am in horizontal");
       $("#template_selection_heading").remove();
       horizontal.hide();
-      vertical.fadeOut();
-      center.fadeOut();
+      vertical.hide();
+      center.hide();
       chosen_horizontal.fadeIn();
     });
 
@@ -111,9 +111,9 @@ $(document).ready(function(){
       curr = chosen_vertical;
       console.log("I am in vertical");
       $("#template_selection_heading").remove();
-      horizontal.fadeOut();
-      vertical.fadeOut();
-      center.fadeOut();
+      horizontal.hide();
+      vertical.hide();
+      center.hide();
       chosen_vertical.fadeIn();
     });
 
@@ -121,52 +121,52 @@ $(document).ready(function(){
       curr = chosen_center;
       console.log("I am in center");
       $("#template_selection_heading").remove();
-      horizontal.fadeOut();
-      vertical.fadeOut();
-      center.fadeOut();
+      horizontal.hide();
+      vertical.hide();
+      center.hide();
       chosen_center.fadeIn();
     });
 
     $(sidebar_horizontal).click(function() {
        if (curr == null){
         $("#template_selection_heading").remove();
-        horizontal.fadeOut();
-        vertical.fadeOut();
-        center.fadeOut();
+        horizontal.hide();
+        vertical.hide();
+        center.hide();
       }
-      else {
-        $(curr).fadeOut();
+      if (curr != chosen_horizontal) {
+        $(curr).hide();
+        curr = chosen_horizontal;
+        $(curr).fadeIn();
       }
-      curr = chosen_horizontal;
-      $(curr).fadeIn();
     });
 
     $(sidebar_vertical).click(function() {
       if (curr == null){
         $("#template_selection_heading").remove();
-        horizontal.fadeOut();
-        vertical.fadeOut();
-        center.fadeOut();
+        horizontal.hide();
+        vertical.hide();
+        center.hide();
       }
-      else {
-        $(curr).fadeOut();
+      if (curr != chosen_vertical) {
+        $(curr).hide();
+        curr = chosen_vertical;
+        $(curr).fadeIn();
       }
-      curr = chosen_vertical;
-      $(curr).fadeIn();
     });
 
     $(sidebar_center).click(function() {
        if (curr == null){
         $("#template_selection_heading").remove();s
-        horizontal.fadeOut();
-        vertical.fadeOut();
-        center.fadeOut();
+        horizontal.hide();
+        vertical.hide();
+        center.hide();
       }
-      else {
-        $(curr).fadeOut();
+      if (curr != chosen_center) {
+        $(curr).hide();
+        curr = chosen_center;
+        $(curr).fadeIn();
       }
-      curr = chosen_center;
-      $(curr).fadeIn();
     });
     //----Append the 'add section' button to end of section--//
     $('#onepage section:last').append($('<%= j render "plusBlock" %>'));
