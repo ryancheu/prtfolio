@@ -101,7 +101,7 @@ $(document).ready(function(){
     $('#onepage section:last').append(new_section_html);
 
     //----Append the 'add section' button to end of section--//
-    $('#onepage section:last').append('<p id="add_block_btn" style="position:absolute;bottom:0;right:0; padding:30px 40px"class="add_block_btn" onclick="create_section()"><i style="font-size:60px" class="fa fa-plus"></i><br>block</p>');
+    $('#onepage section:last').append($('<%= j render "plusBlock" %>'));
     //////////////
 
   }
