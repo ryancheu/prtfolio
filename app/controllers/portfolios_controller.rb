@@ -12,11 +12,7 @@ class PortfoliosController < ApplicationController
   end
 
   def show
-    @languages = get_project_languages(@user).to_json.html_safe
-    @language_byte_count = get_project_byte_count_languages(@user).to_json.html_safe
-    @repos = get_user_repos(@user)
-    user_stats = get_user_location(@user)
-    @user_location = user_stats
+    @projects = @portfolio.projects 
   end
 
   def new

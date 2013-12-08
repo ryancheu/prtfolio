@@ -2,6 +2,10 @@ $(document).ready(function(){
   // Add one page scroll to the project page
   $("#sidebar").hide();
   $("[rel=tooltip]").tooltip();
+
+  // Instantiate a BlockList to hold all the blocks (js representation) for this project 
+  project_blocks = BlockList();
+
   $(".main").onepage_scroll();
 
   // Initialize title and description as medium editable elements, with content from project
@@ -47,22 +51,27 @@ $(document).ready(function(){
       $("#project_description").val(updated_description);
     });
 
+  update_block_with_resource = function (bid, partial, res_pos, res_type, res_id) {
+    var block = project_blocks.get_block(bid);
+    block.update_resource(res_pos, res_type, res_id, partial);
+    // var tid = block.get_template();
+    // if (tid === 1) { // Single Resource Template
 
-    // javascript to handle choosing of templates for block design 
+    // } else if (tid === 2) { // Left/Right Template
 
-    
-  
-  // Methods for new section/block creation
-  // var create_new_section_for_block = function(new_section_html, block_id){
-  //   var new_block_div = $("#new-block-html-template").clone();
-  //   new_block_div.find(".block-form").html(block_form);
-  //   return new_block_div;
-  // };
+    // } else if (tid === 3) { // Top/Bottom Template
+
+    // }
+  };
+
 
   // Create a new section for one page scrolling
   create_section = function(new_section_html, block_id){
     //determine how to color the section based on the index (number of sections already created)
     console.log("Creating section for block "+block_id+"...");
+    // Create a js representation of a block and its resources for this section
+    var block_for_section = project_blocks.create_and_add_block(block_id);
+
     var section_color = function(hex){
       hex = typeof hex !== 'undefined' ? hex : false;
       colors = ['gray', 'white'];
@@ -73,11 +82,12 @@ $(document).ready(function(){
       }
       section_index = ($('section').length + 1) % 2;
       return colors[section_index];
-    };
+    }; 
 
     //add the chevron/down arrow and div to go down to next section
     $('#onepage section:last').append('<div class="bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding-'+section_color()+'"></div>');
 
+    $('#onepage section:last').append('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>')
 
     //adds the section (method in jquery.onepage-scroll)
     $('.main').addSection();
@@ -87,6 +97,12 @@ $(document).ready(function(){
     //---Append description to the section--//
     $('#onepage section:last').append(new_section_html);
     $("#sidebar").show();
+
+    //----Append the 'add section' button to end of section--//
+    $('#onepage section:last').append($('<%= j render "plusBlock" %>'));
+
+    block_for_section.on_resource_positions_ready();
+    block_for_section.on_form_ready();
 
     var curr = null;
     // template choice divs
@@ -173,86 +189,8 @@ $(document).ready(function(){
         $(curr).fadeIn();
       }
     });
-    //----Append the 'add section' button to end of section--//
-    $('#onepage section:last').append($('<%= j render "plusBlock" %>'));
-    //////////////
 
-  }
+  };
+
          
-});
-
-$(function() {
-    var resource = function() {
-        var resource_id = null;
-        var resource_type = null;
-        var object = {
-            update: function (type, id) {
-                resource_type = type;
-                resource_id = id;
-            },
-            get_id: function() { return resource_id},
-            get_type: function() { return resource_type},
-        };
-        return object;
-    };
-
-    var single_resource = resource();
-    var resource1 = resource();
-    var resource2 = resource();
-
-    var clicked_resource = null;
-
-    $(".resource-select-btn").click(function(event) {
-        clicked_resource = $(this);
-        console.log("Resource clicked");
-        console.log(clicked_resource);
-    });
-
-    // intentionally global
-    update_resource_with_partial = function (partial, type, id) {
-        console.log("Updating resource with partial");
-        var target = clicked_resource.parent().parent();
-       
-        if (target.attr('id') === "single-resource") {
-            console.log("Updating single resource");
-            single_resource.update(type, id);
-        } else if (target.attr('id') === "resource1") {
-            console.log("Updating resource1");
-            resource1.update(type, id);
-        } else if (target.attr('id') === "resource2") {
-            console.log("Updating resource2");
-            resource2.update(type, id);
-        }
-
-        target.html(partial);
-        embed_gists();
-    };
-
-    // Set the hidden fields in the form based on the resources the user has created
-    $("#new_block").submit( function (event) {
-        console.log("Form submitted");
-        // check which radio button is selected in order to know which resources to use
-        var radioOpt = $('input[name="block[template_id]"]:checked', '#new_block').val();
-        console.log("Selected radio button: " + radioOpt);            
-        if (radioOpt == 1) {
-            console.log("Using template 1");
-            console.log("Single resource id: " + single_resource.get_id());
-            console.log("Single resource type: " + single_resource.get_type());
-            $("#block_firstres_id").val(single_resource.get_id());
-            $("#block_firstres_type").val(single_resource.get_type());
-
-        } else if (radioOpt == 2) {
-            console.log("using template 2");
-            console.log("First resource id: " + resource1.get_id());
-            console.log("First resource type: " + resource1.get_type());
-            $("#block_firstres_id").val(resource1.get_id());
-            $("#block_firstres_type").val(resource1.get_type());
-
-            console.log("Second resource id: " + resource2.get_id());
-            console.log("Second resource type: " + resource2.get_type());
-            $("#block_secondres_id").val(resource2.get_id());
-            $("#block_secondres_type").val(resource2.get_type());
-        }
-    });
-
 });
