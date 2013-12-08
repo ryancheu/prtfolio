@@ -26,13 +26,29 @@
     height: 40px;
     background-color: #fff;
 }
+
+.portfolio_user_image_big {
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+}
+
+
 .name{
     color:#fff; 
     font-weight:300;
     font-size:70px;
 }
+.section_portfolio {
+    background: url('/assets/codebackground.png');
+}
 
 .portfolio_user_image_container {
+}
+
+.save_button_portfolio {
+    margin-top:20px;
+    float:right;
 }
 
 .portfolio_name{
