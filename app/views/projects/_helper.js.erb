@@ -1,5 +1,20 @@
 $(document).ready(function(){
   // Add one page scroll to the project page
+  $("#horizontal").click(function() {
+      console.log("I am in horizontal");
+      alert("horizontal chosen");
+    });
+
+  $("#vertical").click(function() {
+    console.log("I am in vertical");
+    alert("vertical chosen");
+  });
+
+  $("#center").click(function() {
+    console.log("I am in center");
+    alert("center chosen");
+  });
+
   $(".main").onepage_scroll();
 
   // Initialize title and description as medium editable elements, with content from project
@@ -44,18 +59,21 @@ $(document).ready(function(){
       }
       $("#project_description").val(updated_description);
     });
+
+
+    // javascript to handle choosing of templates for block design 
+
+    
   
   // Methods for new section/block creation
-  var create_new_section_for_block = function(block_form, block_id){
-    var new_block_div = $("#new-block-html-template").clone();
-    new_block_div.attr("id", "block-"+block_id);
-    new_block_div.find(".medium-description").attr("id", "description-"+block_id);
-    new_block_div.find(".block-form").html(block_form);
-    return new_block_div;
-  };
+  // var create_new_section_for_block = function(new_section_html, block_id){
+  //   var new_block_div = $("#new-block-html-template").clone();
+  //   new_block_div.find(".block-form").html(block_form);
+  //   return new_block_div;
+  // };
 
   // Create a new section for one page scrolling
-  create_section = function(block_form, block_id){
+  create_section = function(new_section_html, block_id){
     //determine how to color the section based on the index (number of sections already created)
     console.log("Creating section for block "+block_id+"...");
     var section_color = function(hex){
@@ -80,11 +98,12 @@ $(document).ready(function(){
     $('#onepage section:last').css("background-color",section_color(true));
 
     //---Append description to the section--//
-    $('#onepage section:last').append(create_new_section_for_block(block_form, block_id));
+    $('#onepage section:last').append(new_section_html);
 
     //----Append the 'add section' button to end of section--//
     $('#onepage section:last').append('<p id="add_block_btn" style="position:absolute;bottom:0;right:0; padding:30px 40px"class="add_block_btn" onclick="create_section()"><i style="font-size:60px" class="fa fa-plus"></i><br>block</p>');
     //////////////
+
   }
          
 });
