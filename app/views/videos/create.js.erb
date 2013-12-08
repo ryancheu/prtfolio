@@ -10,6 +10,6 @@ console.log("Video Created");
     <% "Video embedded " %>
     $('#resource-select-modal').modal('hide');
     var video = "<%= escape_javascript(render(partial: @video)) %>";
-    update_resource_with_partial(video, "Video", "<%= @video.id %>");
+    update_block_with_resource("<%= @block.id %>", video, <%= @res_pos %>, "Video", "<%= @video.id %>");
      
 <% end %>
