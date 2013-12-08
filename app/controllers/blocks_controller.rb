@@ -17,11 +17,11 @@ class BlocksController < ApplicationController
   def new
     @block = @project.blocks.build
     @block.save
-    @gist_ids = get_gist_ids(current_user)
+    # @gist_ids = get_gist_ids(current_user)
   end
 
   def edit
-    @gist_ids = get_gist_ids(current_user)
+    # @gist_ids = get_gist_ids(current_user)
   end
 
   def create
