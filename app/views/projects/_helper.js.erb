@@ -1,6 +1,5 @@
 $(document).ready(function(){
   // Add one page scroll to the project page
-  $("#sidebar").hide();
   $("[rel=tooltip]").tooltip();
 
   // Instantiate a BlockList to hold all the blocks (js representation) for this project 
@@ -79,7 +78,7 @@ $(document).ready(function(){
     //add the chevron/down arrow and div to go down to next section
     $('#onepage section:last').append('<div class="bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding-'+section_color()+'"></div>');
 
-    $('#onepage section:last').append('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>')
+    $('#onepage section:last').append('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>');
 
     //adds the section (method in jquery.onepage-scroll)
     $('.main').addSection();
