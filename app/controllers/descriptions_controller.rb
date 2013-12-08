@@ -16,6 +16,7 @@ class DescriptionsController < ApplicationController
   # GET /descriptions/new
   def new
     @description = Description.new
+    @block = Block.find(params[:block_id])
   end
 
   # GET /descriptions/1/edit
@@ -26,6 +27,11 @@ class DescriptionsController < ApplicationController
   # POST /descriptions.json
   def create
     @description = Description.new(description_params)
+    puts params.to_yaml
+    puts block_params.to_yaml
+    # NOTE: @description.block cannot be used because of the polymorphic association (Rails looks for a column resource_id that does not exist), so we have to set up the assocation in a more roundabout way
+    @block = Block.find(block_params[:block_id])
+    puts "created Description for block #{@block.id}"
     respond_to do |format|
       if @description.save
         format.js
@@ -66,5 +72,9 @@ class DescriptionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def description_params
       params.require(:description).permit(:title, :content)
+    end
+
+    def block_params
+      params.require(:description).permit(:block_id)
     end
 end

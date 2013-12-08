@@ -63,14 +63,6 @@ $(document).ready(function(){
 
     // javascript to handle choosing of templates for block design 
 
-    
-  
-  // Methods for new section/block creation
-  // var create_new_section_for_block = function(new_section_html, block_id){
-  //   var new_block_div = $("#new-block-html-template").clone();
-  //   new_block_div.find(".block-form").html(block_form);
-  //   return new_block_div;
-  // };
 
   // Create a new section for one page scrolling
   create_section = function(new_section_html, block_id){
@@ -91,7 +83,6 @@ $(document).ready(function(){
     //add the chevron/down arrow and div to go down to next section
     $('#onepage section:last').append('<div class="bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding-'+section_color()+'"></div>');
 
-
     //adds the section (method in jquery.onepage-scroll)
     $('.main').addSection();
 
@@ -104,82 +95,132 @@ $(document).ready(function(){
     $('#onepage section:last').append($('<%= j render "plusBlock" %>'));
     //////////////
 
-  }
+  };
+
+  ///// Handle attaching resources to specific positions in a block
+  /* Javascript representation for a resource in Rails.
+  Maintains the type and id of a resource.
+  */
+  var resource = function() {
+    var resource_id = null;
+    var resource_type = null;
+    var object = {
+      update: function (type, id) {
+        resource_type = type;
+        resource_id = id;
+      },
+      get_id: function() { return resource_id},
+      get_type: function() { return resource_type},
+    };
+
+    return object;
+  };
+
+  /* Javascript representation for a block in Rails.
+  Maintains the information about the block as it is modified
+  and updates the block's form accordingly */
+  var block = function(bid) {
+    var block_id = bid;
+    var res1 = resource();
+    var res2 = resource();
+    var template_id = -1;
+    var form = $("#block-"+block_id+" form");
+    
+    // Sets the template_id of the block to tid
+    this.set_template = function(tid) {
+      template_id = tid;
+    };
+
+    // Updates the resource at position res_pos in the block's template
+    // to have the type and id specified
+    this.update_resource = function(res_pos, type, id) {
+      console.log("Updating resource at position " + res_pos);
+      if (res_pos === 0 ) {
+        res1.update(type, id);
+      } else if (res_pos === 1) {
+        res1.update(type, id);
+      } else if (res_pos === 2) {
+        res2.update(type, id);
+      }
+    };
+
+    this.swap_resources = function() {
+      if (template_id === 2 || template_id === 3) {
+        console.log("Swapping resources 1 and 2");
+        var temp_res = res1;
+        res1= res2;
+        res2 = temp_res;
+      } else {
+        console.log("Cannot swap resources on template "+template_id);
+      }
+    };
+
+  };
+
+  update_block
+
+
          
 });
 
 $(function() {
-    var resource = function() {
-        var resource_id = null;
-        var resource_type = null;
-        var object = {
-            update: function (type, id) {
-                resource_type = type;
-                resource_id = id;
-            },
-            get_id: function() { return resource_id},
-            get_type: function() { return resource_type},
-        };
-        return object;
-    };
+  var single_resource = resource();
+  var resource1 = resource();
+  var resource2 = resource();
 
-    var single_resource = resource();
-    var resource1 = resource();
-    var resource2 = resource();
+  var clicked_resource = null;
 
-    var clicked_resource = null;
+  $(".resource-select-btn").click(function(event) {
+    clicked_resource = $(this);
+    console.log("Resource clicked");
+    console.log(clicked_resource);
+  });
 
-    $(".resource-select-btn").click(function(event) {
-        clicked_resource = $(this);
-        console.log("Resource clicked");
-        console.log(clicked_resource);
-    });
+  // intentionally global
+  update_resource_with_partial = function (partial, type, id) {
+    console.log("Updating resource with partial");
+    var target = clicked_resource.parent().parent();
+   
+    if (target.attr('id') === "single-resource") {
+        console.log("Updating single resource");
+        single_resource.update(type, id);
+    } else if (target.attr('id') === "resource1") {
+        console.log("Updating resource1");
+        resource1.update(type, id);
+    } else if (target.attr('id') === "resource2") {
+        console.log("Updating resource2");
+        resource2.update(type, id);
+    }
 
-    // intentionally global
-    update_resource_with_partial = function (partial, type, id) {
-        console.log("Updating resource with partial");
-        var target = clicked_resource.parent().parent();
-       
-        if (target.attr('id') === "single-resource") {
-            console.log("Updating single resource");
-            single_resource.update(type, id);
-        } else if (target.attr('id') === "resource1") {
-            console.log("Updating resource1");
-            resource1.update(type, id);
-        } else if (target.attr('id') === "resource2") {
-            console.log("Updating resource2");
-            resource2.update(type, id);
-        }
+    target.html(partial);
+    embed_gists();
+  };
 
-        target.html(partial);
-        embed_gists();
-    };
+  // Set the hidden fields in the form based on the resources the user has created
+  $("#new_block").submit( function (event) {
+    console.log("Form submitted");
+    // check which radio button is selected in order to know which resources to use
+    var radioOpt = $('input[name="block[template_id]"]:checked', '#new_block').val();
+    console.log("Selected radio button: " + radioOpt);            
+    if (radioOpt == 1) {
+        console.log("Using template 1");
+        console.log("Single resource id: " + single_resource.get_id());
+        console.log("Single resource type: " + single_resource.get_type());
+        $("#block_firstres_id").val(single_resource.get_id());
+        $("#block_firstres_type").val(single_resource.get_type());
 
-    // Set the hidden fields in the form based on the resources the user has created
-    $("#new_block").submit( function (event) {
-        console.log("Form submitted");
-        // check which radio button is selected in order to know which resources to use
-        var radioOpt = $('input[name="block[template_id]"]:checked', '#new_block').val();
-        console.log("Selected radio button: " + radioOpt);            
-        if (radioOpt == 1) {
-            console.log("Using template 1");
-            console.log("Single resource id: " + single_resource.get_id());
-            console.log("Single resource type: " + single_resource.get_type());
-            $("#block_firstres_id").val(single_resource.get_id());
-            $("#block_firstres_type").val(single_resource.get_type());
+    } else if (radioOpt == 2) {
+        console.log("using template 2");
+        console.log("First resource id: " + resource1.get_id());
+        console.log("First resource type: " + resource1.get_type());
+        $("#block_firstres_id").val(resource1.get_id());
+        $("#block_firstres_type").val(resource1.get_type());
 
-        } else if (radioOpt == 2) {
-            console.log("using template 2");
-            console.log("First resource id: " + resource1.get_id());
-            console.log("First resource type: " + resource1.get_type());
-            $("#block_firstres_id").val(resource1.get_id());
-            $("#block_firstres_type").val(resource1.get_type());
-
-            console.log("Second resource id: " + resource2.get_id());
-            console.log("Second resource type: " + resource2.get_type());
-            $("#block_secondres_id").val(resource2.get_id());
-            $("#block_secondres_type").val(resource2.get_type());
-        }
-    });
+        console.log("Second resource id: " + resource2.get_id());
+        console.log("Second resource type: " + resource2.get_type());
+        $("#block_secondres_id").val(resource2.get_id());
+        $("#block_secondres_type").val(resource2.get_type());
+    }
+  });
 
 });

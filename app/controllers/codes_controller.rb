@@ -15,6 +15,7 @@ class CodesController < ApplicationController
 
   def new
     @code = Code.new
+    @block = Block.find(params[:block_id])
   end
 
   def edit
@@ -63,11 +64,11 @@ class CodesController < ApplicationController
     end
 
     def set_gists
-      @gist_ids = @gist_ids || get_gist_ids(current_user)
+      # @gist_ids = @gist_ids || get_gist_ids(current_user)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def code_params
-      params.require(:code).permit(:gist_id, :content, :link, :language)
+      params.require(:code).permit(:gist_id, :content, :link, :language, :block_id)
     end
 end

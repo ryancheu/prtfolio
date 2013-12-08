@@ -2,14 +2,12 @@
 <%
   block
   bid = block.id
-  # section_id = section_id || 0
-  # puts "Section id #{section_id}"
 %>
 
 <!-- template code for creating a new block in its own section on the page; this div meant to be cloned and the modified -->
-<div class="margin_top" id=<%= "block-#{bid}" %>>
-  <div class="container">
-    <h1 style="color:#a9afb4;"> Select A Template: </h1>
+<div class="margin_top">
+  <div class="container block-container" id=<%= "block-#{bid}" %> data-block-id=<%= "#{bid}" %> >
+    <h1 style="color:#a9afb4;"> Select A Template </h1>
     <br>
     <div class="row new_block_template_choice">
       
@@ -22,13 +20,22 @@
           </div>
         </div>
         <div class="btn-group">
-          <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
+          <%=link_to new_code_path(:block_id => bid), remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
+            <%= fa_icon "code 4x" %>
+          <% end %>
 
-          <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
+          <%=link_to new_description_path(:block_id => bid), remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
+            <%= fa_icon "align-left 4x" %>
+          <% end %>
 
-          <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
-          
-          <a class=" resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_video_path %>"><%= fa_icon "video-camera 4x" %></a>
+          <%=link_to new_image_path(:block_id => bid), remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
+            <%= fa_icon "picture-o 4x" %>
+          <% end %>
+
+          <%=link_to new_video_path(:block_id => bid), remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
+            <%= fa_icon "video-camera 4x" %>
+          <% end %>
+
       </div>
       </div>
       

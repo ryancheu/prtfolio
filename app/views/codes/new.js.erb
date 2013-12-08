@@ -1,6 +1,7 @@
 // Primary Author: psaylor
+console.log("New code ");
 $("#resource-select-modal-title").html("Select some lines of code");    
-$("#resource-select-modal-body").html('<%= j render "formPaste" %>');
+$("#resource-select-modal-body").html('<%= j render "formPaste", locals: { block: @block} %>');
 
 PrepareCodeImportModule();                                               
 

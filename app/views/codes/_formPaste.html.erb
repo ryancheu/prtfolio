@@ -3,6 +3,8 @@
 <%= render 'shared/error_messages', object: f.object %>
 <%= token_tag form_authenticity_token %>
 
+<%= f.hidden_field :block, :value => @block %>
+
 <div class="field">
     <%= f.text_field :link, class: "form-control"  %>
 </div>
