@@ -2,8 +2,8 @@ $(document).ready(function(){
   // Add one page scroll to the project page
 
   // Instantiate a BlockList to hold all the blocks (js representation) for this project 
-  project_blocks = BlockList();
-  
+  var project_blocks = BlockList();
+
   $(".main").onepage_scroll();
 
   // Initialize title and description as medium editable elements, with content from project
@@ -49,14 +49,27 @@ $(document).ready(function(){
       $("#project_description").val(updated_description);
     });
 
+  update_block_with_resource = function (bid, partial, res_pos, res_type, res_id) {
+    var block = project_blocks.get_block(bid);
+    block.update_resource(res_pos, res_type, res_id);
+    var tid = block.get_template();
+    if (tid === 1) { // Single Resource Template
+      
+    } else if (tid === 2) { // Left/Right Template
 
-    // javascript to handle choosing of templates for block design 
+    } else if (tid === 3) { // Top/Bottom Template
+
+    }
+  }
 
 
   // Create a new section for one page scrolling
   create_section = function(new_section_html, block_id){
     //determine how to color the section based on the index (number of sections already created)
     console.log("Creating section for block "+block_id+"...");
+    // Create a js representation of a block and its resources for this section
+    var block_for_section = project_blocks.create_and_add_block(block_id);
+
     var section_color = function(hex){
       hex = typeof hex !== 'undefined' ? hex : false;
       colors = ['gray', 'white'];
@@ -67,7 +80,7 @@ $(document).ready(function(){
       }
       section_index = ($('section').length + 1) % 2;
       return colors[section_index];
-    };
+    }; 
 
     //add the chevron/down arrow and div to go down to next section
     $('#onepage section:last').append('<div class="bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding-'+section_color()+'"></div>');
@@ -79,6 +92,10 @@ $(document).ready(function(){
 
     //---Append description to the section--//
     $('#onepage section:last').append(new_section_html);
+
+    //----Append the 'add section' button to end of section--//
+    $('#onepage section:last').append($('<%= j render "plusBlock" %>'));
+
     var curr = null;
     // template choice divs
     var horizontal = $("#horizontal-" + block_id);
@@ -171,14 +188,11 @@ $(document).ready(function(){
         $(curr).fadeIn();
       }
     });
-    //----Append the 'add section' button to end of section--//
-    $('#onepage section:last').append($('<%= j render "plusBlock" %>'));
+    
     //////////////
 
+
   };
-
-  ///// Handle attaching resources to specific positions in a block
-
 
          
 });

@@ -6,9 +6,8 @@ console.log("Gist Created");
 
 <% else %>
     console.log('Description Linked');
-
     $('#resource-select-modal').modal('hide');
     var desc = "<%= escape_javascript(render(partial: @description)) %>";
-    update_resource_with_partial(desc, "Description", "<%= @description.id %>");
+    update_block_with_resource("<%= @block.id %>", desc, 0, "Description", "<%= @description.id %>");
      
 <% end %>

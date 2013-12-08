@@ -31,6 +31,12 @@ $(function() {
     var res4 = Resource(); // Bottom Resource
 
     var template_id = -1;
+    var pos0 = $("[data-block-id="+block_id+"] [data-pos=0]"); // Single Resource
+    var pos1 = $("[data-block-id="+block_id+"] [data-pos=1]"); // Left Resource
+    var pos2 = $("[data-block-id="+block_id+"] [data-pos=2]"); // Right Resource
+    var pos3 = $("[data-block-id="+block_id+"] [data-pos=3]"); // Top Resource
+    var pos4 = $("[data-block-id="+block_id+"] [data-pos=4]"); // Bottom Resource
+
     var template1 = $("#chosen_center_"+block_id);
     var template2 = $("#chosen_horizontal_"+block_id);
     var template3 = $("#chosen_vertical_"+block_id);
@@ -62,26 +68,32 @@ $(function() {
     
     // the object to be returned that holds all of block's "public" functions
     var self = createObject(Block.prototype);
-    // Sets the template_id of the block to tid
+    // Sets the template_id of the block to tid and returns the updated template_id
     self.set_template = function (tid) {
       template_id = tid;
+      return template_id;
     };
+
+    self.get_template = function () {
+      return template_id;
+    }
 
     // Updates the resource at position res_pos in the block's template
     // to have the type and id specified
     // Also set the view of that resource in the block to the provided partial
-    self.update_resource = function (res_pos, partial, type, id) {
+    self.update_resource = function (res_pos, res_type, res_id, partial) {
       console.log("Updating resource at position " + res_pos);
       if (res_pos === 0 ) {
-        res0.update(type, id);
+        res0.update(res_type, res_id);
+        pos0.innerHtml(partial);
       } else if (res_pos === 1) {
-        res1.update(type, id);
+        res1.update(res_type, res_id);
       } else if (res_pos === 2) {
-        res2.update(type, id);
+        res2.update(res_type, res_id);
       } else if (res_pos === 3) {
-        res3.update(type, id);
+        res3.update(res_type, res_id);
       } else if (res_pos === 4) {
-        res4.update(type, id);
+        res4.update(res_type, res_id);
       }
     };
 
@@ -137,11 +149,11 @@ $(function() {
 
     var self = createObject(BlockList.prototype);
 
-    // Creates a new block instance with block_id bid and adds it to the BlockList
+    // Creates a new block instance with block_id bid and adds it to the BlockList; returns the new block
     self.create_and_add_block = function (bid) {
       var b = Block(bid);
       bList[bid] = b;
-      return self;
+      return b;
     };
 
     // Returns the block in BlockList with block_id bid 

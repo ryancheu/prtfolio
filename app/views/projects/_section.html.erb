@@ -9,7 +9,7 @@
   <div class="container block-container" id=<%= "block-#{bid}" %> data-block-id=<%= "#{bid}" %> >
     <h1 id="template_selection_heading" style="color:#a9afb4;"> Select A Template: </h1>
     <br>
-    <div class="row new_block_template_choice">
+    <div class="row new_block_template_choice" data-block-id=<%= "#{bid}" %> >
       
       <!-- sets up the div representing double resource horizontal template when new block is created -->
 
@@ -41,21 +41,13 @@
       </div>
     </div> 
     
-    <div class="chosen_center" id= <%="chosen_center_#{bid}"%>>
+    <div class="chosen_center" id= <%="chosen_center_#{bid}"%> >
       <div class="row">
         <div class="col-md-3">
         </div>
         <div class = "col-md-6">
-          <div class= "chosen_template_square">
-             <div class="btn-group">
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
-
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
-
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
-              
-              <a class=" resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_video_path %>"><%= fa_icon "video-camera 4x" %></a>
-            </div>
+          <div class= "chosen_template_square" data-pos=0 >
+             <%= render partial: 'projects/resourceButtons', locals: { bid: bid } %>
           </div>
         </div>
         <div class="col-md-3">
@@ -69,29 +61,13 @@
         <div class="col-md-1">
         </div>
         <div class = "col-md-5">
-          <div class="chosen_template_square">
-             <div class="btn-group">
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
-
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
-
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
-              
-              <a class=" resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_video_path %>"><%= fa_icon "video-camera 4x" %></a>
-            </div>
+          <div class="chosen_template_square" data-pos=1 >
+             <%= render partial: 'projects/resourceButtons', locals: { bid: bid } %>
           </div>
         </div>
         <div class = "col-md-5">
-          <div class="chosen_template_square">
-             <div class="btn-group">
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
-
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
-
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
-              
-              <a class=" resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_video_path %>"><%= fa_icon "video-camera 4x" %></a>
-            </div>
+          <div class="chosen_template_square" data-pos=2>
+             <%= render partial: 'projects/resourceButtons', locals: { bid: bid } %>
           </div>
         </div>
         <div class="col-md-1">
@@ -104,16 +80,8 @@
         <div class="col-md-3">
         </div>
         <div class = "col-md-6">
-          <div class="chosen_template_square_2">
-             <div class="btn-group2">
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
-
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
-
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
-              
-              <a class=" resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_video_path %>"><%= fa_icon "video-camera 4x" %></a>
-            </div>
+          <div class="chosen_template_square_2" data-pos=3>
+             <%= render partial: 'projects/resourceButtons', locals: { bid: bid, div_class: "btn-group2" } %>
           </div>
         </div>
         <div class="col-md-3">
@@ -124,16 +92,8 @@
         <div class="col-md-3">
         </div>
         <div class = "col-md-6">
-          <div class="chosen_template_square_2">
-             <div class="btn-group2">
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
-
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
-
-              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_image_path %>"><%= fa_icon "picture-o 4x" %></a>
-              
-              <a class=" resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_video_path %>"><%= fa_icon "video-camera 4x" %></a>
-            </div>
+          <div class="chosen_template_square_2" data-pos=4>
+             <%= render partial: 'projects/resourceButtons', locals: { bid: bid, div_class: "btn-group2" } %>
           </div>
         </div>
         <div class="col-md-3">
