@@ -262,6 +262,27 @@ html, body {
   height: 350px;
   border: 2px dashed;
   border-color: #a9afb4;
+  display: inline-block;
+
+}
+
+.chosen_template_square{
+  width: 450px;
+  height: 450px;
+  border: 8px solid;
+  border-color: #a9afb4;
+  background-color: #FFFFFF;
+}
+
+/* used for the vertical template */
+.chosen_template_square_2{
+  width: 350px;
+  height: 350px;
+  border: 8px solid;
+  border-color: #a9afb4;
+  margin-left: 100px;
+  background-color: #FFFFFF;
+
 }
 
 .template_choice_horizontal{
@@ -378,3 +399,12 @@ html, body {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
+.btn-group{
+  margin-left: 100px;
+  margin-top: 175px;
+}
+
+.btn-group2{
+  margin-left: 50px;
+  margin-top: 135px;
+}
