@@ -14,6 +14,8 @@
  *
  * ========================================================== */
 
+//Purposely public variable
+var theOnePageBindEvent;
 !function($){
   
   var defaults = {
@@ -335,12 +337,13 @@
           });
         }
       }
-
-    $(document).bind('mousewheel DOMMouseScroll', function(event) {
-      event.preventDefault();
-      var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
-      if(!$("body").hasClass("disabled-onepage-scroll")) init_scroll(event, delta);
-    });
+      
+      theOnePageBindEvent = function(event) {
+          event.preventDefault();
+          var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
+          if(!$("body").hasClass("disabled-onepage-scroll")) init_scroll(event, delta);
+      };
+    $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
     
     
     // if(settings.responsiveFallback != false) {

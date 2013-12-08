@@ -191,6 +191,9 @@ $(document).ready(function(){
     });
 
   };
+    $('#resource-select-modal').on('hidden.bs.modal', function () {
+        $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
+    });
 
          
 });

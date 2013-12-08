@@ -5,6 +5,9 @@ $("#resource-select-modal-body").html('<%= j render "formPaste", locals: { block
 
 PrepareCodeImportModule();                                               
 
+//Make it so that we can scroll the modal
+$(document).unbind('mousewheel DOMMouseScroll');
+
 $('#new_code').ajaxForm(function() {
 
 });
