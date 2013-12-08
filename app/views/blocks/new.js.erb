@@ -1,4 +1,7 @@
 // Primary Author: psaylor
-$("#resource-select-modal-body").html('<%= j render partial: "form", locals: {gist_ids: @gist_ids} %>');
-$("#resource-select-modal-title").html("Select a Gist");
-
+(function () {
+    console.log("Creating New block section...");
+    var form_for_block = "<%= j render partial: 'form' %>";
+    var block_id = "<%= @block.id %>";
+    create_section(form_for_block, block_id);
+})();

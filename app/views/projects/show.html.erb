@@ -37,7 +37,7 @@
               </div>
             </div>
           </div>
-          <a id="add_block_btn" class="add_block_btn" onclick="create_section()" href="<%= new_project_block_path @project %>"><i style='font-size:60px' class='fa fa-plus'></i><br> block</a>
+          <a id="add_block_btn" class="add_block_btn" data-remote="true" href="<%= new_project_block_path @project %>"><i style='font-size:60px' class='fa fa-plus'></i><br> block</a>
         </div>
       </div>
     </section>
@@ -47,14 +47,14 @@
 <!-- template code for creating a new block in its own section on the page; this div meant to be cloned and the modified -->
 <div id='new-block-html-template' class="margin_top">
   <div class="container">
-
+    
     <div class="row new_block_template_choice" id = "new_block_template_choice">
 
       <div class = "col-md-4">
         <div class="outer_square">
           <div class = "horizontal">
             <div class="btn-group">
-              <a class=" resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
+              <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_code_path %>"><%= fa_icon "code 4x" %></a>
 
               <a class="resource-select-btn" data-remote="true" data-target="#resource-select-modal" data-toggle="modal" href="<%= new_description_path %>"><%= fa_icon "align-left 4x" %></a>
 
@@ -88,5 +88,26 @@
       <div class="col-md-8 usrinput article medium-description">
       </div>
     </div>
+    <div class="block-form"></div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="resource-select-modal" tabindex="-1" role="dialog" aria-labelledby="resource-select-modal-title" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="resource-select-modal-title">Modal title</h4>
+      </div>
+
+      <div class="modal-body" id="resource-select-modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
