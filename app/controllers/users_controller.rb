@@ -24,7 +24,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to Portfl.io!"
       @portfolio = current_user.create_portfolio()
       @portfolio.save
       redirect_to @user.portfolio
