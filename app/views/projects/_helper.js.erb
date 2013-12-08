@@ -150,6 +150,7 @@ $(document).ready(function(){
 
     $(".sidebar_double_horizontal").tooltip({ content: "Horizontal Template" });
     $(sidebar_horizontal).click(function() {
+        block_for_section.set_template(2);
        if (curr == null){
         reset();
       }
@@ -163,6 +164,7 @@ $(document).ready(function(){
 
     $(".sidebar_double_vertical").tooltip({ content: "Vertical Template" });
     $(sidebar_vertical).click(function() {
+      block_for_section.get_template();
       if (curr == null){
         reset();
       }

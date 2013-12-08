@@ -62,13 +62,16 @@ $(function() {
 
     // the object to be returned that holds all of block's "public" functions
     var self = createObject(Block.prototype);
+    console.log("i reached here")
     // Sets the template_id of the block to tid and returns the updated template_id
     self.set_template = function (tid) {
+      console.log("in set template");
       template_id = tid;
       return template_id;
     };
 
     self.get_template = function () {
+      console.log("in get template");
       return template_id;
     }
 
@@ -195,6 +198,7 @@ $(function() {
     var bList = new Array();
 
     var self = createObject(BlockList.prototype);
+
 
     // Creates a new block instance with block_id bid and adds it to the BlockList; returns the new block
     self.create_and_add_block = function (bid) {
