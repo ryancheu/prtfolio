@@ -147,8 +147,11 @@ $(function() {
         set_firstres_in_form(res3);
         set_secondres_in_form(res4);
       } 
-      form.submit();
-    }
+    };
+
+    form.submit(function (event) {
+      self.save();
+    });
 
     self.on_resource_positions_ready = function () {
       pos0 = $("[data-block-id="+block_id+"] [data-pos=0]"); // Single Resource
@@ -178,6 +181,13 @@ $(function() {
       };
       self.pos4 = function () {
         return pos4;
+      };
+      self.set_template = function (tid) {
+        template_id = tid;
+        return template_id;
+      };
+      self.get_template = function () {
+        return template_id;
       };
     <% end %>
 
