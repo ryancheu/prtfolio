@@ -9,19 +9,19 @@
   <%= render 'helper.js.erb' %>
 </script>
 
-<div class="onepage-body">
-  <div id="onepage" class="main">
-    <section style="background-color:#2c3e50">
-      <div class="margin_top">
+<div class="onepage-body" >
+  <div id="onepage" class="main" >
+    <section style="background-color:#78BAE2; opacity:0.8">
+      <div class="margin_top" style="background-image: url(/final_proj.png);">
         <div class="container portfolio_name_area">
           <div class="row">
             <div class="col-md-10">
-              <div class="media" style="margin-top:20px">
+              <div class="media" style="margin-top:20px;">
                 <a class="pull-left" href="#">
                   <img class="media-object img-rounded portfolio_user_image" style="width: 75px; height: 75px;" src=<%= @project.get_owner.image_url %> alt="Sample Image">
                 </a>
                 <div class="media-body">
-                  <h1 class="media-heading name" style="margin-left:5px;"><%= current_user.fullname%></h1>
+                  <h1 class="media-heading name" style="margin-left:5px; color:#343838; font-weight:500;"><%= current_user.fullname%></h1>
                 </div>
               </div>
             </div>
@@ -49,40 +49,6 @@
     </section>
   </div>
 </div>
-
-<!-- sidebar with different template options -->
-<div class="sidebar" id="sidebar" rel="tooltip">
-  <!-- sets up the icon representing double resource vertical template in sidebar -->
-  <div class="sidebar_double_horizontal" id= <%="chosen_sidebar_vertical_"%>>
-    <div class="sidebar_vertical_square">
-      <div class="sidebar_vertical_smaller_square">
-      </div>
-      <div class="sidebar_vertical_smaller_square">
-      </div>
-    </div>
-    <div class="block-form"></div>
-  </div>
-
-  <!-- sets up the icon representing double resource horizontal template in sidebar -->
-  <div class="sidebar_double_vertical" id= <%="chosen_sidebar_horizontal_"%>>
-    <div class="sidebar_horizontal_square">
-      <div class="sidebar_horizontal_smaller_square">
-      </div>
-      <div class="sidebar_horizontal_smaller_square">
-      </div>
-    </div>
-  </div>
-
-  <!-- sets up the div representing single resource denter template when new block is created -->
-  <div class="sidebar_single_centered" id= <%="chosen_sidebar_center_"%>>
-    <div class="sidebar_center_square">
-      <div class="sidebar_horizontal_smaller_square">
-      </div>
-    </div>
-  </div>
-
-</div> <!-- sidebar -->
-
 <!-- Modal -->
 <div class="modal fade" id="resource-select-modal" tabindex="-1" role="dialog" aria-labelledby="resource-select-modal-title" aria-hidden="true">
   <div class="modal-dialog">

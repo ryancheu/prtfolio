@@ -12,15 +12,15 @@ $(document).ready(function(){
     var proj_title_medium = new Medium({
       element: document.getElementById('proj-title'),
       mode: 'inline',
-      maxLength: 30,
-      placeholder: 'Project title'
+      maxLength: 40,
+      placeholder: 'Project Title'
     });
     
     var proj_desc_medium = new Medium({
       element: document.getElementById('proj-description'),
       mode: 'partial',
       maxLength: 100,
-      placeholder: 'Project subtitle'
+      placeholder: 'Project Subtitle'
     });
 
     // populate the title and description fields if appropriate
@@ -68,14 +68,14 @@ $(document).ready(function(){
   // Create a new section for one page scrolling
   create_section = function(new_section_html, block_id){
     //determine how to color the section based on the index (number of sections already created)
-    console.log("Creating section for block "+block_id+"...");
+    console.log("Creating section for block " + block_id + "...");
     // Create a js representation of a block and its resources for this section
     var block_for_section = project_blocks.create_and_add_block(block_id);
 
     var section_color = function(hex){
       hex = typeof hex !== 'undefined' ? hex : false;
       colors = ['gray', 'white'];
-      hex_colors = ["#ecf0f1", "#fff"];
+      hex_colors = ["#343838", "#ecf0f1"];
       if (hex){
         section_index = ($('section').length) % 2;
         return hex_colors[section_index];

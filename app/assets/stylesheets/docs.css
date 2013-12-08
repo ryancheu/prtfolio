@@ -37,22 +37,22 @@
 
 .medium-title{
     font-family: 'Open Sans', sans-serif;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: 1px;
     font-size:80px;
     min-height: 180px !important;
-    padding:10px 0px;
-    color:#fff;
+    padding:0px 0px;
+    color:#000000;
 }
 
 .medium-subtitle{
     font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: 1px;
-    font-size:40px;
+    font-size:45px;
     min-height: 80px !important;
-    padding:10px 0px;
-    color:#fff;
+    padding:0px 0px;
+    color:#000000;
 }
 
 .medium-description{
