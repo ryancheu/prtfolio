@@ -20,3 +20,11 @@
 //= require_tree ./syntax/
 
 
+// same as Object.create in ECMAScript 5
+// return a fresh object whose prototype is o
+// note: borrowed from 6.170 example code for Set.js
+var createObject = function (o) {
+    var F = function () {}
+    F.prototype = o;
+    return new F();
+};
