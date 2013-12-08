@@ -14,7 +14,6 @@ class ProjectsController < ApplicationController
 
   def show
     @user  = @project.get_owner()
-    @projects = get_projects(@user)
   end
 
   def new

@@ -15,7 +15,8 @@ class CodesController < ApplicationController
 
   def new
     @code = Code.new
-    @block = Block.find(params[:block_id])
+    @block_id = params[:block_id]
+    @res_pos = params[:res_pos]
   end
 
   def edit
@@ -24,6 +25,9 @@ class CodesController < ApplicationController
 
   def create
     @code = Code.new(code_params)
+    @block = Block.find(block_params[:block_id])
+    @res_pos = block_params[:res_pos]
+    puts "created Code for block #{@block.id} at position #{@res_pos}"
     respond_to do |format|
       unless @code.save
         puts "there were errors saving!"
@@ -69,6 +73,10 @@ class CodesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def code_params
-      params.require(:code).permit(:gist_id, :content, :link, :language, :block_id)
+      params.require(:code).permit(:content, :link, :language)
+    end
+
+    def block_params
+      params.require(:code).permit(:block_id, :res_pos)
     end
 end
