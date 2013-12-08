@@ -68,39 +68,46 @@ $(document).ready(function(){
   //------Add description div for medium editing-----//
   description = function(){
     num_sections = $('section').length - 1;
+  
+  // Methods for new section/block creation
+  var create_new_section_for_block = function(block_form, block_id){
     var new_block_div = $("#new-block-html-template").clone();
-    new_block_div.attr("id", "block-"+num_sections);
-    new_block_div.find(".medium-description").attr("id", "description-"+num_sections)
+    new_block_div.attr("id", "block-"+block_id);
+    new_block_div.find(".medium-description").attr("id", "description-"+block_id);
+    new_block_div.find(".block-form").html(block_form);
     return new_block_div;
   };
 
   // Create a new section for one page scrolling
-  create_section = function(){
+  create_section = function(block_form, block_id){
     //determine how to color the section based on the index (number of sections already created)
-    section_color = function(hex){
+    console.log("Creating section for block "+block_id+"...");
+    var section_color = function(hex){
       hex = typeof hex !== 'undefined' ? hex : false;
-      colors = ['gray', 'white']
-      hex_colors=["#ecf0f1", "#fff"]
+      colors = ['gray', 'white'];
+      hex_colors = ["#ecf0f1", "#fff"];
       if (hex){
-        section_index = ($('section').length) % 2
-        return hex_colors[section_index]
+        section_index = ($('section').length) % 2;
+        return hex_colors[section_index];
       }
-      section_index = ($('section').length + 1) % 2
-      return colors[section_index]
-    }
+      section_index = ($('section').length + 1) % 2;
+      return colors[section_index];
+    };
+
     //add the chevron/down arrow and div to go down to next section
-    $('#onepage section:last').append('<div class="bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding-'+section_color()+'"></div>')
+    $('#onepage section:last').append('<div class="bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding-'+section_color()+'"></div>');
+
 
     //adds the section (method in jquery.onepage-scroll)
-    $('.main').addSection()
-    
-    $('#onepage section:last').css("background-color",section_color(true))
-    
+    $('.main').addSection();
+
+    $('#onepage section:last').css("background-color",section_color(true));
+
     //---Append description to the section--//
-    $('#onepage section:last').append(description())
+    $('#onepage section:last').append(create_new_section_for_block(block_form, block_id));
 
     //----Append the 'add section' button to end of section--//
-    $('#onepage section:last').append('<p id="add_block_btn" style="position:absolute;bottom:0;right:0; padding:30px 40px"class="add_block_btn" onclick="create_section()"><i style="font-size:60px" class="fa fa-plus"></i><br>block</p>')
+    $('#onepage section:last').append('<p id="add_block_btn" style="position:absolute;bottom:0;right:0; padding:30px 40px"class="add_block_btn" onclick="create_section()"><i style="font-size:60px" class="fa fa-plus"></i><br>block</p>');
     //////////////
 
     // //creates new medium section when you click 'add_secton'
@@ -110,6 +117,83 @@ $(document).ready(function(){
     //   maxLength: 200,
     //   placeholder: 'Enter your description here'
     // });
+
   }
          
+});
+
+$(function() {
+    var resource = function() {
+        var resource_id = null;
+        var resource_type = null;
+        var object = {
+            update: function (type, id) {
+                resource_type = type;
+                resource_id = id;
+            },
+            get_id: function() { return resource_id},
+            get_type: function() { return resource_type},
+        };
+        return object;
+    };
+
+    var single_resource = resource();
+    var resource1 = resource();
+    var resource2 = resource();
+
+    var clicked_resource = null;
+
+    $(".resource-select-btn").click(function(event) {
+        clicked_resource = $(this);
+        console.log("Resource clicked");
+        console.log(clicked_resource);
+    });
+
+    // intentionally global
+    update_resource_with_partial = function (partial, type, id) {
+        console.log("Updating resource with partial");
+        var target = clicked_resource.parent().parent();
+       
+        if (target.attr('id') === "single-resource") {
+            console.log("Updating single resource");
+            single_resource.update(type, id);
+        } else if (target.attr('id') === "resource1") {
+            console.log("Updating resource1");
+            resource1.update(type, id);
+        } else if (target.attr('id') === "resource2") {
+            console.log("Updating resource2");
+            resource2.update(type, id);
+        }
+
+        target.html(partial);
+        embed_gists();
+    };
+
+    // Set the hidden fields in the form based on the resources the user has created
+    $("#new_block").submit( function (event) {
+        console.log("Form submitted");
+        // check which radio button is selected in order to know which resources to use
+        var radioOpt = $('input[name="block[template_id]"]:checked', '#new_block').val();
+        console.log("Selected radio button: " + radioOpt);            
+        if (radioOpt == 1) {
+            console.log("Using template 1");
+            console.log("Single resource id: " + single_resource.get_id());
+            console.log("Single resource type: " + single_resource.get_type());
+            $("#block_firstres_id").val(single_resource.get_id());
+            $("#block_firstres_type").val(single_resource.get_type());
+
+        } else if (radioOpt == 2) {
+            console.log("using template 2");
+            console.log("First resource id: " + resource1.get_id());
+            console.log("First resource type: " + resource1.get_type());
+            $("#block_firstres_id").val(resource1.get_id());
+            $("#block_firstres_type").val(resource1.get_type());
+
+            console.log("Second resource id: " + resource2.get_id());
+            console.log("Second resource type: " + resource2.get_type());
+            $("#block_secondres_id").val(resource2.get_id());
+            $("#block_secondres_type").val(resource2.get_type());
+        }
+    });
+
 });

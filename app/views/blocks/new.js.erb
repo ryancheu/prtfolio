@@ -1,0 +1,7 @@
+// Primary Author: psaylor
+(function () {
+    console.log("Creating New block section...");
+    var form_for_block = "<%= j render partial: 'form' %>";
+    var block_id = "<%= @block.id %>";
+    create_section(form_for_block, block_id);
+})();
