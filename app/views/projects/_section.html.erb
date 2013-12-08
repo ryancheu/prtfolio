@@ -100,8 +100,39 @@
         </div>
       </div>
     </div>
-
   
+    <!-- sidebar with different template options -->
+    <div class="sidebar" id="sidebar" rel="tooltip">
+      <!-- sets up the icon representing double resource vertical template in sidebar -->
+      <div class="sidebar_double_horizontal" id= <%="chosen_sidebar_vertical_#{bid}"%>>
+        <div class="sidebar_vertical_square">
+          <div class="sidebar_vertical_smaller_square">
+          </div>
+          <div class="sidebar_vertical_smaller_square">
+          </div>
+        </div>
+        <div class="block-form">
+        </div>
+      </div>
+
+      <!-- sets up the icon representing double resource horizontal template in sidebar -->
+      <div class="sidebar_double_vertical" id= <%="chosen_sidebar_horizontal_#{bid}"%>>
+        <div class="sidebar_horizontal_square">
+          <div class="sidebar_horizontal_smaller_square">
+          </div>
+          <div class="sidebar_horizontal_smaller_square">
+          </div>
+        </div>
+      </div>
+
+      <!-- sets up the div representing single resource denter template when new block is created -->
+      <div class="sidebar_single_centered" id= <%="chosen_sidebar_center_#{bid}"%>>
+        <div class="sidebar_center_square">
+          <div class="sidebar_horizontal_smaller_square">
+          </div>
+        </div>
+      </div>
+    </div> 
 
     <div class="block-form row">
       <%= render :partial => "blocks/form", :locals => {:block => block} %>
