@@ -18,6 +18,9 @@ class ImagesController < ApplicationController
     @image = Image.new
     @block_id = params[:block_id]
     @res_pos = params[:res_pos]
+    puts "proj id"
+    puts params[:project_id]
+    @project = params[:project_id]
   end
 
   # GET /images/1/edit
@@ -34,6 +37,13 @@ class ImagesController < ApplicationController
       @res_pos = block_params[:res_pos]
       puts "created Description for block #{@block.id} at position #{@res_pos}"
     end
+    
+    puts "project: "
+    puts project_params[:project_id]
+    if Project.exists?(project_params[:project_id])
+      @project = Project.find(project_params[:project_id])
+    end
+
 
     respond_to do |format|
       if @image.save
@@ -79,5 +89,9 @@ class ImagesController < ApplicationController
 
     def block_params
       params.require(:image).permit(:block_id, :res_pos)
+    end
+
+    def project_params
+      params.require(:image).permit(:project_id)
     end
 end

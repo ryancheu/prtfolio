@@ -11,6 +11,14 @@
     <% unless @block.nil? %>
     update_block_with_resource("<%= @block.id %>", image, <%= @res_pos %>, "Image", "<%= @image.id %>");
     <% end %>
-    alert_image_loaded("<%= @image.id %>", "<%= @image.content.url %>");
+
+    <% unless @project.nil? %>
+      <% puts "using the good option" %>
+       alert_image_proj_loaded("<%= @image.id %>", "<%= @image.content.url %>", "<%= @project.id %>");
+    <% else %>
+      alert_image_loaded("<%= @image.id %>", "<%= @image.content.url %>");
+    <% end %>
+
+    
 
 <% end %>
