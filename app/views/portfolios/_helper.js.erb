@@ -1,6 +1,7 @@
 $(document).ready(function() {
     init_delete = function(){
         $('.imgproj').mouseenter(function(){console.log($(this));$(this).find('.trash').show()}).mouseleave(function(){$(this).find('.trash').hide()})
+        $('.imgprojset').mouseenter(function(){console.log($(this));$(this).find('.trash').show()}).mouseleave(function(){$(this).find('.trash').hide()})
     }
 
     init_delete()
@@ -58,8 +59,22 @@ $(document).ready(function() {
 
 });
 
+
 var alert_image_loaded = function(id, path) {
     $('.section_portfolio').css('background-image','url(' + path + ')' );
     $('#portfolio_image_id').val(id);
     $('.edit_portfolio').submit();
+}
+
+var alert_image_proj_loaded = function(id, path, projid) {
+    console.log(id);
+    console.log(path);
+    console.log(projid);
+    console.log(    $('#edit_project_' + projid));
+    console.log( $('.proj_image_field'+projid));
+
+    
+    $('#project_image'+projid).css('background-image','url(' + path + ')' );
+    $('.proj_image_field'+projid).val(id);
+    $('#edit_project_' + projid).submit();
 }
