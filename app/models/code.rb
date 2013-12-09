@@ -13,4 +13,7 @@ class Code < ActiveRecord::Base
     return self.block.get_owner
   end
 
+  def partial_path
+    return "codes/code"
+  end
 end
