@@ -29,10 +29,12 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new(image_params)
     # NOTE: @image.block cannot be used because of the polymorphic association (Rails looks for a column resource_id that does not exist)
-    @block = Block.find(block_params[:block_id])
-    @res_pos = block_params[:res_pos]
-    puts "created Description for block #{@block.id} at position #{@res_pos}"
-    
+    if Block.exists?(block_params[:block_id])
+      @block = Block.find(block_params[:block_id])
+      @res_pos = block_params[:res_pos]
+      puts "created Description for block #{@block.id} at position #{@res_pos}"
+    end
+
     respond_to do |format|
       if @image.save
         format.js

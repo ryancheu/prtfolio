@@ -58,9 +58,25 @@ p.proj_link a:hover{
     font-weight:300;
     font-size:70px;
 }
-.section_portfolio {
-    background: url('/assets/codebackground.png');
+.darkenlayer { 
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+z-index: 0;
+height: 100%;
+background-color: #000000;
+opacity: 0.4;
 }
+.portfolio_buttons {
+z-index: 1;
+position:absolute;
+}
+.section_portfolio {
+position: relative;
+
+}
+
 
 .portfolio_user_image_container {
 }
@@ -129,4 +145,10 @@ text {
 .language_box{
   padding:10px;
   border-radius:20px;
+}
+
+.background_image_button_portfolio {
+  margin-top: 20px;
+  width: 64px;
+  height: 64px;
 }

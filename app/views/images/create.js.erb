@@ -1,5 +1,4 @@
 //<!--  Primary Author: ryan -->
-console.log("Gist Created");
 <% if @image.errors.any? %>
     console.log('Error');
     $("#resource-select-modal-body").html('<%= j render partial: "form", locals: {gist_ids: @gist_ids} %>');
@@ -9,6 +8,9 @@ console.log("Gist Created");
 
     $('#resource-select-modal').modal('hide');
     var image = "<%= escape_javascript(render(partial: @image)) %>";
+    <% unless @block.nil? %>
     update_block_with_resource("<%= @block.id %>", image, <%= @res_pos %>, "Image", "<%= @image.id %>");
+    <% end %>
+    alert_image_loaded("<%= @image.id %>", "<%= @image.content.url %>");
 
 <% end %>

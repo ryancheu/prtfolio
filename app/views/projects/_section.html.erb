@@ -42,63 +42,16 @@
     </div> 
     
     <div class="chosen_center" id= <%="chosen_center_#{bid}"%> >
-      <div class="row">
-        <div class="col-md-3">
-        </div>
-        <div class = "col-md-6">
-          <div class= "chosen_template_square" data-pos=0 >
-             <%= render partial: 'projects/resourceButtons', locals: { bid: bid, res_pos: 0 } %>
-          </div>
-        </div>
-        <div class="col-md-3">
-        </div>
-      </div>
+      <%= render partial: 'templates/template1', locals: {bid: bid, showMode: false } %>
     </div>
 
     <!-- show the horizontal template if you choose that -->
     <div class="chosen_horizontal" id= <%="chosen_horizontal_#{bid}"%>>
-      <div class="row">
-        <div class="col-md-1">
-        </div>
-        <div class = "col-md-5">
-          <div class="chosen_template_square" data-pos=1 >
-             <%= render partial: 'projects/resourceButtons', locals: { bid: bid, res_pos: 1 } %>
-          </div>
-        </div>
-        <div class = "col-md-5">
-          <div class="chosen_template_square" data-pos=2>
-             <%= render partial: 'projects/resourceButtons', locals: { bid: bid, res_pos: 2 } %>
-          </div>
-        </div>
-        <div class="col-md-1">
-        </div>
-      </div>
+      <%= render partial: 'templates/template2', locals: {bid: bid, showMode: false } %>
     </div>
 
     <div class="chosen_vertical" id= <%="chosen_vertical_#{bid}"%>>
-      <div class="row">
-        <div class="col-md-3">
-        </div>
-        <div class = "col-md-6">
-          <div class="chosen_template_square_2" data-pos=3>
-             <%= render partial: 'projects/resourceButtons', locals: { bid: bid, res_pos: 3, div_class: "btn-group2" } %>
-          </div>
-        </div>
-        <div class="col-md-3">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-3">
-        </div>
-        <div class = "col-md-6">
-          <div class="chosen_template_square_2" data-pos=4>
-             <%= render partial: 'projects/resourceButtons', locals: { bid: bid, res_pos: 4, div_class: "btn-group2" } %>
-          </div>
-        </div>
-        <div class="col-md-3">
-        </div>
-      </div>
+      <%= render partial: 'templates/template3', locals: {bid: bid, showMode: false } %>
     </div>
   
     <!-- sidebar with different template options -->

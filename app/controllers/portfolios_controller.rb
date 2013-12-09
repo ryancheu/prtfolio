@@ -63,7 +63,7 @@ class PortfoliosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def portfolio_params
-      params[:portfolio]
+      params.require(:portfolio).permit(:image_id);
     end
 
     # Redirects to the current user's portfolio if she already has one
