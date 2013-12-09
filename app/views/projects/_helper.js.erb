@@ -181,6 +181,7 @@ $(document).ready(function(){
       resources = get_resources_for_template(block)
     %>
       (function() { // wrap in a function to create new namespace
+        console.log("Creating new");
         var bid = "<%= block.id %>";
         var res_hash = {
           tid: "<%= block.template_id %>",
