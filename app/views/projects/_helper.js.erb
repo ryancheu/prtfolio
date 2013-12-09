@@ -57,7 +57,7 @@ $(document).ready(function(){
 
 
   // Create a new section for one page scrolling
-  create_section = function(new_section_html, block_id){
+  create_section = function(new_section_html, block_id, resource_hash_opt){
     //determine how to color the section based on the index (number of sections already created)
     console.log("Creating section for block " + block_id + "...");
     // Create a js representation of a block and its resources for this section
@@ -188,7 +188,7 @@ $(document).ready(function(){
       }
       
     });
-
+    return block_for_section;
   };
 
   // Gets the block object for the section that is currently on screen (active)
@@ -206,9 +206,25 @@ $(document).ready(function(){
       $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
   });
 
-  <% @project.blocks.each do |block| %>
-      project_blocks.create_and_add_block("<%= block.id %>");
-      create_section("<%= j render partial: 'projects/section', locals: {:block => block} %>", "<%= block.id %>");
+  // Populate the project_blocks and the sections on the page with the blocks and resources already in the project
+  <% 
+    @project.blocks.each do |block| 
+      resources = get_resources_for_template(block)
+    %>
+      (function() { // wrap in a function to create new namespace
+        var bid = "<%= block.id %>";
+        var tid = "<%= block.template_id %>"
+        var res_hash = {
+          type1: "<%= block.firstres_type %>",
+          id1: "<%= block.firstres_id %>",
+          type2: "<%= block.secondres_type %>",
+          id2: "<%= block.secondres_id %>" };
+
+        var rendered_section = "<%= j render partial: 'projects/section', locals: {:block => block} %>";
+        var b = create_section(rendered_section, bid);
+        b.load(tid, res_hash);
+      })();
+      
   <% end %>
          
 });
