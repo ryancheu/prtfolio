@@ -2,7 +2,7 @@
 class Video < ActiveRecord::Base
   has_one :block, as: :resource
 
-  set up the auto_html logic that will embed images
+  # set up the auto_html logic that will embed images
   auto_html_for :video do
     html_escape
     image
