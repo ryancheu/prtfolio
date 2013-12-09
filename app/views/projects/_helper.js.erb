@@ -206,5 +206,9 @@ $(document).ready(function(){
       $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
   });
 
+  <% @project.blocks.each do |block| %>
+      project_blocks.create_and_add_block("<%= block.id %>");
+      create_section("<%= j render partial: 'projects/section', locals: {:block => block} %>", "<%= block.id %>");
+  <% end %>
          
 });
