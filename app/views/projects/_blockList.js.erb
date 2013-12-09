@@ -153,6 +153,9 @@ $(function() {
     };
 
     self.save = function () {
+                $('.saving_project').fadeIn(300, function() {
+                            $(this).fadeOut(300);
+        });
       console.log("Saving block with template ");
       // Set the template id if valid
       if (template_id === 1 || template_id === 2 || template_id === 3) {
