@@ -4,6 +4,7 @@
 
 		<!--<%= image_tag(project.image.content.url alt="Sample Image", :class => "portfolio_image") %>-->
 	</div>
+
 <% else  %>
 	<div class="imgproj" data-project-id=<%=project.id%>>
 		<div class="delete-proj">
@@ -13,13 +14,14 @@
 		</div>
 	</div>
 <% end  %>
+
 <div class="proj_description outer-align" style="width:100%;height:50px;background-color:#fff">
 	<div class="inner-align">
 		<div style="text-align:center">
 			<% unless project.title.blank? %>
 				<p style="color:#78BAE2" class="proj_link"><%= link_to project.title.html_safe, project %></p>
 				<% else %>
-				<p> No Title </p>
+				<p style="color:#78BAE2" class="proj_link"><%= link_to "Untitled Project", project %></p>
 			<% end %>
 		</div>
 	</div>
