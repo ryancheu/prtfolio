@@ -105,9 +105,6 @@ $(document).ready(function(){
     section.append(new_section_html);
     $("#sidebar").show();
 
-    //----Append the 'add section' button to end of section--//
-    section.append($('<%= j render "plusBlock" %>'));
-
     block_for_section.on_resource_positions_ready();
     block_for_section.on_form_ready();
     
