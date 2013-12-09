@@ -1,4 +1,4 @@
-# Primary Author: ryanc
+# Primary Author: anuhyag
 class Video < ActiveRecord::Base
   has_one :block, as: :resource
 
@@ -6,8 +6,8 @@ class Video < ActiveRecord::Base
   auto_html_for :video do
     html_escape
     image
-    youtube(:width => 548, :height => 450)
-    vimeo(:width => 548, :height => 450)
+    youtube(:width => 544, :height => 450)
+    vimeo(:width => 544, :height => 450)
     link :target => "_blank", :rel => "nofollow"
     simple_format
   end

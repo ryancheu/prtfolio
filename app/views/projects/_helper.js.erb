@@ -161,16 +161,15 @@ $(document).ready(function(){
   };
 
   // Gets the block object for the section that is currently on screen (active)
-  var block_in_focus = function() {
-    console.log($("section.active .block-container"));
-    console.log($("section.active .block-container").data());
-    var bid = $("section.active .block-container").data("blockId");
-    console.log("Block " + bid + " is in focus");
-    return project_blocks.get_block(bid);
-  };
+  // var block_in_focus = function() {
+  //   console.log($("section.active .block-container"));
+  //   console.log($("section.active .block-container").data());
+  //   var bid = $("section.active .block-container").data("blockId");
+  //   console.log("Block " + bid + " is in focus");
+  //   return project_blocks.get_block(bid);
+  // };
 
   // When the modal is hidden, rebind the mousewheel for one page scroll
-  // and save the form
   $('#resource-select-modal').on('hidden.bs.modal', function () {
       $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
   });
@@ -182,6 +181,7 @@ $(document).ready(function(){
     %>
       (function() { // wrap in a function to create new namespace
         var bid = "<%= block.id %>";
+        console.log("Adding block " + bid);
         var res_hash = {
           tid: "<%= block.template_id %>",
           type1: "<%= block.firstres_type %>",
