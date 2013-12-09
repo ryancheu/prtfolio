@@ -5,12 +5,19 @@
 	bid = bid || 0
 	# showMode is true when showing, or false for editing
 	showMode = showMode || false
+	temp = temp || false
+	class_name = "template2_chosen_square_borderless" 
+    id_name = "template2_chosen_square_borderless"
+    if temp != 1
+        class_name = "template2_chosen_square"
+        id_name = "template2_chosen_square"
+    end
 %>
 
 
 <div class="row">
 
-	<div class="template2_chosen_square" data-pos=1 >
+	<div class="<%= class_name %>" id="<%= id_name %>" data-pos=1 >
 		<% if showMode %>
 			<%= render resource1 %>
 		<% else %>
@@ -18,7 +25,7 @@
 		<% end %>
 	</div>
 
-	<div class="template2_chosen_square" data-pos=2>
+	<div class="<%= class_name %>" id="<%= id_name %>" data-pos=2 >
 		<% if showMode %>
 			<%= render resource2 %>
 		<% else %>
@@ -27,3 +34,4 @@
 	</div>
 	
 </div>
+

@@ -47,5 +47,18 @@ $(document).ready(function(){
 
   };
 
+  var remove_border = function (){
+    console.log("in remove border");
+    $("#template1_chosen_square").each(function(){
+      console.log("in template 1 chosen")
+      $(this).css("border", "none");
+    })
+
+    $("#template2_chosen_square").each(function(){
+      $(this).css("border", "none");
+    })
+  };
+
+  remove_border();
          
 });

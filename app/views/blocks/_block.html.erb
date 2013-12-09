@@ -3,14 +3,17 @@
     template_partial = get_template_partial_name(block.template_id)
     resources = get_resources_for_template(block)
     resources[:showMode] = true
+    temp = temp || false
+    resources[:temp] = temp
     color_name = color_name || "dark-gray"
     color_hex = color_hex || "#343838"
     last = last || false
+    
 %>
 <section style="<%= "background-color: #{color_hex};" %>">
     <div class="margin_top">
         <div class="container">
-            <%= render partial: template_partial, locals: resources %>
+            <%= render partial: template_partial, locals: resources  %>
         </div>
     </div>
     <% unless last %>
