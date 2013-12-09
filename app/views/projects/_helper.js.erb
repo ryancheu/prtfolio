@@ -84,14 +84,16 @@ $(document).ready(function(){
     //adds the section (method in jquery.onepage-scroll)
     $('.main').addSection();
 
-    $('#onepage section:last').css("background-color",section_color(true));
+    var section = $('#onepage section:last');
+
+    section.css("background-color",section_color(true));
 
     //---Append description to the section--//
-    $('#onepage section:last').append(new_section_html);
+    section.append(new_section_html);
     $("#sidebar").show();
 
     //----Append the 'add section' button to end of section--//
-    $('#onepage section:last').append($('<%= j render "plusBlock" %>'));
+    section.append($('<%= j render "plusBlock" %>'));
 
     block_for_section.on_resource_positions_ready();
     block_for_section.on_form_ready();
@@ -111,6 +113,8 @@ $(document).ready(function(){
     var sidebar_horizontal = $("#chosen_sidebar_horizontal_" + block_id);
     var sidebar_vertical = $("#chosen_sidebar_vertical_" + block_id);
     var sidebar_center = $("#chosen_sidebar_center_" + block_id);
+
+    var delete_icon = $("#sidebar_delete_" + block_id);
 
     var reset = function(){
       $("#template_selection_heading").remove();
@@ -188,6 +192,29 @@ $(document).ready(function(){
         $(curr).fadeIn();
       }
       
+    });
+
+    $(delete_icon).click(function( event) {
+      console.log("Delete called on block " + block_id);
+      var section_id = section.data("index");
+      $.each($('section'), function(i) {
+        var index = $(this).data('index');
+        if (index == section_id){
+          //make the one before active
+          $('.main').moveUp();
+          css_style = $(this).css(['position','top','background-color']);
+          console.log(css_style)   ;
+          $(this).remove();
+        }
+        if (index > section_id){
+          $(this).data('index', index -1);
+          //take the styling of the previous one
+          $(this).css(css_style);
+          css_style = $(this).css(['position','top','background-color']);
+        }
+      });
+      //remove one from the bottom of the ordered list
+      $('ul.onepage-pagination li').last().remove();
     });
 
     if (loaded) {
