@@ -10,7 +10,7 @@
         <div class="darkenlayer"> </div>
         
         <% unless current_user != @user or @public == true %>
-        <div class="portfolio_buttons container" >
+          <div class="portfolio_buttons container" >
             <div class="saving_portfolio">saving...</div>
           <%# Use remote form to submit live changes to the project's title and description %>
           <%= form_for(@user, remote: true) do |f| %>
@@ -28,9 +28,9 @@
           <%= link_to new_image_path, remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
             <%= image_tag "img-icon-grey.png", class: "background_image_button_portfolio" %>
           <% end %>
-
         </div>
-        <% end %>
+        <% end %> <!-- end of restricted access div -->
+        
           <div style="margin-top:160px">
             <div class="container">
               <div class="row" >

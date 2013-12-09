@@ -7,19 +7,19 @@ $(document).ready(function() {
     init_delete()
 
     $(".main").onepage_scroll();
-        <% unless current_user != @user or @public == true %>
-    var realname_medium = new Medium({
-        element: document.getElementById('realname'),
-        mode: 'inline',
-        maxLength: 20,
-        placeholder: 'Full Name'
-    });
-    var bio_medium = new Medium({
-        element: document.getElementById('bio'),
-        mode: 'inline',
-        maxLength: 100,
-        placeholder: 'Write about yourself'
-    });
+    <% unless current_user != @user or @public == true %>
+        var realname_medium = new Medium({
+            element: document.getElementById('realname'),
+            mode: 'inline',
+            maxLength: 20,
+            placeholder: 'Full Name'
+        });
+        var bio_medium = new Medium({
+            element: document.getElementById('bio'),
+            mode: 'inline',
+            maxLength: 100,
+            placeholder: 'Write about yourself'
+        });
     <% end %>
     // populate the title and description fields if appropriate
         <% if can_show? @user.realname %>

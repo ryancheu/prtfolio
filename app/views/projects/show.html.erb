@@ -15,7 +15,7 @@
                   <img class="media-object img-rounded portfolio_user_image" style="width: 75px; height: 75px;" src=<%= @project.get_owner.image_url %> alt="Sample Image">
                 </a>
                 <div class="media-body">
-                  <h1 class="media-heading name" style="margin-left:5px; color:#343838; font-weight:500;"><%= current_user.fullname%></h1>
+                  <h1 class="media-heading name" style="margin-left:5px; color:#343838; font-weight:500;"><%= @project.get_owner.fullname%></h1>
                 </div>
               </div>
             </div>
