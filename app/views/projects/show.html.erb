@@ -20,12 +20,6 @@
               </div>
             </div>
             <div class="col-md-2">
-              <%# Use remote form to submit live changes to the project's title and description %>
-              <%= form_for(@project, remote: true) do |f| %>
-                <%= f.hidden_field :title %>
-                <%= f.hidden_field :description %>
-                <%= f.submit 'Save Changes', class: "btn btn-warning", disable_with: "Saving..." %>
-              <% end %>
             </div>
             
           </div>
