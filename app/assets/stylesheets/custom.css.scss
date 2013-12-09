@@ -352,6 +352,25 @@ html, body {
   left:10px; top:80px; bottom: 0;
   width: 45px;
 }
+.sidebar_delete{
+  color:#fff;
+  display: table-cell;
+  vertical-align: middle;
+  font-size:20px;
+  text-align:center;
+  margin: 5px;
+  width: 35px;
+  height: 35px;
+  border: 1px;
+  border-color:#a9afb4;
+  border-style:dashed dashed dashed dashed;
+}
+.sidebar_delete:hover{
+  color:#78BAE2;
+}
+.sidebar_delete_container{
+  margin-bottom:15px;
+}
 
 .sidebar_horizontal_square{
   display: table-cell;
