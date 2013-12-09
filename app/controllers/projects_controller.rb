@@ -7,12 +7,14 @@ class ProjectsController < ApplicationController
 
   include GistHelper
   include ProjectsHelper
+  include BlocksHelper
 
   def index
     @projects = Project.all
   end
 
   def show
+    @blocks = get_full_blocks_for_project(@project)
     @user  = @project.get_owner()
   end
 

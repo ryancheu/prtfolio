@@ -16,6 +16,8 @@ p.proj_link a:hover{
   color:#78BAE2;
 }
 
+.imgprojset {
+}
 .imgproj{
     background: url(image_path('default.jpg')) no-repeat; 
     -webkit-background-size: cover;
@@ -155,4 +157,11 @@ text {
 .background_image_button_portfolio_proj {
   width: 64px;
   height: 64px;
+}
+
+.saving_portfolio {
+    margin-top: 20px;
+    color: #fff;
+    float: right;
+    font-size: 15px;
 }
