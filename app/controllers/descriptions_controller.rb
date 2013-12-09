@@ -44,7 +44,7 @@ class DescriptionsController < ApplicationController
   def update
     respond_to do |format|
       if @description.update(description_params)
-        format.html { redirect_to @description, notice: 'Description was successfully updated.' }
+        format.html { redirect_to @description }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

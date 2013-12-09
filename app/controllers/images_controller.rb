@@ -57,7 +57,7 @@ class ImagesController < ApplicationController
   def update
     respond_to do |format|
       if @image.update(image_params)
-        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
+        format.html { redirect_to @image }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

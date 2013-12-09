@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       params[:user].delete(:password) if params[:user][:password].blank?    
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'Successfully updated.' }
+        format.html { redirect_to @user }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
