@@ -1,0 +1,51 @@
+$(document).ready(function(){
+  // Add one page scroll to the project page
+  $(".main").onepage_scroll();
+
+  // Initialize title and description as medium editable elements, with content from project
+
+    // populate the title and description fields if appropriate
+    <% if can_show? @project.title %>
+      $('#proj-title').html("<%= @project.title.html_safe %>");
+    <% end %>
+
+    <% if can_show? @project.description %>
+      $("#proj-description").html("<%= @project.description.html_safe %>");
+    <% end %>
+
+
+  // Create a new section for one page scrolling
+  create_section = function(new_section_html){
+    //determine how to color the section based on the index (number of sections already created)
+    console.log("Creating section for block...");
+    // Create a js representation of a block and its resources for this section
+
+    var section_color = function(hex){
+      hex = typeof hex !== 'undefined' ? hex : false;
+      colors = ['dark-gray', 'gray'];
+      hex_colors = ["#343838", "#ecf0f1"];
+      if (hex){
+        section_index = ($('section').length) % 2;
+        return hex_colors[section_index];
+      }
+      section_index = ($('section').length + 1) % 2;
+      return colors[section_index];
+    }; 
+
+    //add the chevron/down arrow and div to go down to next section
+    $('#onepage section:last').append('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>');
+
+    $('#onepage section:last').append('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>');
+
+    //adds the section (method in jquery.onepage-scroll)
+    $('.main').addSection();
+
+    $('#onepage section:last').css("background-color",section_color(true));
+
+    //---Append new_section_html to the sections --//
+    $('#onepage section:last').append(new_section_html);
+
+  };
+
+         
+});

@@ -1,12 +1,6 @@
 <!-- primary author: isabellat -->
-
 <script type="text/javascript">
-  // this js file must be included before any js file that uses its data structures
-  <%= render 'blockList.js.erb' %> 
-</script>
-
-<script type="text/javascript">
-  <%= render 'helper.js.erb' %>
+  <%= render 'showHelper.js.erb' %>
 </script>
 
 <div class="onepage-body" >
@@ -47,12 +41,14 @@
       </div>
     </section>
 
-    <% @project.blocks.each do |block| %>
-    <section>
-      <div class="container">
-        <%= render block %>
-      </div>
-    </section>
+    <%
+      count = 1 
+      @project.blocks.each do |block| 
+        color = section_color(count)
+        color_hex = section_color_hex(count)
+        count+= 1
+    %>
+      <%= render partial: "blocks/block", locals: {block: block, color_name: color, color_hex: color_hex } %>
     <% end %>
 
   </div>
