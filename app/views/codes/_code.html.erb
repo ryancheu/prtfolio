@@ -1,12 +1,37 @@
 <!-- # Primary Author: psaylor -->
 <!-- Using code formatting from https://github.com/blairvanderhoof/gist-embed -->
-<% unless code.gist_id %>
-<pre class="brush: <%= code.language %>"> 
-<%= code.content %>
-</pre>
-<a href="<%= code.link %>">View on Github</a>
-<% else %>
-<% puts "Rendering code with gist id #{code.gist_id}" %>
-<code data-gist-id=<%= code.gist_id %> >
-</code>
-<% end %>
+
+<div class="code-class" id="code-class">
+	<% unless code.gist_id %>
+		<pre class="brush: <%= code.language %>"> 
+			<%= code.content %>
+		</pre>
+		<a href="<%= code.link %>">View on Github</a>
+	<% else %>
+		<% puts "Rendering code with gist id #{code.gist_id}" %>
+		<code data-gist-id=<%= code.gist_id %> >
+		</code>
+	<% end %>
+</div>
+
+<script>
+	w = 350
+	h = 350
+	var curr_height = $("#code-class").height();
+	var new_height = (h - curr_height)/2;
+	console.log("code height", curr_height);
+	console.log("new height", new_height);
+
+	var curr_width = $("#code-class").width();
+	var new_width = (w - curr_width)/2;
+	console.log("code width", curr_width);
+	console.log("new width", new_width);
+
+	$("#code-class").css("padding-top", new_height);
+
+	$("#code-class").css("padding-bottom", new_height);
+	$("#code-class").css("padding-right", new_width);
+	$("#code-class").css("padding-left", new_width);
+
+</script>
+

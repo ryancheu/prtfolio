@@ -1,9 +1,29 @@
 <%# Primary Author: psaylor %>
-<div class="panel panel-default">
-    <div class="panel-heading">
+<div class="panel panel-default" id ="description-class">
+    <div class="panel-heading" id = "description-heading">
         <h3 class="panel-title"> <%= description.title.html_safe %> </h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" id = "description-body">
         <%= simple_format(description.content) %>
     </div>
 </div>
+
+<script>
+	w = 350
+	h = 350
+	var curr_height = $("#description-class").height();
+	var new_height = (h - curr_height)/2;
+	console.log("description height", curr_height);
+	console.log("new height", new_height);
+
+	var heading_height = $("#description-heading").height();
+	$("#description-body").css("padding-bottom", 350-heading_height);
+
+	var curr_width = $("#description-class").width();
+	var new_width = (w - curr_width)/2;
+	console.log("description width", curr_width);
+	console.log("new width", new_width);
+	$("#description-class").css("padding-right", new_width);
+	$("#description-class").css("padding-left", new_width);
+
+</script>
