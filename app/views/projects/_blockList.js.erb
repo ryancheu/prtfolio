@@ -132,8 +132,8 @@ $(function() {
     };
 
     // Sets the template to tid and loads the resource ids and types specified in the resources hash into the appropriate resources given the template
-    self.load = function (tid, resources) {
-      template_id = tid;
+    self.load = function (resources) {
+      template_id = resources.tid;
       console.log(resources);
       if (template_id == 1) { // Single Resource Template
         console.log("Loading single resource");
