@@ -9,15 +9,16 @@
 </div>
 
 <script>
-	w = 350
-	h = 350
+	w = 550
+	h = 550
 	var curr_height = $("#description-class").height();
 	var new_height = (h - curr_height)/2;
 	console.log("description height", curr_height);
 	console.log("new height", new_height);
 
 	var heading_height = $("#description-heading").height();
-	$("#description-body").css("padding-bottom", 350-heading_height);
+	$("#description-body").css("margin-bottom", 350-heading_height);
+	$("#description-class").css("background-color", "#000000");
 
 	var curr_width = $("#description-class").width();
 	var new_width = (w - curr_width)/2;

@@ -41,7 +41,7 @@ class BlocksController < ApplicationController
   def update
     respond_to do |format|
       if @block.update(block_params)
-        format.html { redirect_to [@project, @block], notice: 'Block was successfully updated.' }
+        format.html { redirect_to [@project, @block] }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

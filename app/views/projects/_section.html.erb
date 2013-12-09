@@ -6,42 +6,13 @@
 
 <!-- template code for creating a new block in its own section on the page-->
 <div class="margin_top">
-    <div class="saving_project">saving...</div>
+  <div class="saving_project">saving...</div>
   <div class="container block-container" id=<%= "block-#{bid}" %> data-block-id=<%= "#{bid}" %> >
-    <!-- <h1 id="template_selection_heading" style="color:#a9afb4;"> Select A Template: </h1> -->
     <br>
-    <div class="row new_block_template_choice" data-block-id=<%= "#{bid}" %> >
-      
-      <!-- sets up the div representing double resource horizontal template when new block is created -->
-
-      <div class = "col-md-4">
-        <div class="template_choice_outer_square" id=<%= "horizontal-#{bid}" %> >
-          <div class = "template_choice_horizontal">
-          </div>
-           <div class = "template_choice_horizontal">
-          </div>
-        </div>
-      </div>
-      
-      <!-- sets up the div representing single resource center template when new block is created -->
-      <div class = "col-md-4">
-        <div class="template_choice_outer_square" id=<%= "vertical-#{bid}" %>>
-          <div class = "template_choice_vertical">
-          </div>
-          <div class = "template_choice_vertical">
-          </div>
-        </div>
-      </div>
-      
-      <!-- sets up the icon representing single resource template in sidebar -->
-      <div class = "col-md-4">
-        <div class="template_choice_outer_square" id=<%= "center-#{bid}" %>>
-            <div class = "template_choice_center">
-            </div>
-        </div>
-      </div>
-    </div> 
     
+    <!--////////////////////////////// CHOSEN RESOURCE TEMPLATE DISPLAY //////////////////////////////////-->
+    
+    <!-- show the single resource centered template if you choose that -->
     <div class="chosen_center" id= <%="chosen_center_#{bid}"%> >
       <%= render partial: 'templates/template1', locals: {bid: bid, showMode: false } %>
     </div>
@@ -51,26 +22,13 @@
       <%= render partial: 'templates/template2', locals: {bid: bid, showMode: false } %>
     </div>
 
-    <div class="chosen_vertical" id= <%="chosen_vertical_#{bid}"%>>
-      <%= render partial: 'templates/template3', locals: {bid: bid, showMode: false } %>
-    </div>
-  
+    <!-- /////////////////////////////// SIDEBAR DISPLAY /////////////////////////////////////////////////-->
+   
     <!-- sidebar with different template options -->
     <div class="sidebar" id="sidebar" rel="tooltip">
-      <!-- sets up the icon representing double resource vertical template in sidebar -->
-      <div class="sidebar_double_horizontal" title= "Switch to Horizontal Template" id= <%="chosen_sidebar_vertical_#{bid}"%> >
-        <div class="sidebar_vertical_square">
-          <div class="sidebar_vertical_smaller_square">
-          </div>
-          <div class="sidebar_vertical_smaller_square">
-          </div>
-        </div>
-        <div class="block-form">
-        </div>
-      </div>
-
+     
       <!-- sets up the icon representing double resource horizontal template in sidebar -->
-      <div class="sidebar_double_vertical" title= "Switch to Vertical Template" id= <%="chosen_sidebar_horizontal_#{bid}"%>>
+      <div class="sidebar_double_horizontal" title= "Switch to Horizontal Template" id= <%="chosen_sidebar_horizontal_#{bid}"%>>
         <div class="sidebar_horizontal_square">
           <div class="sidebar_horizontal_smaller_square">
           </div>
@@ -79,17 +37,19 @@
         </div>
       </div>
 
-      <!-- sets up the div representing single resource denter template when new block is created -->
+      <!-- sets up the div representing single resource center template when new block is created -->
       <div class="sidebar_single_centered" title= "Switch to Single Resource Template" id= <%="chosen_sidebar_center_#{bid}"%>>
         <div class="sidebar_center_square">
           <div class="sidebar_horizontal_smaller_square">
           </div>
         </div>
       </div>
+
     </div> 
 
     <div class="block-form row">
       <%= render :partial => "blocks/form", :locals => {:block => block} %>
     </div>
+
   </div>
 </div>

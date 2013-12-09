@@ -7,8 +7,4 @@ class Image < ActiveRecord::Base
     thumb: '400x250#'
   }
 
-  def partial_path
-  	return "images/image"
-  end
-
 end

@@ -285,104 +285,68 @@ html, body {
     width: 50%;
 }
 
-/* //////////////////////// NEW BLOCK TEMPLATE AND SIDEBAR ////////////////////////////// */
 
-/* css code for the divs that allow a user to choose a template upon block creation */
+/* ///////////////////////////// TEMPLATE 1 & TEMPLATE 2 RENDERING ////////////////////////////////// */
+
+/* primary author: anuhyag */
+
+.template1_chosen_square{
+  width: 550px;
+  height: 550px;
+  margin:0 auto;
+  border: 3px dashed;
+  border-color: #78BAE2;
+  word-wrap: break-word; 
+}
+
+.template2_chosen_square{
+  width: 550px;
+  height: 550px;
+  float: left;
+  border: 3px dashed;
+  border-color: #78BAE2;
+  word-wrap: break-word; 
+  margin-left:30px;
+}
+
+/* ////////////////////////////////////// NEW BLOCK TEMPLATE CHOICES //////////////////////////////////////// */
+
 /* primary author: anuhyag */
 
 .template_choice_outer_square{
-  width: 350px;
-  height: 350px;
+  width: 560px;
+  height: 420px;
   border: 2px dashed;
   border-color: #a9afb4;
   display: inline-block;
   background-color: #FFFFFF;
 }
 
-.chosen_template_square{
-  width: 350px;
-  height: 350px;
-  border: 8px solid;
-  border-color: #a9afb4;
-  background-color: #FFFFFF;
-  word-wrap: break-word; 
-
-}
-
-.chosen_template_square3{
-  width: 350px;
-  height: 350px;
-  background-color: #000000;
-  float: left;
-  margin-left: 100px;
-  margin-right: 100px;
-  margin-top: 50px;
-  border: 1px solid;
-  border-color: #a9afb4;
-  word-wrap: break-word; 
-
-}
-
-.chosen_template_square2{
-  width: 350px;
-  height: 350px;
-  border: 1px solid;
-  border-color: #a9afb4;
-  background-color: #000000;
-  margin: 90px;
-  word-wrap: break-word; 
-}
-
-.chosen_template_square4{
-  width: 350px;
-  height: 350px;
-  margin-left: 390px;
-  border: 1px solid;
-  border-color: #a9afb4;
-  background-color: #000000;
-  word-wrap: break-word; 
-
-}
-
-/* used for the vertical template */
-.chosen_template_square_2{
-  width: 350px;
-  height: 350px;
-  border: 8px solid;
-  border-color: #a9afb4;
-  margin-left: 100px;
-  background-color: #FFFFFF;
-  word-wrap: break-word; 
-
-}
-
 .template_choice_horizontal{
   display: inline-block;
-  margin-top: 125px;
-  margin-left: 40px;
-  margin-right:20px;
-  width: 100px;
-  height: 100px;
+  margin-left: 70px;
+  margin-right:65px;
+  margin-top: 140px;
+  margin-bottom: 140px;
+  width: 140px;
+  height: 140px;
   background-color: #78BAE2;
   float:left; 
 }
 
-.template_choice_vertical{
-  margin-left: 125px;
-  margin-top: 50px;
-  width: 100px;
-  height: 100px;
-  background-color: #78BAE2; 
-}
-
 .template_choice_center{
   display: inline-block;
-  margin:125px;
-  width: 100px;
-  height: 100px;
+  margin-right: 210px;
+  margin-left: 210px;
+  margin-top: 140px;
+  margin-bottom: 140px;
+  width: 140px;
+  height: 140px;
   background-color: #78BAE2;
   float:left;
 }
+
+/* ///////////////////////////////////// SIDEBAR WITH TEMPLATE OPTIONS /////////////////////////////////////// */
 
 /* css code for the sidebar that allows a user to toggle between templates */
 /* primary author: anuhyag */
@@ -401,7 +365,7 @@ html, body {
   height: 35px;
   border: 1px;
   border-color:#a9afb4;
-  border-style:hidden dashed dashed dashed;
+  border-style:dashed dashed dashed dashed;
 }
 
 .sidebar_horizontal_smaller_square{
@@ -413,23 +377,6 @@ html, body {
   float:left;
 }
 
-.sidebar_vertical_square{
-  width: 35px;
-  height: 35px;
-  border: 1px;
-  border-color:#a9afb4;
-  border-style:dashed dashed dashed dashed;
-}
-
-.sidebar_vertical_smaller_square{
-  margin-left: 10px;
-  margin-top: 4.5px;
-  margin-bottom: 4.5px;
-  width: 10px;
-  height: 10px;
-  background-color: #78BAE2;
-}
-
 .sidebar_center_square{
   padding: 8px;
   width: 35px;
@@ -439,14 +386,9 @@ html, body {
   border-style:hidden dashed dashed dashed;
 }
 
-.outer_square{
-    width: 350px;
-    height: 350px;
-    border: 2px dashed;
-}
-
 /* ///////////////////////////////// TEMPLATE PRETTYFYING CODE ///////////////////////////////////// */
 
+/* primary author: anuhyag */
 
 .video_arrangement {
   padding-top: 125px;
@@ -464,16 +406,6 @@ html, body {
   max-width: 100%;
   max-height: 100%;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -504,8 +436,8 @@ html, body {
 }
 
 .btn-group{
-  margin-left: 50px;
-  margin-top: 150px;
+  margin-left: 150px;
+  margin-top: 230px;
 }
 
 .btn-group2{
