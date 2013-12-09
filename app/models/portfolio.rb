@@ -9,5 +9,5 @@ class Portfolio < ActiveRecord::Base
   def to_param
     user.username;
   end
-    
+
 end

@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = current_user.new_project({})
+    @project = current_user.new_project
 
     respond_to do |format|
       if @project.save

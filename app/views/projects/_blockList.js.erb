@@ -80,7 +80,8 @@ $(function() {
     // Updates the resource at position res_pos in the block's template
     // to have the type and id specified
     // Also set the view of that resource in the block to the provided partial
-    self.update_resource = function (res_pos, res_type, res_id, partial) {
+    self.update_resource = function (res_pos, res_type, res_id, partial, skipSubmit) {
+      skipSubmit = skipSubmit || false;
       console.log("Updating resource at position " + res_pos + " with type " + res_type + " and id " + res_id);
       if (res_pos == 0 ) {
         console.log("Upating single resource");
@@ -107,24 +108,47 @@ $(function() {
         res4.update(res_type, res_id);
         pos4.html(partial);
       }
-      form.submit();
+      if (!skipSubmit) {
+        form.submit();
+      }
     };
 
     self.swap_resources = function () {
-      if (template_id === 1) { // Single Resource Template
+      if (template_id == 1) { // Single Resource Template
         console.error("Cannot swap resources on template 1");
-      } else if (template_id === 2) { // Left/Right Template
+      } else if (template_id == 2) { // Left/Right Template
         console.log("Swapping left and right resources");
         var temp_res = res1;
         res1= res2;
         res2 = temp_res;
-      } else if (template_id === 3) { // Top/Bottom Template
+      } else if (template_id == 3) { // Top/Bottom Template
         console.log("Swapping top and bottom resources");
         var temp_res = res3;
         res3= res4;
         res4 = temp_res;
       } else {
         console.error("Cannot swap resources of undefined template");
+      }
+    };
+
+    // Sets the template to tid and loads the resource ids and types specified in the resources hash into the appropriate resources given the template
+    self.load = function (resources) {
+      template_id = resources.tid;
+      console.log(resources);
+      if (template_id == 1) { // Single Resource Template
+        console.log("Loading single resource");
+
+        self.update_resource(0, resources.type1, resources.id1, resources.partial1 , true);
+      } else if (template_id == 2) { // Left/Right Template
+        console.log("Loading left and right resources");
+        self.update_resource(1, resources.type1, resources.id1, resources.partial1, true);
+        self.update_resource(2, resources.type2, resources.id2, resources.partial2, true);
+      } else if (template_id == 3) { // Top/Bottom Template
+        console.log("Loading top and bottom resources");
+        self.update_resource(3, resources.type1, resources.id1, resources.partial1, true);
+        self.update_resource(4, resources.type2, resources.id2, resources.partial2, true);
+      } else {
+        console.error("Cannot load resources of undefined template "+template_id + ".");
       }
     };
 
@@ -195,7 +219,6 @@ $(function() {
     var bList = new Array();
 
     var self = createObject(BlockList.prototype);
-
 
     // Creates a new block instance with block_id bid and adds it to the BlockList; returns the new block
     self.create_and_add_block = function (bid) {

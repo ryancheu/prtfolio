@@ -9,7 +9,7 @@
         <div class="row" style="padding-top:40px">
       <% end %>
         <div class="col-md-4">
-          <%= render partial: "/portfolios/projectOverview", locals: {index: index, project: project} %>
+          <%= render partial: "/portfolios/projectOverview", locals: {user: user, index: index, project: project, public: public} %>
         </div>
         <% index = index +1 %>
     <% end %>

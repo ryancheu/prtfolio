@@ -7,6 +7,7 @@ $(document).ready(function() {
     init_delete()
 
     $(".main").onepage_scroll();
+        <% unless current_user != @user or @public == true %>
     var realname_medium = new Medium({
         element: document.getElementById('realname'),
         mode: 'inline',
@@ -19,6 +20,7 @@ $(document).ready(function() {
         maxLength: 100,
         placeholder: 'Write about yourself'
     });
+    <% end %>
     // populate the title and description fields if appropriate
         <% if can_show? @user.realname %>
         $('#realname').html("<%= @user.realname.html_safe %>");
@@ -28,6 +30,13 @@ $(document).ready(function() {
         $("#bio").html("<%= @user.bio.html_safe %>");
         <% end %>
 
+    var updateUser = function() {
+        $('.edit_user').submit();
+        $('.saving_portfolio').fadeIn(300, function() {
+            $(this).fadeOut(300);
+        });
+    }
+
     // save the title and description when it loses focus
     $("#realname").blur(function() {
         var updated_name = $(this).html();
@@ -35,6 +44,7 @@ $(document).ready(function() {
             updated_name = "";
         }
         $("#user_realname").val(updated_name);
+        updateUser();
     });
 
     $("#bio").blur(function() {
@@ -43,7 +53,10 @@ $(document).ready(function() {
             updated_bio = "";
         }
         $("#user_bio").val(updated_bio);
+        updateUser();
     });
+    $('.saving_portfolio').fadeOut(0);
+
 
 
     var imageurl;
@@ -60,6 +73,7 @@ $(document).ready(function() {
 });
 
 
+
 var alert_image_loaded = function(id, path) {
     $('.section_portfolio').css('background-image','url(' + path + ')' );
     $('#portfolio_image_id').val(id);
@@ -71,3 +85,5 @@ var alert_image_proj_loaded = function(id, path, projid) {
     $('.proj_image_field'+projid).val(id);
     $('#edit_project_' + projid).submit();
 }
+
+
