@@ -3,16 +3,13 @@
 	resource1 = resource1 || Description.create(title: "No Title", content: "No resource provided")
 	resource2 = resource2 || Description.create(title: "No Title 2", content: "No second resource provided")
 	bid = bid || 0
-
 	# showMode is true when showing, or false for editing
 	showMode = showMode || false
 %>
 
 <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class = "col-md-6">
-        <div class="chosen_template_square_2" data-pos=3>
+   
+        <div class="chosen_template_square4" data-pos=3>
         	<% if showMode %>
 				<%= render resource1 %>
 			<% else %>
@@ -20,16 +17,7 @@
 			<% end %>
             
         </div>
-    </div>
-    <div class="col-md-3">
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class = "col-md-6">
-        <div class="chosen_template_square_2" data-pos=4>
+        <div class="chosen_template_square4" data-pos=4>
         	<% if showMode %>
 				<%= render resource2 %>
 			<% else %>
@@ -37,7 +25,4 @@
 			<% end %>
             
         </div>
-    </div>
-    <div class="col-md-3">
-    </div>
 </div>

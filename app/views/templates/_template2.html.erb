@@ -3,32 +3,27 @@
 	resource1 = resource1 || Description.create(title: "No Title", content: "No resource provided")
 	resource2 = resource2 || Description.create(title: "No Title 2", content: "No second resource provided")
 	bid = bid || 0
-
 	# showMode is true when showing, or false for editing
 	showMode = showMode || false
 %>
 
+
 <div class="row">
-	<div class="col-md-1">
+
+	<div class="chosen_template_square3" data-pos=1 >
+		<% if showMode %>
+			<%= render resource1 %>
+		<% else %>
+			<%= render partial: 'projects/resourceButtons', locals: { bid: bid, res_pos: 1} %>
+		<% end %>
 	</div>
-	<div class = "col-md-5">
-		<div class="chosen_template_square" data-pos=1 >
-			<% if showMode %>
-				<%= render resource1 %>
-			<% else %>
-				<%= render partial: 'projects/resourceButtons', locals: { bid: bid, res_pos: 1 } %>
-			<% end %>
-		</div>
+
+	<div class="chosen_template_square3" data-pos=2>
+		<% if showMode %>
+			<%= render resource2 %>
+		<% else %>
+			<%= render partial: 'projects/resourceButtons', locals: { bid: bid, res_pos: 2 } %>
+		<% end %>
 	</div>
-	<div class = "col-md-5">
-		<div class="chosen_template_square" data-pos=2>
-			<% if showMode %>
-				<%= render resource2 %>
-			<% else %>
-				<%= render partial: 'projects/resourceButtons', locals: { bid: bid, res_pos: 2 } %>
-			<% end %>
-		</div>
-	</div>
-	<div class="col-md-1">
-	</div>
+	
 </div>

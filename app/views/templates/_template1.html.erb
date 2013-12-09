@@ -2,7 +2,6 @@
 <%
 	resource1 = resource1 || Description.create(title: "No Title", content: "No resource provided")
     bid = bid || 0
-
     # showMode is true when showing, or false for editing
     showMode = showMode || false
 %>
@@ -10,16 +9,22 @@
 <div class="row">
     <div class="col-md-3">
     </div>
-    <div class = "col-md-6">
-        <div class= "chosen_template_square" data-pos=0 >
-            <% if showMode %>
-                <%= render resource1 %>
-            <% else %>
-                <%= render partial: 'projects/resourceButtons', locals: { bid: bid, res_pos: 0 } %>
-            <% end %>
-            
-        </div>
-    </div>
+	    <div class = "col-md-6">
+	        <div class= "chosen_template_square2" id="template_1_chosen_square" data-pos=0 >
+		            <% if showMode %>
+		                <%= render resource1 %>
+		            <% else %>
+		                <%= render partial: 'projects/resourceButtons', locals: { bid: bid, res_pos: 0 } %>
+		            <% end %>
+	        </div>
+	    </div>
     <div class="col-md-3">
     </div>
 </div>
+
+<script>
+ 	var videoColor = document.getElementById("template_1_chosen_square");
+ 	console.log("hello",videoColor);
+ 	videoColor.style.background.color = "black"; //to change the font color
+ 	videoColor.style.border.color = "black";
+</script>

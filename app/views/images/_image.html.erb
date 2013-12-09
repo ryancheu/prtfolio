@@ -1,8 +1,29 @@
 <!-- # Primary Author: ryan -->
-<% 
-    image_src = image.content.url || "/test.jpg"
-%>
+<% image_src = image.content.url || "/test.jpg"%>
 
-<div class="thumbnail span5" style="border: 5px solid black;">
+<div class="thumbnail span5" style="background-color:black;" id="image-class">
+	
     <img src= <%= image_src %> alt="Sample Image">
+ 
 </div>
+
+<script>
+	w = 350
+	h = 350
+	var curr_height = $("#image-class").height();
+	var new_height = (h - curr_height)/2;
+	console.log("image height", curr_height);
+	console.log("new height", new_height);
+
+	var curr_width = $("#image-class").width();
+	var new_width = (w - curr_width)/2;
+	console.log("image width", curr_width);
+	console.log("new width", new_width);
+
+	$("#image-class").css("padding-top", new_height);
+
+	$("#image-class").css("padding-bottom", new_height);
+	$("#image-class").css("padding-right", new_width);
+	$("#image-class").css("padding-left", new_width);
+
+</script>
