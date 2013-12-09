@@ -55,17 +55,17 @@
 
 <div class="proj_description outer-align" style="width:100%;height:50px;background-color:#fff">
     <div class="inner-align">
-	<div style="text-align:center">
-	    <% unless project.title.blank? %>
-            <% unless current_user != user or public == true %>
-	    <p style="color:#78BAE2" class="proj_link"><%= link_to project.title.html_safe, edit_project_path(project), action: "edit" %></p>
-            <% else %>
-            <p style="color:#78BAE2" class="proj_link"><%= link_to project.title.html_safe,  project, action: "edit" %></p>
-            <% end %>
-	    <% else %>
-	    <p> No Title </p>
-	    <% end %>
-	</div>
+    	<div style="text-align:center">
+    	    <% unless project.title.blank? %>
+                <% unless current_user != user or public == true %>
+            	    <p style="color:#78BAE2" class="proj_link"><%= link_to project.title.html_safe, edit_project_path(project), action: "edit" %></p>
+                <% else %>
+                    <p style="color:#78BAE2" class="proj_link"><%= link_to project.title.html_safe,  project, action: "edit" %></p>
+                <% end %>
+    	    <% else %>
+        	    <p style="color:#78BAE2" class="proj_link"><%= link_to "Untitled Project", project %></p>
+    	    <% end %>
+    	</div>
     </div>
 </div>
 
