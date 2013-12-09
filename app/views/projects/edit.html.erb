@@ -12,7 +12,8 @@
 <div class="onepage-body" >
   <div id="onepage" class="main" >
     <section class="project_header" style="background-color:#78BAE2">
-      <div class="margin_top">
+        <div class="saving_project">saving...</div>
+      <div class="margin_top">          
         <div class="container portfolio_name_area">
           <div class="row">
             <div class="col-md-10">
@@ -30,7 +31,7 @@
               <%= form_for(@project, remote: true) do |f| %>
                 <%= f.hidden_field :title %>
                 <%= f.hidden_field :description %>
-                <%= f.submit 'Save Changes', class: "btn btn-warning", disable_with: "Saving..." %>
+                <%= f.submit 'Save Changes', type: "hidden", class: "btn btn-warning", disable_with: "Saving..." %>
               <% end %>
             </div>
             

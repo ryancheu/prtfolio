@@ -40,6 +40,21 @@ $(document).ready(function(){
       }
       $("#project_title").val(updated_title);
     });
+    var updateProject = function() {
+        $('.edit_project').submit();
+        $('.saving_project').fadeIn(300, function() {
+            $(this).fadeOut(300);
+        });
+    }
+    $('.saving_project').fadeOut(0);
+
+    $( ".form-vertical" ).on( "submit", function() {
+        alert( "it works!"  );
+    });
+    $( "form" ).on( "submit", function( event ) {
+        alert("working");
+});
+
 
     $("#proj-description").blur(function() {
       var updated_description = $(this).html();
@@ -48,6 +63,8 @@ $(document).ready(function(){
         updated_description = "";
       }
       $("#project_description").val(updated_description);
+
+        updateProject();
     });
 
   update_block_with_resource = function (bid, partial, res_pos, res_type, res_id) {
