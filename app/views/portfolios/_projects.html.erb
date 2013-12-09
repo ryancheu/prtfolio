@@ -13,7 +13,9 @@
         </div>
         <% index = index +1 %>
     <% end %>
+    <% unless current_user != user or public %>
     <%= render partial: "/portfolios/addProjBtn", locals:{user: user, projects: projects} %>
+    <% end %>
   </div>
 <%else%>
     <%= puts 'rendering button partial'%>
