@@ -1,20 +1,16 @@
 SaylorpAnuhyagIsabellatrombaRyancheuFinal::Application.routes.draw do
     
-  resources :users
-  resources :sessions
+  resources :users, except: [:index]
   resources :portfolios
 
   resources :projects do
     resources :blocks
   end
 
-  resources :templates
-  resources :themes
-
-  resources :codes
-  resources :descriptions
-  resources :videos
-  resources :images
+  resources :codes, except: [:index]
+  resources :descriptions, except: [:index]
+  resources :videos, except: [:index]
+  resources :images, except: [:index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

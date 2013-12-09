@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/dejan/auto_html.git
+  revision: d30199ad4df40a02aab32ce4a69b5ab877eed6d9
+  specs:
+    auto_html (1.6.0)
+      redcarpet (~> 2.0)
+      rinku (~> 1.5.0)
+
+GIT
   remote: git://github.com/ryancheu/bootstrap_form.git
   revision: 168c1d48c699415e8d0ac89fd5f374ed8f2753a5
   specs:
@@ -34,9 +42,6 @@ GEM
     addressable (2.3.5)
     arel (4.0.1)
     atomic (1.1.14)
-    auto_html (1.6.0)
-      redcarpet (~> 2.0)
-      rinku (~> 1.5.0)
     aws-sdk (1.26.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4, < 1.6.0)
@@ -179,7 +184,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  auto_html
+  auto_html!
   aws-sdk
   bcrypt-ruby (= 3.0.1)
   bootstrap-sass (~> 3.0.2.0)

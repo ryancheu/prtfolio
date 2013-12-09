@@ -6,7 +6,7 @@ ruby '2.0.0'
 gem 'jquery-ui-rails'
 
 # used for embedding video
-gem 'auto_html'
+gem 'auto_html', :git => "git://github.com/dejan/auto_html.git"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'

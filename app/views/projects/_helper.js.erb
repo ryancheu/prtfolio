@@ -48,14 +48,6 @@ $(document).ready(function(){
     }
     $('.saving_project').fadeOut(0);
 
-    $( ".form-vertical" ).on( "submit", function() {
-        alert( "it works!"  );
-    });
-    $( "form" ).on( "submit", function( event ) {
-        alert("working");
-});
-
-
     $("#proj-description").blur(function() {
       var updated_description = $(this).html();
       console.log("Updated Description: " + updated_description);
@@ -101,14 +93,16 @@ $(document).ready(function(){
     //adds the section (method in jquery.onepage-scroll)
     $('.main').addSection();
 
-    $('#onepage section:last').css("background-color",section_color(true));
+    var section = $('#onepage section:last');
+
+    section.css("background-color",section_color(true));
 
     //---Append description to the section--//
-    $('#onepage section:last').append(new_section_html);
+    section.append(new_section_html);
     $("#sidebar").show();
 
     //----Append the 'add section' button to end of section--//
-    $('#onepage section:last').append($('<%= j render "plusBlock" %>'));
+    section.append($('<%= j render "plusBlock" %>'));
 
     block_for_section.on_resource_positions_ready();
     block_for_section.on_form_ready();
@@ -120,6 +114,8 @@ $(document).ready(function(){
     // sidebar template div
     var sidebar_horizontal = $("#chosen_sidebar_horizontal_" + block_id);
     var sidebar_center = $("#chosen_sidebar_center_" + block_id);
+
+    var delete_icon = $("#sidebar_delete_" + block_id);
 
     chosen_horizontal.hide();
     chosen_center.hide();
@@ -144,6 +140,32 @@ $(document).ready(function(){
       
     });
 
+    $(delete_icon).click(function( event) {
+      console.log("Delete called on block " + block_id);
+      var section_id = section.data("index");
+      $.each($('section'), function(i) {
+        var index = $(this).data('index');
+        if (index == section_id){
+          //make the one before active
+          $('.main').moveUp();
+          css_style = $(this).css(['position','top','background-color']);
+          console.log(css_style)   ;
+          $(this).remove();
+        }
+        if (index > section_id){
+          $(this).data('index', index -1);
+          //take the styling of the previous one
+          $(this).css(css_style);
+          css_style = $(this).css(['position','top','background-color']);
+        }
+      });
+      //remove one from the bottom of the ordered list
+      $('ul.onepage-pagination li').last().remove();
+    });
+
+
+    $('.saving_project').fadeOut(0);
+
     if (loaded) {
       block_for_section.load(resource_hash_opt);
       var tid = resource_hash_opt.tid;
@@ -158,15 +180,6 @@ $(document).ready(function(){
 
     return block_for_section;
   };
-
-  // Gets the block object for the section that is currently on screen (active)
-  // var block_in_focus = function() {
-  //   console.log($("section.active .block-container"));
-  //   console.log($("section.active .block-container").data());
-  //   var bid = $("section.active .block-container").data("blockId");
-  //   console.log("Block " + bid + " is in focus");
-  //   return project_blocks.get_block(bid);
-  // };
 
   // When the modal is hidden, rebind the mousewheel for one page scroll
   $('#resource-select-modal').on('hidden.bs.modal', function () {

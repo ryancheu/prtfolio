@@ -8,7 +8,6 @@
 <div class="margin_top">
   <div class="saving_project">saving...</div>
   <div class="container block-container" id=<%= "block-#{bid}" %> data-block-id=<%= "#{bid}" %> >
-    <br>
     
     <!--////////////////////////////// CHOSEN RESOURCE TEMPLATE DISPLAY //////////////////////////////////-->
     
@@ -26,7 +25,13 @@
    
     <!-- sidebar with different template options -->
     <div class="sidebar" id="sidebar" rel="tooltip">
-     
+      
+      <div class="sidebar_delete" id = <%="sidebar_delete_#{bid}" %>>
+        <%= link_to project_block_path(block.project, block), { method: :delete, remote: true} do%>
+            <i class="fa fa-trash-o"></i>
+        <%end%>
+      </div>
+
       <!-- sets up the icon representing double resource horizontal template in sidebar -->
       <div class="sidebar_double_horizontal" title= "Switch to Horizontal Template" id= <%="chosen_sidebar_horizontal_#{bid}"%>>
         <div class="sidebar_horizontal_square">
