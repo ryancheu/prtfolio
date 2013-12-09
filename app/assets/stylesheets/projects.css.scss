@@ -5,7 +5,13 @@
 .title-box{
 	margin-top:50px;
 }
-
+.project_header{
+  background: url('/final_proj.png') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 .add_block_btn{
 	position:absolute;
 	bottom:0;
@@ -24,3 +30,5 @@
   	width:50%;
   	height:50%;
  }
+
+ 

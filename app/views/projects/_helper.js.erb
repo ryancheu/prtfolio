@@ -1,0 +1,249 @@
+$(document).ready(function(){
+  // Add one page scroll to the project page
+  $("[rel=tooltip]").tooltip();
+
+  // Instantiate a BlockList to hold all the blocks (js representation) for this project 
+  project_blocks = BlockList();
+
+  $(".main").onepage_scroll();
+
+  // Initialize title and description as medium editable elements, with content from project
+    var proj_title_medium = new Medium({
+      element: document.getElementById('proj-title'),
+      mode: 'inline',
+      maxLength: 40,
+      placeholder: 'Project Title'
+    });
+    
+    var proj_desc_medium = new Medium({
+      element: document.getElementById('proj-description'),
+      mode: 'inline',
+      maxLength: 100,
+      placeholder: 'Project Subtitle'
+    });
+
+    // populate the title and description fields if appropriate
+    <% if can_show? @project.title %>
+      $('#proj-title').html("<%= @project.title.html_safe %>");
+    <% end %>
+
+    <% if can_show? @project.description %>
+      $("#proj-description").html("<%= @project.description.html_safe %>");
+    <% end %>
+
+    // save the title and description when it loses focus
+    $("#proj-title").blur(function() {
+      var updated_title = $(this).html();
+      console.log("Updated Title: " + updated_title);
+      if (proj_title_medium.isEmpty()) {
+        updated_title = "";
+      }
+      $("#project_title").val(updated_title);
+    });
+
+    $("#proj-description").blur(function() {
+      var updated_description = $(this).html();
+      console.log("Updated Description: " + updated_description);
+      if (proj_desc_medium.isEmpty()) {
+        updated_description = "";
+      }
+      $("#project_description").val(updated_description);
+    });
+
+  update_block_with_resource = function (bid, partial, res_pos, res_type, res_id) {
+    var block = project_blocks.get_block(bid);
+    block.update_resource(res_pos, res_type, res_id, partial);
+  };
+
+
+  // Create a new section for one page scrolling
+  create_section = function(new_section_html, block_id, resource_hash_opt){
+    //determine how to color the section based on the index (number of sections already created)
+    console.log("Creating section for block " + block_id + "...");
+    // Create a js representation of a block and its resources for this section
+    var loaded = resource_hash_opt? true : false;
+    var block_for_section = project_blocks.create_and_add_block(block_id);
+
+    var section_color = function(hex){
+      hex = typeof hex !== 'undefined' ? hex : false;
+      colors = ['dark-gray', 'gray'];
+      hex_colors = ["#343838", "#ecf0f1"];
+      if (hex){
+        section_index = ($('section').length) % 2;
+        return hex_colors[section_index];
+      }
+      section_index = ($('section').length + 1) % 2;
+      return colors[section_index];
+    }; 
+
+    //add the chevron/down arrow and div to go down to next section
+    $('#onepage section:last').append('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>');
+
+    $('#onepage section:last').append('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>');
+
+    //adds the section (method in jquery.onepage-scroll)
+    $('.main').addSection();
+
+    $('#onepage section:last').css("background-color",section_color(true));
+
+    //---Append description to the section--//
+    $('#onepage section:last').append(new_section_html);
+    $("#sidebar").show();
+
+    //----Append the 'add section' button to end of section--//
+    $('#onepage section:last').append($('<%= j render "plusBlock" %>'));
+
+    block_for_section.on_resource_positions_ready();
+    block_for_section.on_form_ready();
+
+    var curr = null;
+    // template choice divs
+    var horizontal = $("#horizontal-" + block_id);
+    var vertical = $("#vertical-" + block_id);
+    var center = $("#center-" + block_id);
+
+    // chosen template div
+    var chosen_horizontal = $("#chosen_horizontal_" + block_id);
+    var chosen_vertical = $("#chosen_vertical_" + block_id);
+    var chosen_center = $("#chosen_center_" + block_id);
+    
+    // sidebar template div
+    var sidebar_horizontal = $("#chosen_sidebar_horizontal_" + block_id);
+    var sidebar_vertical = $("#chosen_sidebar_vertical_" + block_id);
+    var sidebar_center = $("#chosen_sidebar_center_" + block_id);
+
+    var reset = function(){
+      $("#template_selection_heading").remove();
+      horizontal.hide();
+      vertical.hide();
+      center.hide();
+    }
+
+    chosen_horizontal.hide();
+    chosen_center.hide();
+    chosen_vertical.hide();
+
+    $(horizontal).click(function() {
+      curr = chosen_horizontal;
+      console.log("I am in horizontal");
+      reset();
+      chosen_horizontal.fadeIn();
+      block_for_section.set_template(2);
+    });
+
+
+    $(vertical).click(function() {
+      curr = chosen_vertical;
+      console.log("I am in vertical");
+      reset();
+      chosen_vertical.fadeIn();
+      block_for_section.set_template(3);
+    });
+
+    $(center).click(function() {
+      curr = chosen_center;
+      console.log("I am in center");
+      reset();
+      chosen_center.fadeIn();
+      block_for_section.set_template(1);
+    });
+
+
+    $(sidebar_horizontal).click(function() {
+      block_for_section.set_template(2);
+      if (curr == null){
+        reset();
+      }
+      if (curr != chosen_horizontal) {
+        $(curr).hide();
+        curr = chosen_horizontal;
+        $(curr).fadeIn();
+      }
+      
+    });
+
+    $(sidebar_vertical).click(function() {
+      console.log("Vertical");
+      block_for_section.set_template(3);
+      if (curr == null){
+        reset();
+      }
+      if (curr != chosen_vertical) {
+        $(curr).hide();
+        curr = chosen_vertical;
+        $(curr).fadeIn();
+      }
+      
+    });
+
+    $(sidebar_center).click(function() {
+      console.log("Center");
+      block_for_section.set_template(1);
+      if (curr == null){
+        reset();
+      }
+      if (curr != chosen_center) {
+        $(curr).hide();
+        curr = chosen_center;
+        $(curr).fadeIn();
+      }
+      
+    });
+
+    if (loaded) {
+      block_for_section.load(resource_hash_opt);
+      var tid = resource_hash_opt.tid;
+      if (tid == 1 ){
+        center.click();
+      } else if (tid == 2) {
+        horizontal.click();
+      } else if (tid == 3) {
+        vertical.click();
+      }
+    }
+
+    return block_for_section;
+  };
+
+  // Gets the block object for the section that is currently on screen (active)
+  var block_in_focus = function() {
+    console.log($("section.active .block-container"));
+    console.log($("section.active .block-container").data());
+    var bid = $("section.active .block-container").data("blockId");
+    console.log("Block " + bid + " is in focus");
+    return project_blocks.get_block(bid);
+  };
+
+  // When the modal is hidden, rebind the mousewheel for one page scroll
+  // and save the form
+  $('#resource-select-modal').on('hidden.bs.modal', function () {
+      $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
+  });
+
+  // Populate the project_blocks and the sections on the page with the blocks and resources already in the project
+  <% 
+    @project.blocks.each do |block| 
+      resources = get_resources_for_template(block)
+    %>
+      (function() { // wrap in a function to create new namespace
+        var bid = "<%= block.id %>";
+        var res_hash = {
+          tid: "<%= block.template_id %>",
+          type1: "<%= block.firstres_type %>",
+          id1: "<%= block.firstres_id %>",
+          type2: "<%= block.secondres_type %>",
+          id2: "<%= block.secondres_id %>" };
+        <% unless block.firstres.nil? %>
+          res_hash['partial1'] = "<%= j render block.firstres %>";
+        <% end %>
+        <% unless block.secondres.nil? %>
+          res_hash['partial2'] = "<%= j render block.secondres %>";
+        <% end %>
+
+        var rendered_section = "<%= j render partial: 'projects/section', locals: {:block => block} %>";
+        var b = create_section(rendered_section, bid, res_hash);
+      })();
+      
+  <% end %>
+         
+});

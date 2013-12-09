@@ -1,9 +1,10 @@
 <!-- # Primary Author: psaylor -->
 <!-- Using code formatting from https://github.com/blairvanderhoof/gist-embed -->
 <% unless code.gist_id %>
-<pre class="brush: js"> 
-    <%= code.content %>
+<pre class="brush: <%= code.language %>"> 
+<%= code.content %>
 </pre>
+<a href="<%= code.link %>">View on Github</a>
 <% else %>
 <% puts "Rendering code with gist id #{code.gist_id}" %>
 <code data-gist-id=<%= code.gist_id %> >

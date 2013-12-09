@@ -12,11 +12,12 @@ class PortfoliosController < ApplicationController
   end
 
   def show
-    @languages = get_project_languages(@user).to_json.html_safe
-    @language_byte_count = get_project_byte_count_languages(@user).to_json.html_safe
-    @repos = get_user_repos(@user)
-    user_stats = get_user_location(@user)
-    @user_location = user_stats
+    @projects = @portfolio.projects 
+    if (params[:public] == "true")
+      @public = true
+    else
+      puts params[:public]
+    end
   end
 
   def new
@@ -59,14 +60,15 @@ class PortfoliosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_portfolio
-      @portfolio = Portfolio.find(params[:id])
+      @user = User.friendly.find(params[:id])
+      @portfolio = Portfolio.find(@user.id)
       @projects = @portfolio.projects
-      @user = User.find(params[:id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def portfolio_params
-      params[:portfolio]
+      params.require(:portfolio).permit(:image_id);
     end
 
     # Redirects to the current user's portfolio if she already has one

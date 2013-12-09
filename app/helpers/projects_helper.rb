@@ -17,4 +17,14 @@ module ProjectsHelper
     def can_show? str
     	return not(str.nil? || str === "")
     end
+
+    def section_color_hex index
+        hex_colors = ["#343838", "#ecf0f1"]
+        return hex_colors[index%2]
+    end
+
+    def section_color index
+        colors = ['dark-gray', 'gray']
+        return colors[index%2]
+    end
 end

@@ -1,5 +1,7 @@
 # Primary Author: psaylor
 class User < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :username, use: :slugged
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   after_create :create_portfolio

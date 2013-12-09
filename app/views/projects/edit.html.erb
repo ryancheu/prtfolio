@@ -1,21 +1,68 @@
-<!-- Primary Author: psaylor -->
-<div class="container">
-  <div class="page-header">
-    <h1>Editing Project <small><%= @project.title %> </small></h1>
+<!-- primary author: isabellat -->
+
+<script type="text/javascript">
+  // this js file must be included before any js file that uses its data structures
+  <%= render 'blockList.js.erb' %> 
+</script>
+
+<script type="text/javascript">
+  <%= render 'helper.js.erb' %>
+</script>
+
+<div class="onepage-body" >
+  <div id="onepage" class="main" >
+    <section class="project_header" style="background-color:#78BAE2">
+      <div class="margin_top">
+        <div class="container portfolio_name_area">
+          <div class="row">
+            <div class="col-md-10">
+              <div class="media" style="margin-top:20px;">
+                <a class="pull-left" href="#">
+                  <img class="media-object img-rounded portfolio_user_image" style="width: 75px; height: 75px;" src=<%= @project.get_owner.image_url %> alt="Sample Image">
+                </a>
+                <div class="media-body">
+                  <h1 class="media-heading name" style="margin-left:5px; color:#343838; font-weight:500;"><%= current_user.fullname%></h1>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <%# Use remote form to submit live changes to the project's title and description %>
+              <%= form_for(@project, remote: true) do |f| %>
+                <%= f.hidden_field :title %>
+                <%= f.hidden_field :description %>
+                <%= f.submit 'Save Changes', class: "btn btn-warning", disable_with: "Saving..." %>
+              <% end %>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="title-box">
+                <div id="proj-title" class="usrinput medium-title"> </div> 
+                <div id="proj-description" class="usrinput medium-subtitle"></div>
+              </div>
+            </div>
+          </div>
+          <%= render 'plusBlock' %>
+        </div>
+      </div>
+    </section>
   </div>
-
-  <%= render 'form' %>
-
-  <h4>Current Blocks</h4>
-
-  <% @project.blocks.each do |block| %>
-      <%= render block %>
-  <% end %>
-
-  <%= link_to 'Add Block', new_project_block_path(@project), class: "btn btn-warning" %>
-
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="resource-select-modal" tabindex="-1" role="dialog" aria-labelledby="resource-select-modal-title" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="resource-select-modal-title">Modal title</h4>
+      </div>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+      <div class="modal-body" id="resource-select-modal-body">
+        ...
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+

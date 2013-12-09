@@ -1,0 +1,87 @@
+$(document).ready(function() {
+    init_delete = function(){
+        $('.imgproj').mouseenter(function(){$(this).find('.trash').show()}).mouseleave(function(){$(this).find('.trash').hide()})
+        $('.imgprojset').mouseenter(function(){$(this).find('.trash').show()}).mouseleave(function(){$(this).find('.trash').hide()})
+    }
+
+    init_delete()
+
+    $(".main").onepage_scroll();
+        <% unless current_user != @user or @public == true %>
+    var realname_medium = new Medium({
+        element: document.getElementById('realname'),
+        mode: 'inline',
+        maxLength: 20,
+        placeholder: 'Full Name'
+    });
+    var bio_medium = new Medium({
+        element: document.getElementById('bio'),
+        mode: 'inline',
+        maxLength: 100,
+        placeholder: 'Write about yourself'
+    });
+    <% end %>
+    // populate the title and description fields if appropriate
+        <% if can_show? @user.realname %>
+        $('#realname').html("<%= @user.realname.html_safe %>");
+        <% end %>
+
+        <% if can_show? @user.bio %>
+        $("#bio").html("<%= @user.bio.html_safe %>");
+        <% end %>
+
+    var updateUser = function() {
+        $('.edit_user').submit();
+        $('.saving_portfolio').fadeIn(300, function() {
+            $(this).fadeOut(300);
+        });
+    }
+
+    // save the title and description when it loses focus
+    $("#realname").blur(function() {
+        var updated_name = $(this).html();
+        if (realname_medium.isEmpty()) {
+            updated_name = "";
+        }
+        $("#user_realname").val(updated_name);
+        updateUser();
+    });
+
+    $("#bio").blur(function() {
+        var updated_bio = $(this).html();
+        if (bio_medium.isEmpty()) {
+            updated_bio = "";
+        }
+        $("#user_bio").val(updated_bio);
+        updateUser();
+    });
+    $('.saving_portfolio').fadeOut(0);
+
+
+
+    var imageurl;
+    <% if @portfolio.image %>
+        imageurl = "<%= @portfolio.image.content.url %>";
+    <% else %>
+        imageurl = '/assets/mountain.png';
+    <% end %>
+    $('.section_portfolio').css('background-image','url(' + imageurl + ')' );
+    $('#resource-select-modal').on('hidden', function () {
+       $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
+    });
+
+});
+
+
+
+var alert_image_loaded = function(id, path) {
+    $('.section_portfolio').css('background-image','url(' + path + ')' );
+    $('#portfolio_image_id').val(id);
+    $('.edit_portfolio').submit();
+}
+
+var alert_image_proj_loaded = function(id, path, projid) {
+    $('#project_image'+projid).css('background-image','url(' + path + ')' );
+    $('.proj_image_field'+projid).val(id);
+    $('#edit_project_' + projid).submit();
+}

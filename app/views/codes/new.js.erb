@@ -1,8 +1,12 @@
 // Primary Author: psaylor
-$("#resource-select-modal-body").html('<%= j render "formPaste" %>');
+console.log("New code ");
 $("#resource-select-modal-title").html("Select some lines of code");    
+$("#resource-select-modal-body").html('<%= j render "formPaste", locals: { block: @block} %>');
 
 PrepareCodeImportModule();                                               
+
+//Make it so that we can scroll the modal
+$(document).unbind('mousewheel DOMMouseScroll');
 
 $('#new_code').ajaxForm(function() {
 

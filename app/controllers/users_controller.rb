@@ -24,7 +24,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to Portfl.io!"
       @portfolio = current_user.create_portfolio()
       @portfolio.save
       redirect_to @user.portfolio
@@ -54,7 +53,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.friendly.find(params[:id])
     end
 
     # check for when a user is viewing a different user's profile
@@ -65,7 +64,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:fullname, :username, :email)
+      params.require(:user).permit(:fullname, :username, :email,:realname, :bio)
     end
 
 end

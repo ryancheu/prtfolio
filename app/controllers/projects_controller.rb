@@ -7,34 +7,35 @@ class ProjectsController < ApplicationController
 
   include GistHelper
   include ProjectsHelper
+  include BlocksHelper
 
   def index
     @projects = Project.all
   end
 
   def show
+    if (params[:public] == "true")
+      puts "setting public true"
+      @public = true
+    else
+      puts "public false"
+      puts params[:public]
+    end
+    @blocks = get_full_blocks_for_project(@project)
+    puts "showing blocks"
+    puts @blocks
     @user  = @project.get_owner()
-    @projects = get_projects(@user)
-  end
-
-  def new
-    puts "Creating new project"
-    puts "current_user: #{current_user}"
-    @project = current_user.new_project({})
-    puts "new project?"
-    puts @project
   end
 
   def edit
   end
 
   def create
-    @project = current_user.new_project(project_params)
+    @project = current_user.new_project({})
 
     respond_to do |format|
       if @project.save
-        flash[:success] = "Project was successfully created"
-        format.html { redirect_to @project }
+        format.html { redirect_to edit_project_path @project }
         format.json { render action: 'show', status: :created, location: @project }
       else
         format.html { render action: 'new' }
@@ -46,7 +47,6 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        flash[:success] = "Project was successfully updated"
         format.html { redirect_to @project }
         format.json { head :no_content }
       else
@@ -57,9 +57,12 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    @user  = @project.get_owner()
+    portfolio = @project.portfolio
     @project.destroy
+    @projects = portfolio.projects 
     respond_to do |format|
-      format.html { redirect_to projects_url }
+      format.js {}
       format.json { head :no_content }
     end
   end
@@ -72,7 +75,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:title, :description)
+      params.require(:project).permit(:title, :description, :image_id)
     end
 
     # Redirects the user to create a portfolio if she does not have one already

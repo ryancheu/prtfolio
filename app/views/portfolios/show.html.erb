@@ -1,107 +1,94 @@
 <!-- Primary Author: isabella -->
-<div class="container">
-  <div class="row person_section">
-    <div class="col-md-10">
-      <div class="media">
-        <a class="pull-left" href="#">
-          <img class="media-object img-rounded" src=<%= @portfolio.user.image_url %> alt="Sample Image">
-        </a>
-      <div class="media-body">
-        <h1 class="media-heading name"><%= @portfolio.user.fullname%></h1>
-      </div>
-    </div>
-    <div style="margin-top:30px">
-      <div class="row">
-        <div class="col-md-3">
-          <h2 style="color:#fff">Repositories</h2>
-          <% @repos.each do |repo| %>
-          <p><%= link_to repo[:name], repo[:url] %>
-          <% if repo[:fork].eql? true %>
-          <k style="color:#fff">-forked</k>
-          <% end %>
-          <% unless repo[:language].eql? nil %>
-            <k style="color:#fff">-<%=repo[:language]%></k>
-          <% end %>
-          </p>
-          <% end %>
-        </div>
-       <div class="col-md-6 col-md-offset-3">
-        <div class="language_box">
-         <div class="language_stats">
-            <svg id="language_chart"></svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-   <div style="position:absolute; bottom:0" class="bottom-hint-gray"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding-gray"></div>
-  </div>
-</div>
+<script type="text/javascript">
+  <%= render 'helper.js.erb' %>
+</script>
 
-  <%# List all the projects in image-text templates %>
-  <div style="background-color:#ecf0f1;">
-  <div style="padding-top:50px; padding-bottom:50px">
-  <div class="container">
-      <!--backend - specify the total number of projects, the number per row, i.e. the col-width and the number of rows, iterate through each 'row' of projects in a loop (creating approprite col -widht inside the loop and for each row add a new row class)-->
-      <% index = 0 %>
-      <!--start the first row -->
-      <div class="row">
-      <% @projects.each do |project| %>
-        <%= puts index %>
-        <% if ((index)%3)==0 && index>1 %>
-          </div>
-          <div class="row" style="padding-top:40px">
-        <% end %>
-          <div class="col-md-4">
-            <%= render partial: "projectOverview", locals: {project: project} %>
-          </div>
-    <% index = index +1 %>
-    <% end %>
-    <div class="col-md-4 outer-align">
-      <div style="text-align:center;height:401px;" class="inner-align">
-        <i style="color:#2c3e50;font-size:200px" class="fa fa-plus"></i>
-         <p style="font-size:20px"> add project</p>
-      </div>
-  </div>
-</div>
+<div class="onepage-body">
+  <div id="onepage" class="main">
     
-  <!-- <div class = "row">
-      <% if @user == current_user %>
-            <%= link_to new_project_path,:method => "get", :class => "btn btn-medium btn-info btn-block add-proj-btn" do%>
-            <i style="font-size:80px" class="fa fa-plus"></i><b style="margin-left:20px;font-size:80px"> add project</b>
-            <% end %> 
-      <% end %>
-    </div> -->
+      <section class="section_portfolio">
+        <div class="darkenlayer"> </div>
+        
+        <% unless current_user != @user or @public == true %>
+        <div class="portfolio_buttons container" >
+            <div class="saving_portfolio">saving...</div>
+          <%# Use remote form to submit live changes to the project's title and description %>
+          <%= form_for(@user, remote: true) do |f| %>
+            <%= f.hidden_field :realname %>
+            <%= f.hidden_field :bio %>
+            <%= f.submit 'Save Changes', type: "hidden", class: "btn btn-warning save_button_portfolio", disable_with: "Saving..." %>
+          <% end %>
+          <%= form_for(@portfolio, remote: true) do |f| %>
+            <%= f.hidden_field :image_id %>
+            <%= f.submit 'Save Changes', type: "hidden", class: "btn btn-warning", disable_with: "Saving..." %>
+          <% end %>
+          <a href="<%= portfolio_path(current_user.portfolio, :public=>'true')%>">
+              <%= fa_icon "globe 4x", class: "globe" %>
+          </a>
+          <%= link_to new_image_path, remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
+            <%= image_tag "img-icon-grey.png", class: "background_image_button_portfolio" %>
+          <% end %>
+
+        </div>
+        <% end %>
+          <div style="margin-top:160px">
+            <div class="container">
+              <div class="row" >
+
+            <div class="col-md-12">
+              <div class="media outer-align">
+                <a class="pull-left" href="#">
+                  <img style="margin-top:5px" class="media-object img-rounded portfolio_user_image_big" src=<%= @portfolio.user.image_url %> alt="Sample Image">
+                </a>
+                <div class="media-body inner-align">
+                  <div id="realname" class="usrinput medium-name name"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+               <div style="margin-top:50px">
+                <div id="bio" class="medium-blurb">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-hint bottom-hint-gray" onclick ="$('.main').moveDown()" >
+        <i class="fa fa-chevron-down"></i>
+      </div>
+    <div class="bottom-padding bottom-padding-gray">
+    </div>
+    </section>
+    <%# List all the projects in image-text templates %>
+    <section id="features" style="background-color:#ecf0f1"">
+      <div style="margin-top:40px">
+          <div class="container" id="projects">
+              <%= render partial: "projects", locals: {user: @user, projects: @projects, public: @public} %>
+          </div>
+      </div>
+    </section>
   </div>
 </div>
-</div>
-<script>
-  $(document).ready(function(){
-    var data = <%= @languages %>;
-    var byte_data = <%= @language_byte_count %>
 
-    nv.addGraph(function() {
+<!-- Modal -->
+<div class="modal fade" id="resource-select-modal" tabindex="-1" role="dialog" aria-labelledby="resource-select-modal-title" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="resource-select-modal-title">Modal title</h4>
+      </div>
 
-      var width = 400,
-          height = 400;
+      <div class="modal-body" id="resource-select-modal-body">
+        ...
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-      var chart = nv.models.pieChart()
-          .x(function(d) { return d.language })
-          .y(function(d) { return d.count })
-          .labelThreshold(1)
-          .width(width)
-          .height(height)
-          .donut(true).donutRatio(".3");
-
-        d3.select("#language_chart")
-          .datum(data)
-          .transition().duration(1200)
-            .attr('width', width)
-            .attr('height', height)
-            .call(chart);
-
-      return chart;
-    });
-  });
+<script type="text/javascript">
+ <%= render 'helper.js.erb' %>
 </script>

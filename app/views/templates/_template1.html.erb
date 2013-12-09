@@ -1,16 +1,25 @@
 <!-- primary author: anuhyag -->
 <%
 	resource1 = resource1 || Description.create(title: "No Title", content: "No resource provided")
+    bid = bid || 0
+
+    # showMode is true when showing, or false for editing
+    showMode = showMode || false
 %>
 
-<div class = "template1" id = "template1">
-    <div class="row">
-	<div class = "col-md-1"></div>
-
-	<div class = "col-md-10 resource resource1">
-		<%= render resource1 %>
-	</div>
-
-	<div class = "col-md-1"></div>
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class = "col-md-6">
+        <div class= "chosen_template_square" data-pos=0 >
+            <% if showMode %>
+                <%= render resource1 %>
+            <% else %>
+                <%= render partial: 'projects/resourceButtons', locals: { bid: bid, res_pos: 0 } %>
+            <% end %>
+            
+        </div>
+    </div>
+    <div class="col-md-3">
     </div>
 </div>

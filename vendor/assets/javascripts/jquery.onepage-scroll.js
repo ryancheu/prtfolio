@@ -14,6 +14,8 @@
  *
  * ========================================================== */
 
+//Purposely public variable
+var theOnePageBindEvent;
 !function($){
   
   var defaults = {
@@ -80,6 +82,7 @@
   
 
   $.fn.onepage_scroll = function(options){
+    console.log("onepage")
     var settings = $.extend({}, defaults, options),
         el = $(this),
         sections = $(settings.sectionContainer)
@@ -90,7 +93,6 @@
         quietPeriod = 500,
         paginationList = "";
 
-    
     $.fn.transformPage = function(settings, pos, index) {
       $(this).css({
         "-webkit-transform": "translate3d(0, " + pos + "%, 0)", 
@@ -250,7 +252,6 @@
             event.preventDefault();
             return;
         }
-
         if (deltaOfInterest < 0) {
           el.moveDown()
         } else {
@@ -303,7 +304,7 @@
           // if (history.replaceState && settings.updateURL == true) {
           //   var href = window.location.href.substr(0,window.location.href.indexOf('#')) + "#" + (init_index);
           //   history.pushState( {}, document.title, href );
-          //}
+          // }
         }
         pos = ((init_index - 1) * 100) * -1;
         el.transformPage(settings, pos, init_index);
@@ -313,6 +314,8 @@
         // $("body").addClass("viewing-page-1")
         if(settings.pagination == true) $(".onepage-pagination li a" + "[data-index='1']").addClass("active");
       }
+      attach_click_handler()
+      
       function attach_click_handler(){
         if(settings.pagination == true)  {
           $(".onepage-pagination li a").click(function (){
@@ -335,12 +338,13 @@
           });
         }
       }
-
-    $(document).bind('mousewheel DOMMouseScroll', function(event) {
-      event.preventDefault();
-      var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
-      if(!$("body").hasClass("disabled-onepage-scroll")) init_scroll(event, delta);
-    });
+      
+      theOnePageBindEvent = function(event) {
+          event.preventDefault();
+          var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
+          if(!$("body").hasClass("disabled-onepage-scroll")) init_scroll(event, delta);
+      };
+    $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
     
     
     // if(settings.responsiveFallback != false) {

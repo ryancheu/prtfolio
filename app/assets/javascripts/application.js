@@ -17,10 +17,14 @@
 //= require jquery.onepage-scroll
 //= require_tree ./global
 //= require ./syntax/shCore.js
-//= require ./syntax/shBrushJScript.js
-//= require d3.min
-//= require nv.d3
+//= require_tree ./syntax/
 
 
-$(document).ready(onReady);
-$(document).on('page:load', onReady);
+// same as Object.create in ECMAScript 5
+// return a fresh object whose prototype is o
+// note: borrowed from 6.170 example code for Set.js
+var createObject = function (o) {
+    var F = function () {}
+    F.prototype = o;
+    return new F();
+};

@@ -1,12 +1,27 @@
 <!-- # Primary Author: isabella -->
+
+<script type="text/javascript">
+  <%= render 'helper.js.erb' %>
+</script>
+
+<div id= "modal-title" class= "medium-description-title">
+</div>
+
+<div id= "modal-description" class= "medium-description-content">
+</div>
+
 <%= bootstrap_form_for(@description, remote: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
+  <%= f.hidden_field :block_id, :value => @block_id %>
+  <%= f.hidden_field :res_pos, :value => @res_pos %>
+  
+
   <div class="field">
-    <%= f.text_field :title, class: "form-control"  %>
+    <%= f.hidden_field :title, class: "form-control"  %>
   </div>
   <div class="field">
-    <%= f.text_area :content, class: "form-control"  %>
+    <%= f.hidden_field :content, class: "form-control"  %>
   </div>
   <div class="actions">
     <%= f.submit class: "btn btn-primary" %>

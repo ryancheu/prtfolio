@@ -1,0 +1,31 @@
+<%# Primary Author: psaylor %>
+<%
+  puts "Creating resource buttons for block"
+  bid = bid || 0
+  puts "Set block number to #{bid}"
+
+  # res_pos should be an integer between 0 and 4
+  res_pos = res_pos || 0
+  puts "Resource selection for position #{res_pos}"
+
+  # div_class could be either btn-group or btn-group2
+  div_class = div_class || "btn-group"
+%>
+<div class= <%= div_class %> >
+  <%=link_to new_code_path(:block_id => bid, :res_pos => res_pos), remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
+    <%= fa_icon "code 4x" %>
+  <% end %>
+
+  <%=link_to new_description_path(:block_id => bid, :res_pos => res_pos), remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
+    <%= fa_icon "align-left 4x" %>
+  <% end %>
+
+  <%=link_to new_image_path(:block_id => bid, :res_pos => res_pos), remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
+    <%= fa_icon "picture-o 4x" %>
+  <% end %>
+
+  <%=link_to new_video_path(:block_id => bid, :res_pos => res_pos), remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
+    <%= fa_icon "video-camera 4x" %>
+  <% end %>
+
+</div>
