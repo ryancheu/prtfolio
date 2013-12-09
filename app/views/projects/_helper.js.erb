@@ -150,18 +150,19 @@ $(document).ready(function(){
         if (index == section_id){
           //make the one before active
           css_style = $(this).css(['position','top','background-color']);
-          console.log(css_style)   ;
           $(this).remove();
         }
         if (index > section_id){
-          $(this).data('index', index -1);
+          $(this).attr('data-index',index-1)
+          $(this).data('index',index-1);
           //take the styling of the previous one
           $(this).css(css_style);
           css_style = $(this).css(['position','top','background-color']);
         }
       });
       //remove one from the bottom of the ordered list
-      $('ul.onepage-pagination li').last().remove();
+      //redo the pagination
+       $('.main').redoPagination()
     });
 
 
