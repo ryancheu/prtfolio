@@ -1,6 +1,6 @@
 SaylorpAnuhyagIsabellatrombaRyancheuFinal::Application.routes.draw do
     
-  resources :users, except: [:index]
+  # resources :users, except: [:index]
   resources :portfolios
 
   resources :projects do
