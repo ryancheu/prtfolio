@@ -226,6 +226,9 @@ $(document).ready(function(){
       $('ul.onepage-pagination li').last().remove();
     });
 
+
+    $('.saving_project').fadeOut(0);
+
     if (loaded) {
       block_for_section.load(resource_hash_opt);
       var tid = resource_hash_opt.tid;
