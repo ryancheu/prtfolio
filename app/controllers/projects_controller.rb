@@ -14,16 +14,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    if (params[:public] == "true")
-      puts "setting public true"
-      @public = true
-    else
-      puts "public false"
-      puts params[:public]
-    end
     @blocks = get_full_blocks_for_project(@project)
-    puts "showing blocks"
-    puts @blocks
     @user  = @project.get_owner()
   end
 
@@ -31,7 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = current_user.new_project({})
+    @project = current_user.new_project
 
     respond_to do |format|
       if @project.save
