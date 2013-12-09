@@ -1,6 +1,5 @@
 $(document).ready(function(){
   // Add one page scroll to the project page
-  $("#sidebar").hide();
   $("[rel=tooltip]").tooltip();
 
   // Instantiate a BlockList to hold all the blocks (js representation) for this project 
@@ -12,15 +11,15 @@ $(document).ready(function(){
     var proj_title_medium = new Medium({
       element: document.getElementById('proj-title'),
       mode: 'inline',
-      maxLength: 30,
-      placeholder: 'Project title'
+      maxLength: 40,
+      placeholder: 'Project Title'
     });
     
     var proj_desc_medium = new Medium({
       element: document.getElementById('proj-description'),
-      mode: 'partial',
+      mode: 'inline',
       maxLength: 100,
-      placeholder: 'Project subtitle'
+      placeholder: 'Project Subtitle'
     });
 
     // populate the title and description fields if appropriate
@@ -60,14 +59,14 @@ $(document).ready(function(){
   // Create a new section for one page scrolling
   create_section = function(new_section_html, block_id){
     //determine how to color the section based on the index (number of sections already created)
-    console.log("Creating section for block "+block_id+"...");
+    console.log("Creating section for block " + block_id + "...");
     // Create a js representation of a block and its resources for this section
     var block_for_section = project_blocks.create_and_add_block(block_id);
 
     var section_color = function(hex){
       hex = typeof hex !== 'undefined' ? hex : false;
-      colors = ['gray', 'white'];
-      hex_colors = ["#ecf0f1", "#fff"];
+      colors = ['dark-gray', 'gray'];
+      hex_colors = ["#343838", "#ecf0f1"];
       if (hex){
         section_index = ($('section').length) % 2;
         return hex_colors[section_index];
@@ -77,9 +76,9 @@ $(document).ready(function(){
     }; 
 
     //add the chevron/down arrow and div to go down to next section
-    $('#onepage section:last').append('<div class="bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding-'+section_color()+'"></div>');
+    $('#onepage section:last').append('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>');
 
-    $('#onepage section:last').append('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>')
+    $('#onepage section:last').append('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>');
 
     //adds the section (method in jquery.onepage-scroll)
     $('.main').addSection();
@@ -128,6 +127,7 @@ $(document).ready(function(){
       console.log("I am in horizontal");
       reset();
       chosen_horizontal.fadeIn();
+      block_for_section.set_template(2);
     });
 
 
@@ -136,6 +136,7 @@ $(document).ready(function(){
       console.log("I am in vertical");
       reset();
       chosen_vertical.fadeIn();
+      block_for_section.set_template(3);
     });
 
     $(center).click(function() {
@@ -143,12 +144,13 @@ $(document).ready(function(){
       console.log("I am in center");
       reset();
       chosen_center.fadeIn();
+      block_for_section.set_template(1);
     });
 
 
-    $(".sidebar_double_horizontal").tooltip({ content: "Horizontal Template" });
     $(sidebar_horizontal).click(function() {
-       if (curr == null){
+      block_for_section.set_template(2);
+      if (curr == null){
         reset();
       }
       if (curr != chosen_horizontal) {
@@ -156,10 +158,12 @@ $(document).ready(function(){
         curr = chosen_horizontal;
         $(curr).fadeIn();
       }
+      
     });
 
-    $(".sidebar_double_vertical").tooltip({ content: "Vertical Template" });
     $(sidebar_vertical).click(function() {
+      console.log("Vertical");
+      block_for_section.set_template(3);
       if (curr == null){
         reset();
       }
@@ -168,11 +172,13 @@ $(document).ready(function(){
         curr = chosen_vertical;
         $(curr).fadeIn();
       }
+      
     });
 
-    $(".sidebar_single_centered").tooltip({ content: "Single Resource Template" });
     $(sidebar_center).click(function() {
-       if (curr == null){
+      console.log("Center");
+      block_for_section.set_template(1);
+      if (curr == null){
         reset();
       }
       if (curr != chosen_center) {
@@ -180,12 +186,25 @@ $(document).ready(function(){
         curr = chosen_center;
         $(curr).fadeIn();
       }
+      
     });
 
   };
-    $('#resource-select-modal').on('hidden.bs.modal', function () {
-        $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
-    });
+
+  // Gets the block object for the section that is currently on screen (active)
+  var block_in_focus = function() {
+    console.log($("section.active .block-container"));
+    console.log($("section.active .block-container").data());
+    var bid = $("section.active .block-container").data("blockId");
+    console.log("Block " + bid + " is in focus");
+    return project_blocks.get_block(bid);
+  };
+
+  // When the modal is hidden, rebind the mousewheel for one page scroll
+  // and save the form
+  $('#resource-select-modal').on('hidden.bs.modal', function () {
+      $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
+  });
 
          
 });

@@ -33,11 +33,7 @@ $(function() {
     var template_id = -1;
     // Single Resource, Left Resource, Right Resource, Top Resource, Bottom Resource
     var pos0, pos1, pos2, pos3, pos4;
-    var part;
 
-    // var template1 = $("#chosen_center_"+block_id);
-    // var template2 = $("#chosen_horizontal_"+block_id);
-    // var template3 = $("#chosen_vertical_"+block_id);
     var form;
 
     // Takes a resource and sets the firstres input fields in the form to its type and id
@@ -50,7 +46,7 @@ $(function() {
       }
       form.find("#block_firstres_id").val(res.get_id());
       form.find("#block_firstres_type").val(res.get_type());
-    }
+    };
 
     // Takes a resource and sets the secondres input fields in the form to its type and id
     // Clears the input fields if res is undefined
@@ -62,19 +58,24 @@ $(function() {
       }
       form.find("#block_secondres_id").val(res.get_id());
       form.find("#block_secondres_type").val(res.get_type());
-    }
-    
+    };
+
     // the object to be returned that holds all of block's "public" functions
     var self = createObject(Block.prototype);
+    console.log("i reached here")
     // Sets the template_id of the block to tid and returns the updated template_id
     self.set_template = function (tid) {
+      console.log("in set template");
+      console.log("Block " + bid + " template set to " + tid);
       template_id = tid;
+      form.submit();
       return template_id;
     };
 
     self.get_template = function () {
+      console.log("in get template");
       return template_id;
-    }
+    };
 
     // Updates the resource at position res_pos in the block's template
     // to have the type and id specified
@@ -106,6 +107,7 @@ $(function() {
         res4.update(res_type, res_id);
         pos4.html(partial);
       }
+      form.submit();
     };
 
     self.swap_resources = function () {
@@ -147,8 +149,7 @@ $(function() {
         set_firstres_in_form(res3);
         set_secondres_in_form(res4);
       } 
-      form.submit();
-    }
+    };
 
     self.on_resource_positions_ready = function () {
       pos0 = $("[data-block-id="+block_id+"] [data-pos=0]"); // Single Resource
@@ -156,12 +157,16 @@ $(function() {
       pos2 = $("[data-block-id="+block_id+"] [data-pos=2]"); // Right Resource
       pos3 = $("[data-block-id="+block_id+"] [data-pos=3]"); // Top Resource
       pos4 = $("[data-block-id="+block_id+"] [data-pos=4]"); // Bottom Resource
-    }
+    };
 
     self.on_form_ready = function () {
       console.log("Form Ready");
       form = $("#block-"+block_id+" form");
-    }
+      form.submit(function (event) {
+        console.log("Saving Form for block " + block_id);
+        self.save();
+      });
+    };
 
     <% if Rails.env.development? %>
       self.pos0 = function () {
@@ -179,8 +184,8 @@ $(function() {
       self.pos4 = function () {
         return pos4;
       };
+      
     <% end %>
-
     Object.freeze(self);
     return self;
 
@@ -190,6 +195,7 @@ $(function() {
     var bList = new Array();
 
     var self = createObject(BlockList.prototype);
+
 
     // Creates a new block instance with block_id bid and adds it to the BlockList; returns the new block
     self.create_and_add_block = function (bid) {

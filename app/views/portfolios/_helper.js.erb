@@ -1,5 +1,9 @@
 $(document).ready(function() {
-    $('.imgproj').mouseenter(function(){console.log($(this));$(this).find('.trash').show()}).mouseleave(function(){$(this).find('.trash').hide()})
+    init_delete = function(){
+        $('.imgproj').mouseenter(function(){console.log($(this));$(this).find('.trash').show()}).mouseleave(function(){$(this).find('.trash').hide()})
+    }
+
+    init_delete()
 
     $(".main").onepage_scroll();
     var realname_medium = new Medium({

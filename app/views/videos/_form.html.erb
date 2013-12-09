@@ -1,6 +1,10 @@
 
 <%= bootstrap_form_for(@video, remote: true) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
+    
+    <%= f.hidden_field :block_id, :value => @block_id %>
+    <%= f.hidden_field :res_pos, :value => @res_pos %>
+  
 	<div class="field">
 		<%= f.text_field :video, class: "form-control"  %>
 	</div>

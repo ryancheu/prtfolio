@@ -3,6 +3,7 @@ p a:hover{
   text-decoration: none;
   border-bottom: 2px solid;
 }
+
 body{
     padding-top: 48px; 
     color:#2c3e50;
@@ -19,8 +20,7 @@ body{
 .navbar-accent{
     margin-bottom:-1px;
     height:10px;
-    background:#005F6B;
-    
+    background:#005F6B;   
 }
 
 .nav-img{
@@ -295,6 +295,7 @@ html, body {
   border: 2px dashed;
   border-color: #a9afb4;
   display: inline-block;
+  background-color: #FFFFFF;
 }
 
 .chosen_template_square{
@@ -348,7 +349,7 @@ html, body {
 
 .sidebar {
   position:absolute;
-  left:10px; top:60px; bottom: 0;
+  left:10px; top:80px; bottom: 0;
   width: 45px;
 }
 

@@ -2,6 +2,7 @@
 <script type="text/javascript">
   <%= render 'helper.js.erb' %>
 </script>
+
 <div class="onepage-body">
   <div id="onepage" class="main">
     
@@ -47,44 +48,20 @@
           </div>
         </div>
       </div>
-      <div class="bottom-hint bottom-hint-dark-gray" onclick ="$('.main').moveDown()" >
+      <div class="bottom-hint bottom-hint-gray" onclick ="$('.main').moveDown()" >
         <i class="fa fa-chevron-down"></i>
       </div>
-      <div class="bottom-padding bottom-padding-dark-gray"></div>      
-  </section>
-  <%# List all the projects in image-text templates %>
-  <section id="features" style="background-color:#343838;">
-    <div style="margin-top:40px">
-        <div class="container">
-          <!--backend - specify the total number of projects, the number per row, i.e. the col-width and the number of rows, iterate through each 'row' of projects in a loop (creating approprite col -width inside the loop and for each row add a new row class)-->
-          <% index = 0 %>
-          <!--start the first row -->
-          <div class="row">
-            <% @projects.each do |project| %>
-              <%= puts index %>
-              <% if ((index)%3)==0 && index>1 %>
-          </div>
-          <div class="row" style="padding-top:40px">
-              <% end %>
-              <div class="col-md-4">
-                <%= render partial: "projectOverview", locals: {index: index, project: project} %>
-              </div>
-              <% index = index +1 %>
-        <% end %>
-        <% if @user == current_user and @projects.length<6%>
-          <div class="col-md-4 outer-align">
-            <div style="text-align:center;height:200px;" class="inner-align add-proj">
-              <%= link_to new_project_path,:method => "get" do%>
-                <i style="font-size:200px;margin-top:10%" onclick='<%=new_project_path%>' class="add-proj fa fa-plus"></i>
-              <% end %> 
-              <p style="color:#78BAE2; font-size:20px"> add project</p>
-            </div>
-          </div>
-      <% end %>
+    <div class="bottom-padding bottom-padding-gray">
     </div>
-  </div>
-</div>
-</section>
+    </section>
+    <%# List all the projects in image-text templates %>
+    <section id="features" style="background-color:#ecf0f1"">
+      <div style="margin-top:40px">
+          <div class="container" id="projects">
+              <%= render partial: "projects", locals: {user: @user, projects: @projects} %>
+          </div>
+      </div>
+    </section>
   </div>
 </div>
 

@@ -16,6 +16,8 @@ class ImagesController < ApplicationController
   # GET /images/new
   def new
     @image = Image.new
+    @block_id = params[:block_id]
+    @res_pos = params[:res_pos]
   end
 
   # GET /images/1/edit
@@ -26,6 +28,12 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(image_params)
+    # NOTE: @image.block cannot be used because of the polymorphic association (Rails looks for a column resource_id that does not exist)
+    if Block.exists?(block_params[:block_id])
+      @block = Block.find(block_params[:block_id])
+      @res_pos = block_params[:res_pos]
+      puts "created Description for block #{@block.id} at position #{@res_pos}"
+    end
 
     respond_to do |format|
       if @image.save
@@ -67,5 +75,9 @@ class ImagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
       params.require(:image).permit(:content)
+    end
+
+    def block_params
+      params.require(:image).permit(:block_id, :res_pos)
     end
 end

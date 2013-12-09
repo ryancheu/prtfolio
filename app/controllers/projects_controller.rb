@@ -16,23 +16,15 @@ class ProjectsController < ApplicationController
     @user  = @project.get_owner()
   end
 
-  def new
-    puts "Creating new project"
-    puts "current_user: #{current_user}"
-    @project = current_user.new_project({})
-    puts "new project?"
-    puts @project
-  end
-
   def edit
   end
 
   def create
-    @project = current_user.new_project(project_params)
+    @project = current_user.new_project({})
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project }
+        format.html { redirect_to edit_project_path @project }
         format.json { render action: 'show', status: :created, location: @project }
       else
         format.html { render action: 'new' }
@@ -54,9 +46,12 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    @user  = @project.get_owner()
+    portfolio = @project.portfolio
     @project.destroy
+    @projects = portfolio.projects 
     respond_to do |format|
-      format.html { redirect_to portfolio_path(@project.portfolio) }
+      format.js {}
       format.json { head :no_content }
     end
   end
