@@ -48,14 +48,6 @@ $(document).ready(function(){
     }
     $('.saving_project').fadeOut(0);
 
-    $( ".form-vertical" ).on( "submit", function() {
-        alert( "it works!"  );
-    });
-    $( "form" ).on( "submit", function( event ) {
-        alert("working");
-});
-
-
     $("#proj-description").blur(function() {
       var updated_description = $(this).html();
       console.log("Updated Description: " + updated_description);
