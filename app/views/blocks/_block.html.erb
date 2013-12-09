@@ -3,8 +3,18 @@
     template_partial = get_template_partial_name(block.template_id)
     resources = get_resources_for_template(block)
     resources[:showMode] = true
+    
+    color_name = color_name || "dark-gray"
+    color_hex = color_hex || "#343838"
 %>
-
-<div class="">
-    <%= render partial: template_partial, locals: resources %>
-</div>
+<section style="<%= "background-color: #{color_hex};" %>">
+    <div class="margin_top">
+        <div class="container">
+            <%= render partial: template_partial, locals: resources %>
+        </div>
+    </div>
+    <div class="<%= "bottom-hint bottom-hint-#{color_name}" %>">
+        <i class="fa fa-chevron-down"></i>
+    </div>
+    <div class="<%= "bottom-padding bottom-padding-#{color_name}" %>"></div>
+</section>
