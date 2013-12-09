@@ -48,7 +48,7 @@ class VideosController < ApplicationController
   def update
     respond_to do |format|
       if @video.update(video_params)
-        format.html { redirect_to @video, notice: 'Video was successfully updated.' }
+        format.html { redirect_to @video }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

@@ -14,12 +14,11 @@
     <section class="project_header" style="background-color:#78BAE2">
         <div class="saving_project">saving...</div>
       <div class="margin_top"> 
-        <div class = "paperclip_class" style ="text-align: right; margin-right: 60px; color: #343838;">
+        <div class = "paperclip_class" style ="text-align: right; margin-right: 50px; color: #343838;">
           <%=link_to project_path(:project_id => @project) do %> 
             <%= fa_icon "paperclip 4x" %>
             <br>
-              view
-              <br> project 
+            view project 
           <% end %>
           <!-- <br> 
           <div class = "view_proj_label" style= "text-align: right; margin-right: 0px;">
@@ -34,7 +33,7 @@
                   <img class="media-object img-rounded portfolio_user_image" style="width: 75px; height: 75px;" src=<%= @project.get_owner.image_url %> alt="Sample Image">
                 </a>
                 <div class="media-body">
-                  <h1 class="media-heading name" style="margin-left:5px; color:#343838; font-weight:500;"><%= current_user.fullname%></h1>
+                  <h1 class="media-heading name" style="margin-left:5px; color:#343838; font-weight:500;"><%= @project.get_owner.fullname%></h1>
                 </div>
               </div>
             </div>
@@ -58,12 +57,13 @@
               </div>
             </div>
           </div>
-          <%= render 'plusBlock' %>
         </div>
       </div>
     </section>
   </div>
 </div>
+
+<%= render 'plusBlock' %>
 
 <!-- Modal -->
 <div class="modal fade" id="resource-select-modal" tabindex="-1" role="dialog" aria-labelledby="resource-select-modal-title" aria-hidden="true">

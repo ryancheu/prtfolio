@@ -7,9 +7,9 @@
     resources[:temp] = temp
     color_name = color_name || "dark-gray"
     color_hex = color_hex || "#343838"
-    last = last || false
-    
+    last = last || false  
 %>
+
 <section style="<%= "background-color: #{color_hex};" %>">
     <div class="margin_top">
         <div class="container">
@@ -17,9 +17,9 @@
         </div>
     </div>
     <% unless last %>
-    <div class="<%= "bottom-hint bottom-hint-#{color_name}" %>">
-        <i class="fa fa-chevron-down"></i>
-    </div>
-    <div class="<%= "bottom-padding bottom-padding-#{color_name}" %>"></div>
+        <div class="<%= "bottom-hint bottom-hint-#{color_name}" %>">
+            <i class="fa fa-chevron-down"></i>
+        </div>
+        <div class="<%= "bottom-padding bottom-padding-#{color_name}" %>"></div>
     <% end %>
 </section>

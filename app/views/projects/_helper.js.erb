@@ -86,23 +86,24 @@ $(document).ready(function(){
     }; 
 
     //add the chevron/down arrow and div to go down to next section
-    $('#onepage section:last').append('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>');
-
-    $('#onepage section:last').append('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>');
+    var section = $('#onepage section:last');
+    var down_chev = $('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>');
+    section.append(down_chev);
+    section.find(".bottom-hint").click(function() {
+      $('.main').moveDown();
+    });
 
     //adds the section (method in jquery.onepage-scroll)
     $('.main').addSection();
 
-    var section = $('#onepage section:last');
+    // Update section to the new last section
+    section = $('#onepage section:last');
 
     section.css("background-color",section_color(true));
 
     //---Append description to the section--//
     section.append(new_section_html);
     $("#sidebar").show();
-
-    //----Append the 'add section' button to end of section--//
-    section.append($('<%= j render "plusBlock" %>'));
 
     block_for_section.on_resource_positions_ready();
     block_for_section.on_form_ready();
@@ -143,11 +144,11 @@ $(document).ready(function(){
     $(delete_icon).click(function( event) {
       console.log("Delete called on block " + block_id);
       var section_id = section.data("index");
+      $('.main').moveUp();
       $.each($('section'), function(i) {
         var index = $(this).data('index');
         if (index == section_id){
           //make the one before active
-          $('.main').moveUp();
           css_style = $(this).css(['position','top','background-color']);
           console.log(css_style)   ;
           $(this).remove();

@@ -44,7 +44,7 @@ class CodesController < ApplicationController
   def update
     respond_to do |format|
       if @code.update(code_params)
-        format.html { redirect_to @code, notice: 'Code was successfully updated.' }
+        format.html { redirect_to @code }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
