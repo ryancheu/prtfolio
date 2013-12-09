@@ -43,7 +43,23 @@ $(document).ready(function() {
         }
         $("#user_bio").val(updated_bio);
     });
+
+
+    var imageurl;
+    <% if @portfolio.image %>
+        imageurl = "<%= @portfolio.image.content.url %>";
+    <% else %>
+        imageurl = '/assets/mountain.png';
+    <% end %>
+    $('.section_portfolio').css('background-image','url(' + imageurl + ')' );
     $('#resource-select-modal').on('hidden', function () {
-        $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
+       $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
     });
+
 });
+
+var alert_image_loaded = function(id, path) {
+    $('.section_portfolio').css('background-image','url(' + path + ')' );
+    $('#portfolio_image_id').val(id);
+    $('.edit_portfolio').submit();
+}
