@@ -114,6 +114,8 @@ var theOnePageBindEvent;
       index = $(settings.sectionContainer +".active").data("index");
       current = $(settings.sectionContainer + "[data-index='" + index + "']");
       next = $(settings.sectionContainer + "[data-index='" + (index + 1) + "']");
+      console.log(next.length)
+      console.log(next)
       if(next.length < 1) {
         if (settings.loop == true) {
           pos = 0;
@@ -129,6 +131,8 @@ var theOnePageBindEvent;
       current.removeClass("active")
       next.addClass("active");
       if(settings.pagination == true) {
+        console.log("next data index")
+        console.log(next.data("index"))
         $(".onepage-pagination li a" + "[data-index='" + index + "']").removeClass("active");
         $(".onepage-pagination li a" + "[data-index='" + next.data("index") + "']").addClass("active");
       }
@@ -315,7 +319,7 @@ var theOnePageBindEvent;
         if(settings.pagination == true) $(".onepage-pagination li a" + "[data-index='1']").addClass("active");
       }
       attach_click_handler()
-      
+
       function attach_click_handler(){
         if(settings.pagination == true)  {
           $(".onepage-pagination li a").click(function (){
