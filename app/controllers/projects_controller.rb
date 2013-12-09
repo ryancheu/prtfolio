@@ -7,12 +7,14 @@ class ProjectsController < ApplicationController
 
   include GistHelper
   include ProjectsHelper
+  include BlocksHelper
 
   def index
     @projects = Project.all
   end
 
   def show
+    @blocks = get_full_blocks_for_project(@project)
     @user  = @project.get_owner()
   end
 
@@ -20,7 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = current_user.new_project({})
+    @project = current_user.new_project
 
     respond_to do |format|
       if @project.save

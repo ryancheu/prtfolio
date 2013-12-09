@@ -1,36 +1,46 @@
 <% unless project.image.nil? %>
-    <div class="imgprojset">
-        <div style="     -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            height:242px;
-            border-top-left-radius:10px;
-            border-top-right-radius:10px;
-                                       background-image: url('<%=project.image.content.url%>')" id="project_image<%=project.id%>" data-project-id=<%=project.id%>>
-            <div class="delete-proj">
-            	<%= link_to project_path(project),{ :controller => :project, method: :delete, :id => @project, remote: true}, data: {:confirm => 'Are you sure you want to delete the project?'} do%>
-            	   <i class="trash fa fa-trash-o" style="display:none;"></i>
-            	<%end%>
-            </div>
-            
-            <%= form_for(project, remote: true) do |f| %>
-                <%= f.hidden_field :image_id, class: "proj_image_field"+project.id.to_s %>
-                <%= f.submit 'Save Changes', type: "hidden", class: "btn btn-warning", disable_with: "Saving..." %>
-            <% end %>
-            
-            <%= link_to new_image_path(:project_id => project.id), remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
-                <%= image_tag "img-icon-grey.png", class: "trash background_image_button_portfolio_proj portfolio_buttons" %>
-            <% end %>
-        </div>
-    </div>
-<% else  %>
-    <div class="imgproj" id="project_image<%=project.id%>" data-project-id=<%=project.id%>>
+
+<div class="imgprojset">
+<div style="     -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:242px;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+                               background-image: url('<%=project.image.content.url%>')" id="project_image<%=project.id%>" data-project-id=<%=project.id%>>
+    <% unless current_user != user or public == true %>
         <div class="delete-proj">
-        	<%= link_to project_path(project),{ :controller => :project, method: :delete, :id => @project, remote: true}, data: {:confirm => 'Are you sure you want to delete the project?'} do%>
-        	   <i class="trash fa fa-trash-o" style="display:none;"></i>
-    	   <%end%>
-        </div>
+	<%= link_to project_path(project),{ :controller => :project, method: :delete, :id => @project, remote: true}, data: {:confirm => 'Are you sure you want to delete the project?'} do%>
+	<i class="trash fa fa-trash-o" style="display:none;"></i>
+	<%end%>
+    </div>
+    <%= form_for(project, remote: true) do |f| %>
+    <%= f.hidden_field :image_id, class: "proj_image_field"+project.id.to_s %>
+    <%= f.submit 'Save Changes', type: "hidden", class: "btn btn-warning", disable_with: "Saving..." %>
+    <% end %>
+    <%= link_to new_image_path(:project_id => project.id), remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
+    <%= image_tag "img-icon-grey.png", class: "trash background_image_button_portfolio_proj portfolio_buttons" %>
+    <% end %>
+    <% end %>
+</div>
+</div>
+<% else  %>
+<div class="imgproj" id="project_image<%=project.id%>" data-project-id=<%=project.id%>>
+    <% unless current_user != user or public == true %>
+    <div class="delete-proj">
+	<%= link_to project_path(project),{ :controller => :project, method: :delete, :id => @project, remote: true}, data: {:confirm => 'Are you sure you want to delete the project?'} do%>
+	<i class="trash fa fa-trash-o" style="display:none;"></i>
+	<%end%>
+    </div>
+    <%= form_for(project, remote: true) do |f| %>
+    <%= f.hidden_field :image_id, class: "proj_image_field"+project.id.to_s %>
+    <%= f.submit 'Save Changes', type: "hidden", class: "btn btn-warning", disable_with: "Saving..." %>
+    <% end %>
+    <%= link_to new_image_path(:project_id => project.id), remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
+    <%= image_tag "img-icon-grey.png", class: "trash background_image_button_portfolio_proj portfolio_buttons" %>
+    <% end %>
+    <% end %>
 
         <%= form_for(project, remote: true) do |f| %>
             <%= f.hidden_field :image_id, class: "proj_image_field"+project.id.to_s %>
