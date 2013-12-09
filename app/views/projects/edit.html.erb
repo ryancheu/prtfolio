@@ -14,16 +14,14 @@
     <section class="project_header" style="background-color:#78BAE2">
         <div class="saving_project">saving...</div>
       <div class="margin_top"> 
+        <!-- adds a paperclip at the top right corner of the edit page to allow the user to view thier
+        profiles as is. -->
         <div class = "paperclip_class" style ="text-align: right; margin-right: 50px; color: #343838;">
           <%=link_to project_path(:project_id => @project) do %> 
             <%= fa_icon "paperclip 4x" %>
             <br>
             view project 
           <% end %>
-          <!-- <br> 
-          <div class = "view_proj_label" style= "text-align: right; margin-right: 0px;">
-            view <br> project
-          </div> -->
         </div>
         <div class="container portfolio_name_area">
           <div class="row">
