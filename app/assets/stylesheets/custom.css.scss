@@ -306,6 +306,12 @@ html, body {
   background-color: #FFFFFF;
 }
 
+.chosen_template_square2{
+  width: 650px;
+  height: 650px;
+  background-color: #000000;
+}
+
 /* used for the vertical template */
 .chosen_template_square_2{
   width: 350px;
@@ -405,6 +411,27 @@ html, body {
     border: 2px dashed;
 }
 
+/* ///////////////////////////////// TEMPLATE PRETTYFYING CODE ///////////////////////////////////// */
+
+
+.video_arrangement {
+  padding-top: 125px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////// */
+
 .codeSubmitButton {
     float: none;
     width: 100%;
@@ -431,8 +458,8 @@ html, body {
 }
 
 .btn-group{
-  margin-left: 100px;
-  margin-top: 175px;
+  margin-left: 200px;
+  margin-top: 280px;
 }
 
 .btn-group2{
