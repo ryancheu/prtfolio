@@ -112,19 +112,16 @@ $(document).ready(function(){
 
     block_for_section.on_resource_positions_ready();
     block_for_section.on_form_ready();
-    block_for_section.set_template(2);
-
     
-
     // chosen template div
     var chosen_horizontal = $("#chosen_horizontal_" + block_id);
     var chosen_center = $("#chosen_center_" + block_id);
-    var curr = chosen_horizontal ;
+    var curr = null ;
     // sidebar template div
     var sidebar_horizontal = $("#chosen_sidebar_horizontal_" + block_id);
     var sidebar_center = $("#chosen_sidebar_center_" + block_id);
 
-    //chosen_horizontal.hide();
+    chosen_horizontal.hide();
     chosen_center.hide();
 
     $(sidebar_horizontal).click(function() {
@@ -155,6 +152,8 @@ $(document).ready(function(){
       } else if (tid == 2) {
         sidebar_horizontal.click();
       } 
+    } else {
+      sidebar_horizontal.click();
     }
 
     return block_for_section;
@@ -180,6 +179,7 @@ $(document).ready(function(){
       resources = get_resources_for_template(block)
     %>
       (function() { // wrap in a function to create new namespace
+        console.log("Creating new");
         var bid = "<%= block.id %>";
         console.log("Adding block " + bid);
         var res_hash = {

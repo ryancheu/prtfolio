@@ -8,18 +8,3 @@
         <%= description.content.html_safe %>
     </div>
 </div>
-
-<script>
-	(function() {
-		w = 550
-		h = 550
-		var curr_height = $("#description-class").height();
-		var new_height = (h - curr_height)/2;
-		console.log("description height", curr_height);
-		console.log("new height", new_height);
-		if (new_height>0){
-			$("#description-class").css("margin-top", new_height);
-		}
-	})();
-
-</script>
