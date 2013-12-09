@@ -6,8 +6,8 @@ class Video < ActiveRecord::Base
   auto_html_for :video do
     html_escape
     image
-    youtube(:width => 544, :height => 450)
-    vimeo(:width => 544, :height => 450)
+    youtube(:width => 525, :height => 450)
+    vimeo(:width => 525, :height => 450)
     link :target => "_blank", :rel => "nofollow"
     simple_format
   end

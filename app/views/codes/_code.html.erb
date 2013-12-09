@@ -4,9 +4,9 @@
 <div class="code-class" id="code-class">
 	<% unless code.gist_id %>
 		<pre class="brush: <%= code.language %>"> 
-			<%= code.content %>
+<%= code.content %>
 		</pre>
-		<a href="<%= code.link %>">View on Github</a>
+		<a href="<%= code.link %>" class="viewGithub" >View on Github</a>
 	<% else %>
 		<% puts "Rendering code with gist id #{code.gist_id}" %>
 		<code data-gist-id=<%= code.gist_id %> >
