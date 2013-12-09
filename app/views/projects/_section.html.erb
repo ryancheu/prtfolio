@@ -58,7 +58,9 @@
     <div class="sidebar" id="sidebar" rel="tooltip">
       
       <div class="sidebar_delete" id = <%="sidebar_delete_#{bid}" %>>
-        <i class="fa fa-trash-o"></i>
+        <%= link_to project_block_path(block.project, block), { method: :delete, remote: true} do%>
+            <i class="fa fa-trash-o"></i>
+        <%end%>
       </div>
       <!-- sets up the icon representing double resource vertical template in sidebar -->
       <div class="sidebar_double_horizontal" title= "Switch to Horizontal Template" id= <%="chosen_sidebar_vertical_#{bid}" %> >
