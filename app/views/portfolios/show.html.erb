@@ -23,10 +23,10 @@
             <%= f.submit 'Save Changes', type: "hidden", class: "btn btn-warning", disable_with: "Saving..." %>
           <% end %>
           <a href="<%= portfolio_path(current_user.portfolio, :public=>'true')%>">
-              <%= fa_icon "globe 4x", class: "globe" %>
+              <%= fa_icon "globe 4x", class: "globe", title: "View As Public" %>
           </a>
           <%= link_to new_image_path, remote: true, class: "resource-select-btn", data: { target: "#resource-select-modal", toggle: "modal" } do %>
-            <%= image_tag "img-icon-grey.png", class: "background_image_button_portfolio" %>
+            <%= image_tag "img-icon-grey.png", class: "background_image_button_portfolio", title:"Change Background Portfolio Image" %>
           <% end %>
         </div>
         <% end %> <!-- end of restricted access div -->
