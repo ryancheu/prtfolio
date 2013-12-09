@@ -61,6 +61,7 @@ $(document).ready(function(){
     //determine how to color the section based on the index (number of sections already created)
     console.log("Creating section for block " + block_id + "...");
     // Create a js representation of a block and its resources for this section
+    var loaded = resource_hash_opt? true : false;
     var block_for_section = project_blocks.create_and_add_block(block_id);
 
     var section_color = function(hex){
@@ -188,6 +189,19 @@ $(document).ready(function(){
       }
       
     });
+
+    if (loaded) {
+      block_for_section.load(resource_hash_opt);
+      var tid = resource_hash_opt.tid;
+      if (tid == 1 ){
+        center.click();
+      } else if (tid == 2) {
+        horizontal.click();
+      } else if (tid == 3) {
+        vertical.click();
+      }
+    }
+
     return block_for_section;
   };
 
@@ -213,16 +227,21 @@ $(document).ready(function(){
     %>
       (function() { // wrap in a function to create new namespace
         var bid = "<%= block.id %>";
-        var tid = "<%= block.template_id %>"
         var res_hash = {
+          tid: "<%= block.template_id %>",
           type1: "<%= block.firstres_type %>",
           id1: "<%= block.firstres_id %>",
           type2: "<%= block.secondres_type %>",
           id2: "<%= block.secondres_id %>" };
+        <% unless block.firstres.nil? %>
+          res_hash['partial1'] = "<%= j render block.firstres %>";
+        <% end %>
+        <% unless block.secondres.nil? %>
+          res_hash['partial2'] = "<%= j render block.secondres %>";
+        <% end %>
 
         var rendered_section = "<%= j render partial: 'projects/section', locals: {:block => block} %>";
-        var b = create_section(rendered_section, bid);
-        b.load(tid, res_hash);
+        var b = create_section(rendered_section, bid, res_hash);
       })();
       
   <% end %>

@@ -132,20 +132,21 @@ $(function() {
     };
 
     // Sets the template to tid and loads the resource ids and types specified in the resources hash into the appropriate resources given the template
-    self.load = function (tid, resources) {
-      template_id = tid;
+    self.load = function (resources) {
+      template_id = resources.tid;
       console.log(resources);
       if (template_id == 1) { // Single Resource Template
         console.log("Loading single resource");
-        self.update_resource(0, resources.type1, resources.id1, "HI 0", true);
+
+        self.update_resource(0, resources.type1, resources.id1, resources.partial1 , true);
       } else if (template_id == 2) { // Left/Right Template
         console.log("Loading left and right resources");
-        self.update_resource(1, resources.type1, resources.id1, "HI 1", true);
-        self.update_resource(2, resources.type2, resources.id2, "HI 2", true);
+        self.update_resource(1, resources.type1, resources.id1, resources.partial1, true);
+        self.update_resource(2, resources.type2, resources.id2, resources.partial2, true);
       } else if (template_id == 3) { // Top/Bottom Template
         console.log("Loading top and bottom resources");
-        self.update_resource(3, resources.type1, resources.id1, "HI 3", true);
-        self.update_resource(4, resources.type2, resources.id2, "HI 4", true);
+        self.update_resource(3, resources.type1, resources.id1, resources.partial1, true);
+        self.update_resource(4, resources.type2, resources.id2, resources.partial2, true);
       } else {
         console.error("Cannot load resources of undefined template "+template_id + ".");
       }
