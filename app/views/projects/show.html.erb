@@ -40,15 +40,14 @@
         </div>
       </div>
     </section>
-
     <%
       count = 1 
-      @project.blocks.each do |block| 
+      @blocks.each do |block| 
         color = section_color(count)
         color_hex = section_color_hex(count)
         count+= 1
     %>
-      <%= render partial: "blocks/block", locals: {block: block, color_name: color, color_hex: color_hex } %>
+    <%= render partial: "blocks/block", locals: {block: block, color_name: color, color_hex: color_hex } %>
     <% end %>
 
   </div>
