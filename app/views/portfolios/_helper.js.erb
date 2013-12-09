@@ -28,6 +28,13 @@ $(document).ready(function() {
         $("#bio").html("<%= @user.bio.html_safe %>");
         <% end %>
 
+    var updateUser = function() {
+        $('.edit_user').submit();
+        $('.saving_portfolio').fadeIn(300, function() {
+            $(this).fadeOut(300);
+        });
+    }
+
     // save the title and description when it loses focus
     $("#realname").blur(function() {
         var updated_name = $(this).html();
@@ -35,6 +42,7 @@ $(document).ready(function() {
             updated_name = "";
         }
         $("#user_realname").val(updated_name);
+        updateUser();
     });
 
     $("#bio").blur(function() {
@@ -43,7 +51,10 @@ $(document).ready(function() {
             updated_bio = "";
         }
         $("#user_bio").val(updated_bio);
+        updateUser();
     });
+    $('.saving_portfolio').fadeOut(0);
+
 
 
     var imageurl;
