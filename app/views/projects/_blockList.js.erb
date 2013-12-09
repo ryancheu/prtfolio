@@ -63,7 +63,7 @@ $(function() {
     console.log("i reached here")
     // Sets the template_id of the block to tid and returns the updated template_id
     self.set_template = function (tid) {
-      if !(tid== 2 || tid == 1) {
+      if (!(tid== 2 || tid == 1)) {
         console.error("Cannot set invalid template: " + tid);
         return;
       }
