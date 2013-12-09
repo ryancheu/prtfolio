@@ -1,2 +1,4 @@
-Make your own portfolio at https://portflio.herokuapp.com/
-=====
+== Make your own portfolio at https://portflio.herokuapp.com 
+---
+==== Usage Notes:
+If all seems lost, _refresh_ _the_ _page_ :).
