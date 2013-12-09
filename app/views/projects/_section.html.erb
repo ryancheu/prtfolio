@@ -7,8 +7,7 @@
 <!-- template code for creating a new block in its own section on the page-->
 <div class="margin_top">
   <div class="container block-container" id=<%= "block-#{bid}" %> data-block-id=<%= "#{bid}" %> >
-    <h1 id="template_selection_heading" style="color:#a9afb4;"> Select A Template: </h1>
-    <br>
+   
     <div class="row new_block_template_choice" data-block-id=<%= "#{bid}" %> >
       
       <!-- sets up the div representing double resource horizontal template when new block is created -->
@@ -97,31 +96,32 @@
     </div>
   </div>
 </div>
+
 <script>
-  delete_block = function(id){  
-    console.log('delete the block')
-    pos_to_delete = id +1
+  delete_block = function(bid){  
+    console.log('delete block ' + id);
+    pos_to_delete = id +1;
     //delete the block on the backend and then remove it from the view
     //work on just removing it from the view
     //update the index of all the sections below by decrementing them by 1
     //update the pagination list by removing the last pagination element
     $.each($('section'), function(i) {
-      index = $(this).attr('data-index')
+      index = $(this).attr('data-index');
       if (index == pos_to_delete){
         //make the one before active
-        $('.main').moveUp()
-        css_style = $(this).css(['position','top','background-color'])
-        console.log(css_style)   
-        $(this).remove()
+        $('.main').moveUp();
+        css_style = $(this).css(['position','top','background-color']);
+        console.log(css_style)   ;
+        $(this).remove();
       }
       if (index > pos_to_delete){
-        $(this).attr('data-index', index -1)
+        $(this).attr('data-index', index -1);
         //take the styling of the previous one
-        $(this).css(css_style)
-        css_style = $(this).css(['position','top','background-color'])
+        $(this).css(css_style);
+        css_style = $(this).css(['position','top','background-color']);
       }
     })
     //remove one from the bottom of the ordered list
-    $('ul.onepage-pagination li').last().remove()
+    $('ul.onepage-pagination li').last().remove();
   }
 </script>
