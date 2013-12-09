@@ -7,6 +7,7 @@ $(document).ready(function() {
     init_delete()
 
     $(".main").onepage_scroll();
+        <% unless current_user != @user or @public == true %>
     var realname_medium = new Medium({
         element: document.getElementById('realname'),
         mode: 'inline',
@@ -19,6 +20,7 @@ $(document).ready(function() {
         maxLength: 100,
         placeholder: 'Write about yourself'
     });
+    <% end %>
     // populate the title and description fields if appropriate
         <% if can_show? @user.realname %>
         $('#realname').html("<%= @user.realname.html_safe %>");
@@ -69,6 +71,7 @@ $(document).ready(function() {
     });
 
 });
+
 
 
 var alert_image_loaded = function(id, path) {

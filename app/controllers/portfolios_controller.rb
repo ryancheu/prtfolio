@@ -13,6 +13,11 @@ class PortfoliosController < ApplicationController
 
   def show
     @projects = @portfolio.projects 
+    if (params[:public] == "true")
+      @public = true
+    else
+      puts params[:public]
+    end
   end
 
   def new
