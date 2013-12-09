@@ -63,7 +63,7 @@
     </div>
     </section>
     <%# List all the projects in image-text templates %>
-    <section id="features" style="background-color:#ecf0f1"">
+    <section id="features" style="background-color:#ecf0f1">
       <div style="margin-top:40px">
           <div class="container" id="projects">
               <%= render partial: "projects", locals: {user: @user, projects: @projects, public: @public} %>
@@ -89,6 +89,3 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<script type="text/javascript">
- <%= render 'helper.js.erb' %>
-</script>
