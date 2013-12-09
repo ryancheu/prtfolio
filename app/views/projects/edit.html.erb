@@ -13,7 +13,19 @@
   <div id="onepage" class="main" >
     <section class="project_header" style="background-color:#78BAE2">
         <div class="saving_project">saving...</div>
-      <div class="margin_top">          
+      <div class="margin_top"> 
+        <div class = "paperclip_class" style ="text-align: right; margin-right: 60px; color: #343838;">
+          <%=link_to project_path(:project_id => @project) do %> 
+            <%= fa_icon "paperclip 4x" %>
+            <br>
+              view
+              <br> project 
+          <% end %>
+          <!-- <br> 
+          <div class = "view_proj_label" style= "text-align: right; margin-right: 0px;">
+            view <br> project
+          </div> -->
+        </div>
         <div class="container portfolio_name_area">
           <div class="row">
             <div class="col-md-10">
@@ -27,12 +39,14 @@
               </div>
             </div>
             <div class="col-md-2">
+              
               <%# Use remote form to submit live changes to the project's title and description %>
               <%= form_for(@project, remote: true) do |f| %>
                 <%= f.hidden_field :title %>
                 <%= f.hidden_field :description %>
                 <%= f.submit 'Save Changes', type: "hidden", class: "btn btn-warning", disable_with: "Saving..." %>
               <% end %>
+
             </div>
             
           </div>

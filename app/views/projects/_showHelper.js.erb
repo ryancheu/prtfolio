@@ -37,28 +37,20 @@ $(document).ready(function(){
 
     $('#onepage section:last').append('<div class="bottom-hint bottom-hint-'+ section_color()+'"><i class="fa fa-chevron-down"></i></div><div class="bottom-padding bottom-padding-'+section_color()+'"></div>');
 
+
     //adds the section (method in jquery.onepage-scroll)
     $('.main').addSection();
-
+    
     $('#onepage section:last').css("background-color",section_color(true));
+
+
 
     //---Append new_section_html to the sections --//
     $('#onepage section:last').append(new_section_html);
 
+
+
+
   };
-
-  var remove_border = function (){
-    console.log("in remove border");
-    $("#template1_chosen_square").each(function(){
-      console.log("in template 1 chosen")
-      $(this).css("border", "none");
-    })
-
-    $("#template2_chosen_square").each(function(){
-      $(this).css("border", "none");
-    })
-  };
-
-  remove_border();
          
 });
