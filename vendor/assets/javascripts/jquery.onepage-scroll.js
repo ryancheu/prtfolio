@@ -14,6 +14,8 @@
  *
  * ========================================================== */
 
+//Purposely public variable
+var theOnePageBindEvent;
 !function($){
   
   var defaults = {
@@ -80,6 +82,7 @@
   
 
   $.fn.onepage_scroll = function(options){
+    console.log("onepage")
     var settings = $.extend({}, defaults, options),
         el = $(this),
         sections = $(settings.sectionContainer)
@@ -90,7 +93,6 @@
         quietPeriod = 500,
         paginationList = "";
 
-    
     $.fn.transformPage = function(settings, pos, index) {
       $(this).css({
         "-webkit-transform": "translate3d(0, " + pos + "%, 0)", 
@@ -112,6 +114,7 @@
       index = $(settings.sectionContainer +".active").data("index");
       current = $(settings.sectionContainer + "[data-index='" + index + "']");
       next = $(settings.sectionContainer + "[data-index='" + (index + 1) + "']");
+      // console.log(next.length)
       if(next.length < 1) {
         if (settings.loop == true) {
           pos = 0;
@@ -193,7 +196,35 @@
       }
     }
 
+    $.fn.redoPagination = function(){
+      sections = $(settings.sectionContainer)
+      $.each( sections, function(i) {
+          if(settings.pagination == true) {
+            paginationList = ""
+            $.each( sections, function(i) {
+              if(settings.pagination == true) {
+                 paginationList += "<li><a data-index='"+(i+1)+"' href='#" + (i+1) + "'></a></li>"
+              }
+              });
+            //remove pagination and recreate it when you add a section
+            $('.onepage-pagination').remove()
+            //add new pagination list
+            $("<ul class='onepage-pagination'>" + paginationList + "</ul>").prependTo("body");
+            posTop = (el.find(".onepage-pagination").height() / 2) * -1;
+            el.find(".onepage-pagination").css("margin-top", posTop);
+            attach_click_handler()
+          }
+        })
+        if(settings.pagination == true) {
+          index = $(settings.sectionContainer +".active").data("index");
+          current = $(settings.sectionContainer + "[data-index='" + index + "']");
+          //get current active and add pagination active
+          $(".onepage-pagination li a" + "[data-index='" + index + "']").addClass("active");
+      }
+    }
+
     $.fn.addSection = function(){
+        sections = $(settings.sectionContainer)
         pos = (sections.length)*100
         section = $("<section>").css({
             position: "absolute",
@@ -201,8 +232,15 @@
           }).addClass("section").attr("data-index", sections.length+1).appendTo('#onepage');
         sections = $('section')
         if(settings.pagination == true) {
-          paginationList += "<li><a data-index='"+(sections.length)+"' href='#" + (sections.length) + "'></a></li>"
-          //remove old pagination list
+          console.log('pagination listing')
+          console.log(paginationList)
+          paginationList = ""
+          $.each( sections, function(i) {
+            if(settings.pagination == true) {
+               paginationList += "<li><a data-index='"+(i+1)+"' href='#" + (i+1) + "'></a></li>"
+            }
+            });
+          //remove pagination and recreate it when you add a section
           $('.onepage-pagination').remove()
           //add new pagination list
           $("<ul class='onepage-pagination'>" + paginationList + "</ul>").prependTo("body");
@@ -223,23 +261,14 @@
     //       $("body").removeClass("disabled-onepage-scroll");
     //       $("html, body, .wrapper").animate({ scrollTop: 0 }, "fast");
     //     }
+
         
-        
-    //     el.swipeEvents().bind("swipeDown",  function(event){ 
-    //       if (!$("body").hasClass("disabled-onepage-scroll")) event.preventDefault();
-    //       el.moveUp();
-    //     }).bind("swipeUp", function(event){ 
-    //       if (!$("body").hasClass("disabled-onepage-scroll")) event.preventDefault();
-    //       el.moveDown();
-    //     });
-        
-    //     $(document).bind('mousewheel DOMMouseScroll', function(event) {
-    //       event.preventDefault();
-    //       var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
-    //       init_scroll(event, delta);
-    //     });
-    //   }
-    // }
+        // $(document).bind('mousewheel DOMMouseScroll', function(event) {
+        //   event.preventDefault();
+        //   var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
+        //   init_scroll(event, delta);
+        // });
+          
     
     
     function init_scroll(event, delta) {
@@ -250,8 +279,8 @@
             event.preventDefault();
             return;
         }
-
         if (deltaOfInterest < 0) {
+          console.log('binding scrolling DOWN')
           el.moveDown()
         } else {
           el.moveUp()
@@ -303,7 +332,7 @@
           // if (history.replaceState && settings.updateURL == true) {
           //   var href = window.location.href.substr(0,window.location.href.indexOf('#')) + "#" + (init_index);
           //   history.pushState( {}, document.title, href );
-          //}
+          // }
         }
         pos = ((init_index - 1) * 100) * -1;
         el.transformPage(settings, pos, init_index);
@@ -313,6 +342,8 @@
         // $("body").addClass("viewing-page-1")
         if(settings.pagination == true) $(".onepage-pagination li a" + "[data-index='1']").addClass("active");
       }
+      attach_click_handler()
+
       function attach_click_handler(){
         if(settings.pagination == true)  {
           $(".onepage-pagination li a").click(function (){
@@ -335,12 +366,13 @@
           });
         }
       }
-
-    $(document).bind('mousewheel DOMMouseScroll', function(event) {
-      event.preventDefault();
-      var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
-      if(!$("body").hasClass("disabled-onepage-scroll")) init_scroll(event, delta);
-    });
+      
+      theOnePageBindEvent = function(event) {
+          event.preventDefault();
+          var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
+          if(!$("body").hasClass("disabled-onepage-scroll")) init_scroll(event, delta);
+      };
+      $(document).bind('mousewheel DOMMouseScroll', theOnePageBindEvent);
     
     
     // if(settings.responsiveFallback != false) {

@@ -1,9 +1,10 @@
-<!-- # Primary Author: psaylor -->
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"> <%= description.title %> </h3>
+<%# Primary Author: anuhyag %>
+<div class="description" id ="description-class">
+    <div class="description-heading" id="description-heading" style="color: #78BAE2;">
+        <h3 style="text-align: center; border:4px solid; border-color:#78BAE2; font-size: 40px; font-family: 'Varela Round', sans-serif; border-style: solid hidden solid hidden; font-weight: 650px;"> <%= description.title.html_safe %> </h3>
     </div>
-    <div class="panel-body">
-        <%= simple_format(description.content) %>
+    <br>
+    <div class="description-body" id = "description-body" style="color: #78BAE2; border:4px solid; border-color:#78BAE2; border-style: hidden hidden hidden hidden; font-size: 25px; font-family: 'Varela Round', sans-serif;" >
+        <%= description.content.html_safe %>
     </div>
 </div>

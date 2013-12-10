@@ -1,16 +1,23 @@
 <!-- primary author: anuhyag -->
 <%
 	resource1 = resource1 || Description.create(title: "No Title", content: "No resource provided")
+    bid = bid || 0
+    # showMode is true when showing, or false for editing
+    showMode = showMode || false
+    temp = temp || false
+    class_name = "template1_chosen_square_borderless" 
+    id_name = "template1_chosen_square_borderless"
+    if temp != 1
+        class_name = "template1_chosen_square"
+        id_name = "template1_chosen_square"
+    end
 %>
 
-<div class = "template1" id = "template1">
-    <div class="row">
-	<div class = "col-md-1"></div>
-
-	<div class = "col-md-10 resource resource1">
-		<%= render resource1 %>
-	</div>
-
-	<div class = "col-md-1"></div>
-    </div>
+<div class= "<%= class_name %> curvedBox" id="<%= id_name %>" data-pos=0 >
+    <% if showMode %>
+        <%= render resource1 %>
+    <% else %>
+        <%= render partial: 'projects/resourceButtons', locals: { bid: bid, res_pos: 0 } %>
+    <% end %>
 </div>
+

@@ -2,7 +2,11 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
-gem 'auto_html'
+# only used for the tooltip
+gem 'jquery-ui-rails'
+
+# used for embedding video
+gem 'auto_html', :git => "git://github.com/dejan/auto_html.git"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -64,3 +68,6 @@ gem "hirb", "~> 0.7.1"
 # gems for using amazon s3
 gem "paperclip", "~> 3.0"
 gem 'aws-sdk'
+
+#For nice urls
+gem 'friendly_id', '~> 5.0.0'

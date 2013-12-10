@@ -1,5 +1,7 @@
 # Primary Author: psaylor
 class User < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :username, use: :slugged
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   after_create :create_portfolio
@@ -30,8 +32,8 @@ class User < ActiveRecord::Base
   end
 
   # Returns a new Project object for the user, with associations set up between the project, the portfolio it's in, and the user
-  def new_project params
-    project = self.portfolio.projects.new(params)
+  def new_project
+    project = self.portfolio.projects.new({})
     return project
   end
 

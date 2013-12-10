@@ -1,0 +1,4 @@
+//<!--  Primary Author: isabellat -->
+var new_proj_list = "<%= escape_javascript(render partial: '/portfolios/projects', locals: {user: @user, projects: @projects, public: false})%>";
+$('.container#projects').html(new_proj_list)
+init_delete()

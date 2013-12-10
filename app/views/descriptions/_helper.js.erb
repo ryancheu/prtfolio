@@ -1,0 +1,32 @@
+$(document).ready(function() {
+    var description_title_medium = new Medium({
+        element: document.getElementById('modal-title'),
+        mode: 'inline',
+        maxLength: 40,
+        placeholder: 'Type Your Title Here'
+    });
+    var description_content_medium = new Medium({
+        element: document.getElementById('modal-description'),
+        mode: 'rich',
+        maxLength: 300,
+        placeholder: 'Type Your Content Here'
+    });
+
+    // save the title and description when it loses focus
+    $("#modal-title").blur(function() {
+        var updated_description_title = $(this).html();
+        if (description_title_medium.isEmpty()) {
+            updated_description_title = "";
+        }
+    $("#description_title").val(updated_description_title);
+
+    });
+
+    $("#modal-description").blur(function() {
+        var updated_description_content = $(this).html();
+        if (description_content_medium.isEmpty()) {
+            updated_description_content = "";
+        }
+    $("#description_content").val(updated_description_content);
+    });
+});

@@ -12,5 +12,5 @@ class Code < ActiveRecord::Base
   def get_owner
     return self.block.get_owner
   end
-
+  
 end

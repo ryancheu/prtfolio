@@ -1,0 +1,19 @@
+$(document).ready(function(){
+  
+  // Add one page scroll to the project page
+  $(".main").onepage_scroll();
+
+    // populate the title and description fields if appropriate
+    <% if can_show? @project.title %>
+      $('#proj-title').html("<%= j @project.title.html_safe %>");
+    <% end %>
+
+    <% if can_show? @project.description %>
+      $("#proj-description").html("<%= j @project.description.html_safe %>");
+    <% end %>
+
+  $(".bottom-hint").click(function() {
+    $('.main').moveDown();
+  });
+         
+});

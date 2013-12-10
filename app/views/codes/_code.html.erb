@@ -1,11 +1,31 @@
 <!-- # Primary Author: psaylor -->
 <!-- Using code formatting from https://github.com/blairvanderhoof/gist-embed -->
-<% unless code.gist_id %>
-<pre class="brush: js"> 
-    <%= code.content %>
-</pre>
-<% else %>
-<% puts "Rendering code with gist id #{code.gist_id}" %>
-<code data-gist-id=<%= code.gist_id %> >
-</code>
-<% end %>
+
+<div class="code-class" id="code-class">
+	<% unless code.gist_id %>
+		<pre class="brush: <%= code.language %>"> 
+<%= code.content %>
+		</pre>
+		<a href="<%= code.link %>" class="viewGithub" >View on Github</a>
+	<% else %>
+		<% puts "Rendering code with gist id #{code.gist_id}" %>
+		<code data-gist-id=<%= code.gist_id %> >
+		</code>
+	<% end %>
+</div>
+
+<!-- # Primary Author: anuhyag -->
+<script>
+	w = 550
+	h = 550
+	var curr_height = $("#code-class").height();
+	var new_height = (h - curr_height)/2;
+	console.log("code height", curr_height);
+	console.log("new height", new_height);
+
+	if (new_height >0){
+		$("#code-class").css("margin-bottom", new_height);
+	}
+
+</script>
+

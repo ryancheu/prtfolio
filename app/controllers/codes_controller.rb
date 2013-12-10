@@ -15,6 +15,8 @@ class CodesController < ApplicationController
 
   def new
     @code = Code.new
+    @block_id = params[:block_id]
+    @res_pos = params[:res_pos]
   end
 
   def edit
@@ -23,6 +25,9 @@ class CodesController < ApplicationController
 
   def create
     @code = Code.new(code_params)
+    @block = Block.find(block_params[:block_id])
+    @res_pos = block_params[:res_pos]
+    puts "created Code for block #{@block.id} at position #{@res_pos}"
     respond_to do |format|
       unless @code.save
         puts "there were errors saving!"
@@ -39,7 +44,7 @@ class CodesController < ApplicationController
   def update
     respond_to do |format|
       if @code.update(code_params)
-        format.html { redirect_to @code, notice: 'Code was successfully updated.' }
+        format.html { redirect_to @code }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -63,11 +68,15 @@ class CodesController < ApplicationController
     end
 
     def set_gists
-      @gist_ids = @gist_ids || get_gist_ids(current_user)
+      # @gist_ids = @gist_ids || get_gist_ids(current_user)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def code_params
-      params.require(:code).permit(:gist_id, :content, :link)
+      params.require(:code).permit(:content, :link, :language)
+    end
+
+    def block_params
+      params.require(:code).permit(:block_id, :res_pos)
     end
 end

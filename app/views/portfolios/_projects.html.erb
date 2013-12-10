@@ -1,0 +1,23 @@
+<!--backend - specify the total number of projects, the number per row, i.e. the col-width and the number of rows, iterate through each 'row' of projects in a loop (creating approprite col -width inside the loop and for each row add a new row class)-->
+<%if projects.length>0%>
+  <% index = 0 %>
+  <div class="row">
+    <% projects.each do |project| %>
+      <%= puts index %>
+      <% if ((index)%3)==0 && index>1 %>
+        </div>
+        <div class="row" style="padding-top:40px">
+      <% end %>
+        <div class="col-md-4">
+          <%= render partial: "/portfolios/projectOverview", locals: {user: user, index: index, project: project, public: public} %>
+        </div>
+        <% index = index +1 %>
+    <% end %>
+    <% unless current_user != user or public %>
+    <%= render partial: "/portfolios/addProjBtn", locals:{user: user, projects: projects} %>
+    <% end %>
+  </div>
+<%else%>
+    <%= puts 'rendering button partial'%>
+    <%= render partial: "/portfolios/addProjBtn", locals:{user: user, projects: projects} %>
+<%end%>

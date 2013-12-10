@@ -1,1 +1,20 @@
-<%= video.video_html %>
+<!-- primary author: anuhyag -->
+<div class="video-class" id="video-class">
+	<br>
+	<br>
+	<%= video.video_html %>
+</div>
+
+<script>
+	w = 500
+	h = 550
+	var curr_height = $("#video-class").height();
+	var new_height = (h - curr_height)/2;
+	console.log("video height", curr_height);
+	console.log("new height", new_height);
+
+	var curr_width = $("#video-class").width();
+	var new_width = (w - curr_width)/2;
+	console.log("video width", curr_width);
+	console.log("new width", new_width);
+</script>

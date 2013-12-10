@@ -16,6 +16,11 @@ class ImagesController < ApplicationController
   # GET /images/new
   def new
     @image = Image.new
+    @block_id = params[:block_id]
+    @res_pos = params[:res_pos]
+    puts "proj id"
+    puts params[:project_id]
+    @project = params[:project_id]
   end
 
   # GET /images/1/edit
@@ -26,6 +31,19 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(image_params)
+    # NOTE: @image.block cannot be used because of the polymorphic association (Rails looks for a column resource_id that does not exist)
+    if Block.exists?(block_params[:block_id])
+      @block = Block.find(block_params[:block_id])
+      @res_pos = block_params[:res_pos]
+      puts "created Description for block #{@block.id} at position #{@res_pos}"
+    end
+    
+    puts "project: "
+    puts project_params[:project_id]
+    if Project.exists?(project_params[:project_id])
+      @project = Project.find(project_params[:project_id])
+    end
+
 
     respond_to do |format|
       if @image.save
@@ -39,7 +57,7 @@ class ImagesController < ApplicationController
   def update
     respond_to do |format|
       if @image.update(image_params)
-        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
+        format.html { redirect_to @image }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -67,5 +85,13 @@ class ImagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
       params.require(:image).permit(:content)
+    end
+
+    def block_params
+      params.require(:image).permit(:block_id, :res_pos)
+    end
+
+    def project_params
+      params.require(:image).permit(:project_id)
     end
 end

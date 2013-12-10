@@ -1,14 +1,14 @@
 //<!--  Primary Author: psaylor -->
-console.log("Gist Created");
+console.log("Code Created");
 <% if @code.errors.any? %>
   console.log('Error');
-  $("#resource-select-modal-body").html('<%= j render partial: "form", locals: {gist_ids: @gist_ids} %>');
+  $("#resource-select-modal-body").html('<%= j render partial: "formPaste" %>');
 
 <% else %>
 
   $('#resource-select-modal').modal('hide');
   var code = "<%= escape_javascript(render(partial: @code)) %>";
-  update_resource_with_partial(code, "Code", "<%= @code.id %>");
+  update_block_with_resource("<%= @block.id %>", code, <%= @res_pos %>, "Code", "<%= @code.id %>");
   SyntaxHighlighter.run();
 
 

@@ -128,10 +128,11 @@ var CodeImport = function() {
             }
 
             var data = $('#code_area').attr("data");
+            var language = $('#language_select').val();
             
             $('#code_area').replaceWith($('<pre id="code_area">' +data+ '</pre>'));
             $('#code_area').addClass("highlight: [" + lineNumberArray.toString() + "]");
-            $('#code_area').addClass("brush: js");
+            $('#code_area').addClass("brush: " + language);
 
             $('#code_area').html(data);
             SyntaxHighlighter.run();
@@ -143,10 +144,10 @@ var CodeImport = function() {
 
     var getCodeFromSelection = function() {
         codeText = $('#code_area').attr("data");
-        if ( codeText ) {
+        if ( codeText && _endLineNumber - _startLineNumber > 0) {
             returnText = "";
             codeLines = codeText.split("\n");
-            for ( var i = _startLineNumber; i <= _endLineNumber; i++ ) {
+            for ( var i = _startLineNumber - 1; i <= _endLineNumber; i++ ) {
                 returnText = returnText + codeLines[i] + "\n";
             }
             return returnText;
@@ -175,6 +176,8 @@ var CodeImport = function() {
         $('#loadCodeButton').click(
             function (e) {
                 e.preventDefault();
+                var language = $('#language_select').val();
+                $('#code_area').replaceWith($('<pre id="code_area" class="brush: ' + language + '">' + '</pre>'));
                 var linkString = $('#code_link').val();
                 fetechCodeFromGithub(linkString, displayCode);
             }
@@ -200,7 +203,12 @@ var PrepareCodeImportModule = function() {
         var s = document.createElement("input");
         s.type="hidden"; s.name="code[content]"; s.value=thecode; s.id="code_content";
         
+        var codeLanguage = $('#language_select').val();
+        var t = document.createElement("input");
+        t.type="hidden"; t.name="code[language]"; t.value=codeLanguage; t.id="code_language";
+        
         form.appendChild(s);
+        form.appendChild(t);
         $("#new_code").trigger("submit.rails");
     });
 
